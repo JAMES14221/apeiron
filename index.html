@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aperio Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #050814;
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero / Header Section (Home Page) */
+        .hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(120deg, #090d16, #141b2d, #1e1b38, #0b1120);
+            background-size: 400% 400%;
+            animation: waveGradient 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            overflow: hidden;
+        }
+
+        @keyframes waveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Canvas overlay for Home page comets & constellations */
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Navbar */
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #e2e8f0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+        }
+
+        .nav-links a.active {
+            position: relative;
+        }
+
+        /* Dynamic underline colors per active section */
+        #nav-home.active::after, #nav-about.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            border-radius: 2px;
+        }
+        #nav-home.active::after { background-color: #8b5cf6; }
+        #nav-about.active::after { background-color: #2dd4bf; }
+
+        .search-icon {
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-button {
+            margin-top: 10px;
+            padding: 10px 24px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Scroll Down Indicator & Info Icon */
+        .hero-footer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            padding-bottom: 10px;
+        }
+
+        .info-icon {
+            position: absolute;
+            left: 0;
+            color: #94a3b8;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .scroll-indicator {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-6px); }
+            60% { transform: translateY(-3px); }
+        }
+
+        /* Carousel Section */
+        .carousel-section {
+            padding: 80px 40px;
+            background-color: #060911;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        .carousel-section h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #f1f5f9;
+            letter-spacing: 1px;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 450px;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: #fff;
+            text-align: left;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            transition: background 0.2s;
+            z-index: 5;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #334155;
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s;
+        }
+
+        .indicator.active {
+            background: #8b5cf6;
+        }
+
+        /* Scrollable About Section with Green Shifting Gradient & Forest Canvas */
+        .about-section {
+            position: relative;
+            min-height: 100vh;
+            /* Green-and-teal shifting gradient moving horizontally from about.html */
+            background: linear-gradient(135deg, #041611, #0b2e25, #061a14, #113f30);
+            background-size: 400% 400%;
+            animation: waveGradient 15s ease infinite;
+            padding: 80px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+        }
+
+        /* Canvas overlay for forest silhouette, wind, and constellations */
+        #about-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .about-grid, .about-bottom-grid {
+            position: relative;
+            z-index: 10;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 70px;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .about-image-container {
+            width: 100%;
+            height: 380px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .info-block h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #f1f5f9;
+        }
+
+        .info-block p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #94a3b8;
+        }
+
+        .mission-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mission-list li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #94a3b8;
+        }
+
+        .mission-list li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: #2dd4bf;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        @media (max-width: 968px) {
+            .about-grid, .about-bottom-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-section {
+                padding: 60px 30px;
+            }
+        }
+
+        .site-footer {
+    background-color: #0b0714;
+    color: #ffffff;
+    padding: 50px 20px 30px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.site-footer h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    color: #f1f5f9;
+}
+
+.footer-links-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+}
+
+.footer-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #2dd4bf;
+    border: 1px solid rgba(45, 212, 191, 0.4);
+    border-radius: 6px;
+    padding: 6px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.footer-icon-link:hover {
+    background-color: rgba(45, 212, 191, 0.1);
+    border-color: #2dd4bf;
+}
+
+.footer-contact-info {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    margin-top: 10px;
+}
+
+.footer-copyright {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 15px;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Hero Header (Home Page Top) -->
+    <header class="hero">
+        <canvas id="hero-canvas"></canvas>
+
+        <nav>
+            <div class="logo">APERIO</div>
+            <ul class="nav-links">
+                <li><a onclick="scrollToSection('hero')" id="nav-home" class="active">Home</a></li>
+                <li><a onclick="scrollToSection('about')" id="nav-about">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#" class="search-icon">🔍</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-content">
+            <p class="hero-subtitle">Embark on the Kidzania of researchers</p>
+            <h1 class="hero-title">APERIO RESEARCH</h1>
+            <button class="cta-button">Join for free</button>
+        </div>
+
+        <div class="hero-footer">
+            <div class="info-icon">i</div>
+            <div class="scroll-indicator" onclick="scrollToSection('carousel')">⌄</div>
+        </div>
+    </header>
+
+    <!-- Carousel Section -->
+    <section class="carousel-section" id="carousel">
+        <h2>Featured Explorations</h2>
+        <div class="carousel-container">
+            <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+            
+            <div class="carousel-track" id="track">
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80" alt="Research Lab 1">
+                    <div class="carousel-caption">
+                        <h3>Advanced Data Matrix Analysis</h3>
+                        <p>Mapping complex trajectories across multi-dimensional research models.</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=1200&q=80" alt="Research Lab 2">
+                    <div class="carousel-caption">
+                        <h3>Cosmic Network Simulations</h3>
+                        <p>Visualizing data architectures and interconnected researcher nodes.</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Research Lab 3">
+                    <div class="carousel-caption">
+                        <h3>Next-Gen Protocols</h3>
+                        <p>Streamlining collaborative experiments globally in real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-indicators" id="indicators">
+            <button class="indicator active" onclick="currentSlide(0)"></button>
+            <button class="indicator" onclick="currentSlide(1)"></button>
+            <button class="indicator" onclick="currentSlide(2)"></button>
+        </div>
+    </section>
+
+    <!-- Scrollable About Section with Green Background, Wind, and Forest Animation -->
+    <section class="about-section" id="about">
+        <!-- Canvas overlay for Forest Silhouette, Right-to-Left Wind, and Constellations -->
+        <canvas id="about-canvas"></canvas>
+
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>About Us</h2>
+                <p>Aperio Research is a student-initiated platform designed to democratize the research experience. We are not a journal, publisher, or self-publishing site. Instead, we curate and showcase selected student research projects that meet our standards.</p>
+                <p>We are not a journal, publisher, or self-publishing site. Instead, we curate and showcase selected student research projects that meet our standards.</p>
+            </div>
+            <div class="about-image-container">
+                <img src="images.jpg" alt="Mountain Landscape Sunrise">
+            </div>
+        </div>
+
+        <div class="about-bottom-grid">
+            <div class="info-block">
+                <h3>Extraordinary Experiences</h3>
+                <p>Extraordinary experiences happen when students realize that research is not distant or exclusive – it is accessible, creative, and transformative. Aperio is here to make that first step possible.</p>
+            </div>
+            <div class="info-block">
+                <h3>Our Mission</h3>
+                <ul class="mission-list">
+                    <li>Open the entry point for students beyond elite schools and labs.</li>
+                    <li>Provide workshops on research methods, writing, and ethics.</li>
+                    <li>Build a student research community where selected works inspire others.</li>
+                    <li>Ensure accessibility: no submission fees, no publication fees.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+    <div class="footer-content">
+        <h3>Contact Us</h3>
+        
+        <div class="footer-links-row">
+            <div class="footer-item">
+                <span>Fanpage:</span>
+                <a href="#" class="footer-icon-link" aria-label="Facebook Fanpage">
+                    <svg class="footer-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+            </div>
+            <div class="footer-item">
+                <span>Apply your research:</span>
+                <a href="#" class="footer-icon-link" aria-label="Apply Research">
+                    <svg class="footer-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                </a>
+            </div>
+        </div>
+
+        <p class="footer-contact-info">
+            Phone: 090 934 8508 | Email: aperio.res@gmail.com
+        </p>
+
+        <p class="footer-copyright">
+            © 2026 AperioResearch. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+    <script>
+        // Smooth navigation handler
+        function scrollToSection(sectionId) {
+            if (sectionId === 'hero') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Active Nav State Highlighting on Scroll
+        const navHome = document.getElementById('nav-home');
+        const navAbout = document.getElementById('nav-about');
+        const aboutSection = document.getElementById('about');
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            const aboutTop = aboutSection.offsetTop - 300;
+
+            if (scrollPos >= aboutTop) {
+                navAbout.classList.add('active');
+                navHome.classList.remove('active');
+            } else {
+                navHome.classList.add('active');
+                navAbout.classList.remove('active');
+            }
+        });
+
+        // Carousel Logic
+        let currentIndex = 0;
+        const track = document.getElementById('track');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            indicators.forEach((ind, index) => {
+                ind.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function moveSlide(direction) {
+            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function currentSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+
+
+        // Canvas 1: Home Page Comets & Constellations Animation
+        const heroCanvas = document.getElementById('hero-canvas');
+        const heroCtx = heroCanvas.getContext('2d');
+        let heroW, heroH;
+
+        function resizeHeroCanvas() {
+            heroW = heroCanvas.width = window.innerWidth;
+            heroH = heroCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeHeroCanvas);
+        resizeHeroCanvas();
+
+        const homeStars = [];
+        for (let i = 0; i < 70; i++) {
+            homeStars.push({
+                x: Math.random() * heroW,
+                y: Math.random() * heroH,
+                radius: Math.random() * 1.5 + 0.5,
+                alpha: Math.random() * 0.7 + 0.3,
+                vx: (Math.random() + 0.5) * 0.15,
+                vy: (Math.random() + 0.5) * 0.15
+            });
+        }
+
+        const comets = [];
+        for (let i = 0; i < 6; i++) {
+            comets.push({
+                x: Math.random() * heroW * 1.5 - heroW * 0.25,
+                y: -50,
+                length: Math.random() * 300 + 200,
+                speed: Math.random() * 2 + 1.5,
+                angle: Math.PI / 4 + (Math.random() - 0.5) * 0.2,
+                width: Math.random() * 1.5 + 0.5,
+                opacity: Math.random() * 0.4 + 0.2,
+                color: Math.random() > 0.5 ? '255, 255, 255' : '230, 100, 200'
+            });
+        }
+
+        function animateHero() {
+            heroCtx.clearRect(0, 0, heroW, heroH);
+
+            heroCtx.lineWidth = 0.5;
+            for (let i = 0; i < homeStars.length; i++) {
+                for (let j = i + 1; j < homeStars.length; j++) {
+                    const dx = homeStars[i].x - homeStars[j].x;
+                    const dy = homeStars[i].y - homeStars[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 130) {
+                        heroCtx.strokeStyle = `rgba(255, 255, 255, ${0.12 * (1 - dist / 130)})`;
+                        heroCtx.beginPath();
+                        heroCtx.moveTo(homeStars[i].x, homeStars[i].y);
+                        heroCtx.lineTo(homeStars[j].x, homeStars[j].y);
+                        heroCtx.stroke();
+                    }
+                }
+            }
+
+            homeStars.forEach(star => {
+                star.x += star.vx;
+                star.y += star.vy;
+                if (star.x < 0) star.x = heroW;
+                if (star.x > heroW) star.x = 0;
+                if (star.y < 0) star.y = heroH;
+                if (star.y > heroH) star.y = 0;
+
+                heroCtx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+                heroCtx.beginPath();
+                heroCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                heroCtx.fill();
+            });
+
+            comets.forEach(comet => {
+                comet.x += Math.cos(comet.angle) * comet.speed;
+                comet.y += Math.sin(comet.angle) * comet.speed;
+                const tailX = comet.x - Math.cos(comet.angle) * comet.length;
+                const tailY = comet.y - Math.sin(comet.angle) * comet.length;
+
+                const grad = heroCtx.createLinearGradient(comet.x, comet.y, tailX, tailY);
+                grad.addColorStop(0, `rgba(${comet.color}, ${comet.opacity})`);
+                grad.addColorStop(1, `rgba(${comet.color}, 0)`);
+
+                heroCtx.strokeStyle = grad;
+                heroCtx.lineWidth = comet.width;
+                heroCtx.beginPath();
+                heroCtx.moveTo(comet.x, comet.y);
+                heroCtx.lineTo(tailX, tailY);
+                heroCtx.stroke();
+
+                if (comet.x > heroW + 300 || comet.y > heroH + 300) {
+                    comet.x = -100;
+                    comet.y = Math.random() * heroH * 0.5;
+                }
+            });
+
+            requestAnimationFrame(animateHero);
+        }
+        animateHero();
+
+
+        // Canvas 2: About Page Forest Silhouette, Right-to-Left Wind, and Constellations Animation
+        const aboutCanvas = document.getElementById('about-canvas');
+        const aboutCtx = aboutCanvas.getContext('2d');
+        let aboutW, aboutH;
+
+        function resizeAboutCanvas() {
+            aboutW = aboutCanvas.width = aboutSection.offsetWidth;
+            aboutH = aboutCanvas.height = aboutSection.offsetHeight;
+        }
+        window.addEventListener('resize', resizeAboutCanvas);
+        resizeAboutCanvas();
+
+        const aboutStars = [];
+        for (let i = 0; i < 50; i++) {
+            aboutStars.push({
+                x: Math.random() * aboutW,
+                y: Math.random() * (aboutH * 0.6),
+                radius: Math.random() * 1.5 + 0.5,
+                alpha: Math.random() * 0.4 + 0.2,
+                vx: (Math.random() - 0.5) * 0.1,
+                vy: (Math.random() - 0.5) * 0.1
+            });
+        }
+
+        const windStripes = [];
+        for (let i = 0; i < 9; i++) {
+            windStripes.push(createWindStripe());
+        }
+
+        function createWindStripe() {
+            return {
+                x: aboutW + Math.random() * 300,
+                y: Math.random() * (aboutH * 0.75),
+                length: Math.random() * 300 + 180,
+                speed: Math.random() * 2.0 + 1.2,
+                angle: Math.PI + (Math.random() - 0.5) * 0.3,
+                amplitude: Math.random() * 25 + 10,
+                frequency: Math.random() * 0.008 + 0.004,
+                phase: Math.random() * Math.PI * 2,
+                width: Math.random() * 1.4 + 0.5,
+                opacity: Math.random() * 0.35 + 0.1
+            };
+        }
+
+        function drawForestSilhouettes() {
+            aboutCtx.fillStyle = '#020d09';
+            aboutCtx.beginPath();
+            aboutCtx.moveTo(0, aboutH);
+            let baseY1 = aboutH * 0.72;
+            aboutCtx.lineTo(0, baseY1);
+            for (let x = 0; x <= aboutW; x += 30) {
+                let y = baseY1 - Math.sin(x * 0.01) * 30 - Math.cos(x * 0.03) * 15;
+                aboutCtx.lineTo(x, y);
+            }
+            aboutCtx.lineTo(aboutW, aboutH);
+            aboutCtx.closePath();
+            aboutCtx.fill();
+
+            aboutCtx.fillStyle = '#010705';
+            aboutCtx.beginPath();
+            aboutCtx.moveTo(0, aboutH);
+            for (let x = 0; x <= aboutW; x += 18) {
+                let treeHeight = 60 + Math.abs(Math.sin(x * 0.05)) * 90 + (x % 50 === 0 ? 30 : 0);
+                let baseY2 = aboutH * 0.85;
+                aboutCtx.lineTo(x, baseY2 - treeHeight);
+                aboutCtx.lineTo(x + 9, baseY2);
+            }
+            aboutCtx.lineTo(aboutW, aboutH);
+            aboutCtx.closePath();
+            aboutCtx.fill();
+        }
+
+        function animateAbout() {
+            aboutCtx.clearRect(0, 0, aboutW, aboutH);
+
+            aboutCtx.lineWidth = 0.5;
+            for (let i = 0; i < aboutStars.length; i++) {
+                for (let j = i + 1; j < aboutStars.length; j++) {
+                    const dx = aboutStars[i].x - aboutStars[j].x;
+                    const dy = aboutStars[i].y - aboutStars[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        aboutCtx.strokeStyle = `rgba(45, 212, 191, ${0.06 * (1 - dist / 120)})`;
+                        aboutCtx.beginPath();
+                        aboutCtx.moveTo(aboutStars[i].x, aboutStars[i].y);
+                        aboutCtx.lineTo(aboutStars[j].x, aboutStars[j].y);
+                        aboutCtx.stroke();
+                    }
+                }
+            }
+
+            aboutStars.forEach(star => {
+                star.x += star.vx;
+                star.y += star.vy;
+                if (star.x < 0) star.x = aboutW;
+                if (star.x > aboutW) star.x = 0;
+                if (star.y < 0) star.y = aboutH * 0.6;
+                if (star.y > aboutH * 0.6) star.y = 0;
+
+                aboutCtx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+                aboutCtx.beginPath();
+                aboutCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                aboutCtx.fill();
+            });
+
+            windStripes.forEach(stripe => {
+                stripe.x += Math.cos(stripe.angle) * stripe.speed;
+                stripe.y += Math.sin(stripe.angle) * stripe.speed;
+                stripe.phase += 0.03;
+
+                aboutCtx.save();
+                aboutCtx.beginPath();
+                aboutCtx.lineWidth = stripe.width;
+
+                const steps = 30;
+                const stepLength = stripe.length / steps;
+
+                for (let s = 0; s <= steps; s++) {
+                    const distAlong = s * stepLength;
+                    const baseX = stripe.x + Math.cos(stripe.angle) * distAlong;
+                    const baseY = stripe.y + Math.sin(stripe.angle) * distAlong;
+                    const perpAngle = stripe.angle + Math.PI / 2;
+                    const waveOffset = Math.sin(stripe.phase + distAlong * stripe.frequency) * stripe.amplitude;
+                    
+                    const px = baseX + Math.cos(perpAngle) * waveOffset;
+                    const py = baseY + Math.sin(perpAngle) * waveOffset;
+
+                    if (s === 0) aboutCtx.moveTo(px, py);
+                    else aboutCtx.lineTo(px, py);
+                }
+
+                const gradX = stripe.x + Math.cos(stripe.angle) * stripe.length;
+                const gradY = stripe.y + Math.sin(stripe.angle) * stripe.length;
+                const lineGrad = aboutCtx.createLinearGradient(stripe.x, stripe.y, gradX, gradY);
+                lineGrad.addColorStop(0, `rgba(255, 255, 255, ${stripe.opacity})`);
+                lineGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+                aboutCtx.strokeStyle = lineGrad;
+                aboutCtx.stroke();
+                aboutCtx.restore();
+
+                if (stripe.x < -400) {
+                    Object.assign(stripe, createWindStripe());
+                    stripe.x = aboutW + 150;
+                    stripe.y = Math.random() * (aboutH * 0.7);
+                }
+            });
+
+            drawForestSilhouettes();
+
+            requestAnimationFrame(animateAbout);
+        }
+        animateAbout();
+    </script>
+</body>
+</html>
