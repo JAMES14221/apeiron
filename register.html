@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Aperio Research</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h2>Create an Account</h2>
+            <p>Join the Aperio Research community</p>
+
+            <!-- Đã thêm id="register-form" vào form -->
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="fullname">Username</label>
+                    <input type="text" id="fullname" placeholder="example:abc" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="name@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="auth-btn">Sign Up</button>
+            </form>
+
+            <div class="auth-footer">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nhúng thư viện Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        // Khởi tạo Supabase
+        const SUPABASE_URL = "https://ryybxrcjanpgozlswlkp.supabase.co/rest/v1/";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5eWJ4cmNqYW5wZ296bHN3bGtwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgwNTc5NjIsImV4cCI6MjEwMzYzMzk2Mn0.lFfrQBQcBl7Qx2663H39RWheuyoHiBrlT5t0701nfTQ";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Lấy element Form
+        const registerForm = document.getElementById('register-form');
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // 1. Kiểm tra mật khẩu khớp nhau
+            if (password !== confirmPassword) {
+                alert('Mật khẩu xác nhận không khớp!');
+                return;
+            }
+
+            // 2. Gửi dữ liệu đăng ký lên Supabase
+            const { data, error } = await supabase.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: {
+                        full_name: fullname
+                    }
+                }
+            });
+
+            if (error) {
+                alert('Đăng ký thất bại: ' + error.message);
+            } else {
+                alert('Đăng ký thành công! Kiểm tra danh sách Users trên Supabase.');
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>
