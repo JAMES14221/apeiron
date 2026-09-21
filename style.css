@@ -131,6 +131,11 @@ nav {
     justify-content: center;
     min-height: 75vh;
     gap: 50px;
+    pointer-events: none;
+}
+
+.hero-content .cta-button {
+    pointer-events: auto;
 }
 
 .hero-subtitle {

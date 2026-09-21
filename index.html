@@ -157,54 +157,60 @@
         }, 5000);
 
         // Canvas 1: Home Page Comets & Constellations Animation
+        const heroSectionEl = document.querySelector('.hero');
         const heroCanvas = document.getElementById('hero-canvas');
         const heroCtx = heroCanvas.getContext('2d');
         let heroW, heroH;
 
         function resizeHeroCanvas() {
-            heroW = heroCanvas.width = window.innerWidth;
-            heroH = heroCanvas.height = window.innerHeight;
+            heroW = heroCanvas.width = heroSectionEl.clientWidth || window.innerWidth;
+            heroH = heroCanvas.height = heroSectionEl.clientHeight || window.innerHeight;
         }
         window.addEventListener('resize', resizeHeroCanvas);
         resizeHeroCanvas();
 
         const homeStars = [];
-        for (let i = 0; i < 70; i++) {
+        for (let i = 0; i < 110; i++) {
             homeStars.push({
                 x: Math.random() * heroW,
                 y: Math.random() * heroH,
-                radius: Math.random() * 1.5 + 0.5,
+                radius: Math.random() * 2.0 + 0.8,
                 alpha: Math.random() * 0.7 + 0.3,
-                vx: (Math.random() + 0.5) * 0.15,
-                vy: (Math.random() + 0.5) * 0.15
+                vx: (Math.random() - 0.2) * 0.3,
+                vy: (Math.random() - 0.2) * 0.3
             });
         }
 
         const comets = [];
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 8; i++) {
             comets.push({
                 x: Math.random() * heroW * 1.5 - heroW * 0.25,
-                y: -50,
-                length: Math.random() * 300 + 200,
-                speed: Math.random() * 2 + 1.5,
+                y: Math.random() * heroH * 0.5 - 100,
+                length: Math.random() * 320 + 200,
+                speed: Math.random() * 2.5 + 1.8,
                 angle: Math.PI / 4 + (Math.random() - 0.5) * 0.2,
-                width: Math.random() * 1.5 + 0.5,
-                opacity: Math.random() * 0.4 + 0.2,
-                color: Math.random() > 0.5 ? '255, 255, 255' : '230, 100, 200'
+                width: Math.random() * 1.8 + 0.8,
+                opacity: Math.random() * 0.5 + 0.3,
+                color: Math.random() > 0.5 ? '255, 255, 255' : '167, 139, 250'
             });
         }
+
+        // Interactive click effect arrays (declared BEFORE animateHero)
+        const clickParticles = [];
+        const clickRipples = [];
 
         function animateHero() {
             heroCtx.clearRect(0, 0, heroW, heroH);
 
-            heroCtx.lineWidth = 0.5;
+            // 1. Constellation lines between nearby stars
+            heroCtx.lineWidth = 0.8;
             for (let i = 0; i < homeStars.length; i++) {
                 for (let j = i + 1; j < homeStars.length; j++) {
                     const dx = homeStars[i].x - homeStars[j].x;
                     const dy = homeStars[i].y - homeStars[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 130) {
-                        heroCtx.strokeStyle = `rgba(255, 255, 255, ${0.12 * (1 - dist / 130)})`;
+                    if (dist < 140) {
+                        heroCtx.strokeStyle = `rgba(167, 139, 250, ${0.22 * (1 - dist / 140)})`;
                         heroCtx.beginPath();
                         heroCtx.moveTo(homeStars[i].x, homeStars[i].y);
                         heroCtx.lineTo(homeStars[j].x, homeStars[j].y);
@@ -213,6 +219,7 @@
                 }
             }
 
+            // 2. Stars
             homeStars.forEach(star => {
                 star.x += star.vx;
                 star.y += star.vy;
@@ -227,6 +234,7 @@
                 heroCtx.fill();
             });
 
+            // 3. Comets / Shooting stars
             comets.forEach(comet => {
                 comet.x += Math.cos(comet.angle) * comet.speed;
                 comet.y += Math.sin(comet.angle) * comet.speed;
@@ -245,8 +253,8 @@
                 heroCtx.stroke();
 
                 if (comet.x > heroW + 300 || comet.y > heroH + 300) {
-                    comet.x = -100;
-                    comet.y = Math.random() * heroH * 0.5;
+                    comet.x = Math.random() * heroW * 1.2 - 200;
+                    comet.y = -80;
                 }
             });
 
@@ -297,72 +305,73 @@
         }
         animateHero();
 
-        // Mouse click interaction on hero
-        const clickParticles = [];
-        const clickRipples = [];
-        const heroSection = document.querySelector('.hero');
-
-        heroSection.addEventListener('click', (e) => {
-            // Don't trigger if clicked on a button or link
+        // Mouse click interaction handler
+        function handleHeroClick(e) {
+            // Ignore clicks directly on interactive elements like links or buttons
             if (e.target.closest('a') || e.target.closest('button')) return;
 
             const rect = heroCanvas.getBoundingClientRect();
+            // Only trigger if click is within the hero section
+            if (e.clientY < rect.top || e.clientY > rect.bottom) return;
+
             const clickX = e.clientX - rect.left;
             const clickY = e.clientY - rect.top;
 
-            // 1. Trigger concentric shockwave ripples
+            // 1. Shockwave ripples
             clickRipples.push({
                 x: clickX,
                 y: clickY,
                 radius: 10,
-                speed: 4.5,
-                alpha: 0.85,
+                speed: 5.0,
+                alpha: 0.9,
                 fade: 0.015,
                 width: 2.5,
-                color: '139, 92, 246' // Purple glow
+                color: '139, 92, 246' // Purple
             });
             clickRipples.push({
                 x: clickX,
                 y: clickY,
                 radius: 5,
-                speed: 3.0,
-                alpha: 0.7,
+                speed: 3.2,
+                alpha: 0.75,
                 fade: 0.012,
                 width: 1.5,
-                color: '45, 212, 191' // Teal/Cyan accent
+                color: '45, 212, 191' // Teal
             });
 
-            // 2. Spawn exploding celestial spark particles
+            // 2. Exploding spark particles
             const colors = ['255, 255, 255', '167, 139, 250', '192, 132, 252', '45, 212, 191'];
-            const count = 22;
+            const count = 26;
             for (let i = 0; i < count; i++) {
-                const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5) * 0.4;
-                const speed = Math.random() * 5 + 2;
+                const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5) * 0.5;
+                const speed = Math.random() * 5.5 + 2.5;
                 clickParticles.push({
                     x: clickX,
                     y: clickY,
                     vx: Math.cos(angle) * speed,
                     vy: Math.sin(angle) * speed,
-                    size: Math.random() * 2.5 + 1.2,
+                    size: Math.random() * 2.8 + 1.2,
                     alpha: 1.0,
                     fade: Math.random() * 0.02 + 0.015,
                     color: colors[Math.floor(Math.random() * colors.length)]
                 });
             }
 
-            // 3. Temporarily pull or stimulate nearby stars towards or outward from click point
+            // 3. Shockwave impulse to nearby stars
             homeStars.forEach(star => {
                 const dx = star.x - clickX;
                 const dy = star.y - clickY;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 180 && dist > 0) {
-                    const force = (180 - dist) / 180 * 4.0;
-                    star.vx += (dx / dist) * force * 0.3;
-                    star.vy += (dy / dist) * force * 0.3;
+                if (dist < 220 && dist > 0) {
+                    const force = (220 - dist) / 220 * 5.0;
+                    star.vx += (dx / dist) * force * 0.35;
+                    star.vy += (dy / dist) * force * 0.35;
                     star.alpha = 1.0;
                 }
             });
-        });
+        }
+
+        window.addEventListener('click', handleHeroClick);
     </script>
 </body>
 </html>
