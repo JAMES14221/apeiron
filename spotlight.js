@@ -323,17 +323,11 @@
     });
 
     window.addEventListener('keydown', (e) => {
-        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-        const isShortcut = (isMac ? e.metaKey : e.ctrlKey) && e.key.toLowerCase() === 'k';
-        const isSlash = e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName);
+        const isSpace = e.key === ' ' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName);
 
-        if (isShortcut || isSlash) {
+        if (isSpace && !overlay.classList.contains('active')) {
             e.preventDefault();
-            if (overlay.classList.contains('active')) {
-                closeSpotlight();
-            } else {
-                openSpotlight();
-            }
+            openSpotlight();
         } else if (e.key === 'Escape' && overlay.classList.contains('active')) {
             closeSpotlight();
         }
