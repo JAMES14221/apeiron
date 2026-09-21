@@ -368,59 +368,52 @@
             // Only trigger if click is within the hero section
             if (e.clientY < rect.top || e.clientY > rect.bottom) return;
 
+            // Cap max active effects to prevent spam chaos
+            if (clickParticles.length > 40) return;
+            if (clickRipples.length > 4) return;
+
             const clickX = e.clientX - rect.left;
             const clickY = e.clientY - rect.top;
 
-            // 1. Shockwave ripples
+            // 1. Single subtle ripple
             clickRipples.push({
                 x: clickX,
                 y: clickY,
-                radius: 10,
-                speed: 5.0,
-                alpha: 0.9,
-                fade: 0.015,
-                width: 2.5,
-                color: '139, 92, 246' // Purple
-            });
-            clickRipples.push({
-                x: clickX,
-                y: clickY,
-                radius: 5,
-                speed: 3.2,
-                alpha: 0.75,
-                fade: 0.012,
-                width: 1.5,
-                color: '45, 212, 191' // Teal
+                radius: 8,
+                speed: 3.0,
+                alpha: 0.45,
+                fade: 0.018,
+                width: 1.2,
+                color: '139, 92, 246'
             });
 
-            // 2. Exploding spark particles
-            const colors = ['255, 255, 255', '167, 139, 250', '192, 132, 252', '45, 212, 191'];
-            const count = 26;
+            // 2. Small spark burst (gentle)
+            const colors = ['255, 255, 255', '167, 139, 250', '45, 212, 191'];
+            const count = 8;
             for (let i = 0; i < count; i++) {
-                const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5) * 0.5;
-                const speed = Math.random() * 5.5 + 2.5;
+                const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5) * 0.6;
+                const speed = Math.random() * 2.0 + 1.0;
                 clickParticles.push({
                     x: clickX,
                     y: clickY,
                     vx: Math.cos(angle) * speed,
                     vy: Math.sin(angle) * speed,
-                    size: Math.random() * 2.8 + 1.2,
-                    alpha: 1.0,
-                    fade: Math.random() * 0.02 + 0.015,
+                    size: Math.random() * 1.8 + 0.6,
+                    alpha: 0.8,
+                    fade: Math.random() * 0.025 + 0.02,
                     color: colors[Math.floor(Math.random() * colors.length)]
                 });
             }
 
-            // 3. Shockwave impulse to nearby stars
+            // 3. Gentle nudge to nearby stars
             homeStars.forEach(star => {
                 const dx = star.x - clickX;
                 const dy = star.y - clickY;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 220 && dist > 0) {
-                    const force = (220 - dist) / 220 * 5.0;
-                    star.vx += (dx / dist) * force * 0.35;
-                    star.vy += (dy / dist) * force * 0.35;
-                    star.alpha = 1.0;
+                if (dist < 140 && dist > 0) {
+                    const force = (140 - dist) / 140 * 1.5;
+                    star.vx += (dx / dist) * force * 0.15;
+                    star.vy += (dy / dist) * force * 0.15;
                 }
             });
         }
