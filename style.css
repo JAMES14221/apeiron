@@ -275,10 +275,9 @@ nav {
 
 /* Carousel Section */
 .carousel-section {
-    padding: 80px 40px;
+    padding: 80px 40px 60px;
     background-color: #060911;
     text-align: center;
-    min-height: 100vh;
 }
 
 .carousel-section h2 {
@@ -371,6 +370,233 @@ nav {
 .indicator.active {
     background: #8b5cf6;
     width: 48px;
+}
+
+/* 1. Impact & Credibility Metrics Section */
+.metrics-section {
+    padding: 60px 40px;
+    background: #080c18;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.metrics-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.metric-card {
+    text-align: center;
+    padding: 24px 20px;
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-4px);
+    border-color: #8b5cf6;
+}
+
+.metric-number {
+    display: block;
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #a78bfa;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.metric-label {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    margin-bottom: 8px;
+}
+
+.metric-desc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #94a3b8;
+}
+
+/* Shared Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: #2dd4bf;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.section-header h2 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.section-header p {
+    color: #94a3b8;
+    font-size: 1.05rem;
+}
+
+/* 2. Research Disciplines & Tracks Section */
+.tracks-section {
+    padding: 90px 40px;
+    background: #050814;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tracks-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.track-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.track-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(45, 212, 191, 0.5);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(45, 212, 191, 0.15);
+}
+
+.track-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+.track-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 10px;
+}
+
+.track-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #94a3b8;
+}
+
+/* 3. How It Works (Workflow Journey) */
+.workflow-section {
+    padding: 90px 40px 100px;
+    background: linear-gradient(180deg, #050814 0%, #090e1f 100%);
+    text-align: center;
+}
+
+.workflow-grid {
+    max-width: 1100px;
+    margin: 0 auto 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.workflow-card {
+    flex: 1;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 16px;
+    padding: 36px 28px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.workflow-card:hover {
+    border-color: #8b5cf6;
+    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.2);
+    transform: translateY(-4px);
+}
+
+.workflow-step-num {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #8b5cf6;
+    margin-bottom: 14px;
+    line-height: 1;
+}
+
+.workflow-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.workflow-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #94a3b8;
+}
+
+.workflow-arrow {
+    font-size: 1.8rem;
+    color: #475569;
+    user-select: none;
+}
+
+.workflow-cta {
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive adjustments for academic sections */
+@media (max-width: 968px) {
+    .metrics-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tracks-grid {
+        grid-template-columns: 1fr;
+    }
+    .workflow-grid {
+        flex-direction: column;
+        gap: 25px;
+    }
+    .workflow-arrow {
+        transform: rotate(90deg);
+        margin: -5px 0;
+    }
+}
+
+@media (max-width: 580px) {
+    .metrics-container {
+        grid-template-columns: 1fr;
+    }
+    .metrics-section, .tracks-section, .workflow-section {
+        padding: 50px 20px;
+    }
 }
 
 /* About Section */
