@@ -144,6 +144,7 @@
     const resultsContainer = document.getElementById('spotlight-results');
     let selectedIndex = 0;
     let filteredItems = [];
+    let isKeyboardNav = false;
 
     function openSpotlight() {
         overlay.classList.add('active');
@@ -219,9 +220,14 @@
                 selectItem(idx);
             });
             el.addEventListener('mouseenter', () => {
+                if (isKeyboardNav) return;
                 const idx = parseInt(el.getAttribute('data-index'), 10);
                 updateSelected(idx);
             });
+        });
+
+        resultsContainer.addEventListener('mousemove', () => {
+            isKeyboardNav = false;
         });
     }
 
@@ -295,9 +301,11 @@
     input.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowDown') {
             e.preventDefault();
+            isKeyboardNav = true;
             updateSelected(selectedIndex + 1);
         } else if (e.key === 'ArrowUp') {
             e.preventDefault();
+            isKeyboardNav = true;
             updateSelected(selectedIndex - 1);
         } else if (e.key === 'Enter') {
             e.preventDefault();
