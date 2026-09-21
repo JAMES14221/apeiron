@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aperio Research</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <div class="logo">APERIO</div>
+        <a href="index.html" class="nav-brand-logo" aria-label="Aperio Home">
+            <img src="logo.png" alt="Aperio Logo" class="nav-logo-img">
+        </a>
         <ul class="nav-links">
-            <li><a onclick="scrollToSection('hero')" id="nav-home" class="active">Home</a></li>
-            <li><a onclick="scrollToSection('about')" id="nav-about">About</a></li>
+            <li><a href="index.html" id="nav-home" class="active">Home</a></li>
+            <li><a href="about.html" id="nav-about">About</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="#">Projects</a></li>
             <li><a href="#">Contact</a></li>
@@ -24,11 +29,17 @@
         <canvas id="hero-canvas"></canvas>
 
         <div class="hero-content">
-            <p class="hero-subtitle">Embark on the Kidzania of researchers</p>
-            <h1 class="hero-title">APERIO RESEARCH</h1>
+            <p class="hero-subtitle">Decoding the unseen dimensions</p>
+            <div class="hero-brand">
+                <h1 class="hero-main-title">APERIO</h1>
+                <div class="hero-sub-title">
+                    <span class="hero-line"></span>
+                    <span class="hero-sub-text">RESEARCH</span>
+                    <span class="hero-line"></span>
+                </div>
+            </div>
             <div class="hero-button">
-                <a href="register.html" class="cta-button primary">Sign up</a>
-                <a href="login.html" class="cta-button secondary">SIGN IN</a>
+                <a href="https://forms.gle/F9evDGJCJm1P4XRz5" target="_blank" class="cta-button primary apply-btn">Apply my research</a>
             </div>
         </div>
 
@@ -47,23 +58,23 @@
             
             <div class="carousel-track" id="track">
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80" alt="Research Lab 1">
+                    <img src="slide1.png" alt="Xây dựng kế hoạch nghiên cứu">
                     <div class="carousel-caption">
-                        <h3>Advanced Data Matrix Analysis</h3>
+                        <h3>Xây dựng kế hoạch nghiên cứu</h3>
                         <p>Mapping complex trajectories across multi-dimensional research models.</p>
                     </div>
                 </div>
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=1200&q=80" alt="Research Lab 2">
+                    <img src="slide2.png" alt="Lựa chọn đúng phương pháp nghiên cứu">
                     <div class="carousel-caption">
-                        <h3>Cosmic Network Simulations</h3>
+                        <h3>Lựa chọn đúng phương pháp nghiên cứu</h3>
                         <p>Visualizing data architectures and interconnected researcher nodes.</p>
                     </div>
                 </div>
                 <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Research Lab 3">
+                    <img src="slide3.jpg" alt="Từ câu hỏi đến khoảng trống nghiên cứu">
                     <div class="carousel-caption">
-                        <h3>Next-Gen Protocols</h3>
+                        <h3>Từ câu hỏi đến khoảng trống nghiên cứu</h3>
                         <p>Streamlining collaborative experiments globally in real-time.</p>
                     </div>
                 </div>
@@ -74,37 +85,6 @@
             <button class="indicator active" onclick="currentSlide(0)"></button>
             <button class="indicator" onclick="currentSlide(1)"></button>
             <button class="indicator" onclick="currentSlide(2)"></button>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <canvas id="about-canvas"></canvas>
-
-        <div class="about-grid">
-            <div class="about-text">
-                <h2>About Us</h2>
-                <p>Aperio Research is a student-initiated platform designed to democratize the research experience. We are not a journal, publisher, or self-publishing site. Instead, we curate and showcase selected student research projects that meet our standards.</p>
-            </div>
-            <div class="about-image-container">
-                <img src="images.jpg" alt="Mountain Landscape Sunrise">
-            </div>
-        </div>
-
-        <div class="about-bottom-grid">
-            <div class="info-block">
-                <h3>Extraordinary Experiences</h3>
-                <p>Extraordinary experiences happen when students realize that research is not distant or exclusive – it is accessible, creative, and transformative. Aperio is here to make that first step possible.</p>
-            </div>
-            <div class="info-block">
-                <h3>Our Mission</h3>
-                <ul class="mission-list">
-                    <li>Open the entry point for students beyond elite schools and labs.</li>
-                    <li>Provide workshops on research methods, writing, and ethics.</li>
-                    <li>Build a student research community where selected works inspire others.</li>
-                    <li>Ensure accessibility: no submission fees, no publication fees.</li>
-                </ul>
-            </div>
         </div>
     </section>
 
@@ -147,24 +127,6 @@
                 document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
             }
         }
-
-        // Active Nav State Highlighting on Scroll
-        const navHome = document.getElementById('nav-home');
-        const navAbout = document.getElementById('nav-about');
-        const aboutSection = document.getElementById('about');
-
-        window.addEventListener('scroll', () => {
-            const scrollPos = window.scrollY;
-            const aboutTop = aboutSection.offsetTop - 300;
-
-            if (scrollPos >= aboutTop) {
-                navAbout.classList.add('active');
-                navHome.classList.remove('active');
-            } else {
-                navHome.classList.add('active');
-                navAbout.classList.remove('active');
-            }
-        });
 
         // Carousel Logic
         let currentIndex = 0;
@@ -288,163 +250,119 @@
                 }
             });
 
+            // Render interactive click particles & shockwave ripples
+            for (let i = clickRipples.length - 1; i >= 0; i--) {
+                const r = clickRipples[i];
+                r.radius += r.speed;
+                r.alpha -= r.fade;
+
+                if (r.alpha <= 0) {
+                    clickRipples.splice(i, 1);
+                    continue;
+                }
+
+                heroCtx.save();
+                heroCtx.beginPath();
+                heroCtx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+                heroCtx.strokeStyle = `rgba(${r.color}, ${r.alpha})`;
+                heroCtx.lineWidth = r.width;
+                heroCtx.stroke();
+                heroCtx.restore();
+            }
+
+            for (let i = clickParticles.length - 1; i >= 0; i--) {
+                const p = clickParticles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vx *= 0.96;
+                p.vy *= 0.96;
+                p.alpha -= p.fade;
+
+                if (p.alpha <= 0) {
+                    clickParticles.splice(i, 1);
+                    continue;
+                }
+
+                heroCtx.save();
+                heroCtx.beginPath();
+                heroCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                heroCtx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
+                heroCtx.shadowBlur = 10;
+                heroCtx.shadowColor = `rgba(${p.color}, 0.8)`;
+                heroCtx.fill();
+                heroCtx.restore();
+            }
+
             requestAnimationFrame(animateHero);
         }
         animateHero();
 
-        // Canvas 2: About Page Forest Silhouette Animation
-        const aboutCanvas = document.getElementById('about-canvas');
-        const aboutCtx = aboutCanvas.getContext('2d');
-        let aboutW, aboutH;
+        // Mouse click interaction on hero
+        const clickParticles = [];
+        const clickRipples = [];
+        const heroSection = document.querySelector('.hero');
 
-        function resizeAboutCanvas() {
-            aboutW = aboutCanvas.width = aboutSection.offsetWidth;
-            aboutH = aboutCanvas.height = aboutSection.offsetHeight;
-        }
-        window.addEventListener('resize', resizeAboutCanvas);
-        resizeAboutCanvas();
+        heroSection.addEventListener('click', (e) => {
+            // Don't trigger if clicked on a button or link
+            if (e.target.closest('a') || e.target.closest('button')) return;
 
-        const aboutStars = [];
-        for (let i = 0; i < 50; i++) {
-            aboutStars.push({
-                x: Math.random() * aboutW,
-                y: Math.random() * (aboutH * 0.6),
-                radius: Math.random() * 1.5 + 0.5,
-                alpha: Math.random() * 0.4 + 0.2,
-                vx: (Math.random() - 0.5) * 0.1,
-                vy: (Math.random() - 0.5) * 0.1
+            const rect = heroCanvas.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+
+            // 1. Trigger concentric shockwave ripples
+            clickRipples.push({
+                x: clickX,
+                y: clickY,
+                radius: 10,
+                speed: 4.5,
+                alpha: 0.85,
+                fade: 0.015,
+                width: 2.5,
+                color: '139, 92, 246' // Purple glow
             });
-        }
-
-        const windStripes = [];
-        for (let i = 0; i < 9; i++) {
-            windStripes.push(createWindStripe());
-        }
-
-        function createWindStripe() {
-            return {
-                x: aboutW + Math.random() * 300,
-                y: Math.random() * (aboutH * 0.75),
-                length: Math.random() * 300 + 180,
-                speed: Math.random() * 2.0 + 1.2,
-                angle: Math.PI + (Math.random() - 0.5) * 0.3,
-                amplitude: Math.random() * 25 + 10,
-                frequency: Math.random() * 0.008 + 0.004,
-                phase: Math.random() * Math.PI * 2,
-                width: Math.random() * 1.4 + 0.5,
-                opacity: Math.random() * 0.35 + 0.1
-            };
-        }
-
-        function drawForestSilhouettes() {
-            aboutCtx.fillStyle = '#020d09';
-            aboutCtx.beginPath();
-            aboutCtx.moveTo(0, aboutH);
-            let baseY1 = aboutH * 0.72;
-            aboutCtx.lineTo(0, baseY1);
-            for (let x = 0; x <= aboutW; x += 30) {
-                let y = baseY1 - Math.sin(x * 0.01) * 30 - Math.cos(x * 0.03) * 15;
-                aboutCtx.lineTo(x, y);
-            }
-            aboutCtx.lineTo(aboutW, aboutH);
-            aboutCtx.closePath();
-            aboutCtx.fill();
-
-            aboutCtx.fillStyle = '#010705';
-            aboutCtx.beginPath();
-            aboutCtx.moveTo(0, aboutH);
-            for (let x = 0; x <= aboutW; x += 18) {
-                let treeHeight = 60 + Math.abs(Math.sin(x * 0.05)) * 90 + (x % 50 === 0 ? 30 : 0);
-                let baseY2 = aboutH * 0.85;
-                aboutCtx.lineTo(x, baseY2 - treeHeight);
-                aboutCtx.lineTo(x + 9, baseY2);
-            }
-            aboutCtx.lineTo(aboutW, aboutH);
-            aboutCtx.closePath();
-            aboutCtx.fill();
-        }
-
-        function animateAbout() {
-            aboutCtx.clearRect(0, 0, aboutW, aboutH);
-
-            aboutCtx.lineWidth = 0.5;
-            for (let i = 0; i < aboutStars.length; i++) {
-                for (let j = i + 1; j < aboutStars.length; j++) {
-                    const dx = aboutStars[i].x - aboutStars[j].x;
-                    const dy = aboutStars[i].y - aboutStars[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 120) {
-                        aboutCtx.strokeStyle = `rgba(45, 212, 191, ${0.06 * (1 - dist / 120)})`;
-                        aboutCtx.beginPath();
-                        aboutCtx.moveTo(aboutStars[i].x, aboutStars[i].y);
-                        aboutCtx.lineTo(aboutStars[j].x, aboutStars[j].y);
-                        aboutCtx.stroke();
-                    }
-                }
-            }
-
-            aboutStars.forEach(star => {
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0) star.x = aboutW;
-                if (star.x > aboutW) star.x = 0;
-                if (star.y < 0) star.y = aboutH * 0.6;
-                if (star.y > aboutH * 0.6) star.y = 0;
-
-                aboutCtx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-                aboutCtx.beginPath();
-                aboutCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                aboutCtx.fill();
+            clickRipples.push({
+                x: clickX,
+                y: clickY,
+                radius: 5,
+                speed: 3.0,
+                alpha: 0.7,
+                fade: 0.012,
+                width: 1.5,
+                color: '45, 212, 191' // Teal/Cyan accent
             });
 
-            windStripes.forEach(stripe => {
-                stripe.x += Math.cos(stripe.angle) * stripe.speed;
-                stripe.y += Math.sin(stripe.angle) * stripe.speed;
-                stripe.phase += 0.03;
+            // 2. Spawn exploding celestial spark particles
+            const colors = ['255, 255, 255', '167, 139, 250', '192, 132, 252', '45, 212, 191'];
+            const count = 22;
+            for (let i = 0; i < count; i++) {
+                const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5) * 0.4;
+                const speed = Math.random() * 5 + 2;
+                clickParticles.push({
+                    x: clickX,
+                    y: clickY,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    size: Math.random() * 2.5 + 1.2,
+                    alpha: 1.0,
+                    fade: Math.random() * 0.02 + 0.015,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
+            }
 
-                aboutCtx.save();
-                aboutCtx.beginPath();
-                aboutCtx.lineWidth = stripe.width;
-
-                const steps = 30;
-                const stepLength = stripe.length / steps;
-
-                for (let s = 0; s <= steps; s++) {
-                    const distAlong = s * stepLength;
-                    const baseX = stripe.x + Math.cos(stripe.angle) * distAlong;
-                    const baseY = stripe.y + Math.sin(stripe.angle) * distAlong;
-                    const perpAngle = stripe.angle + Math.PI / 2;
-                    const waveOffset = Math.sin(stripe.phase + distAlong * stripe.frequency) * stripe.amplitude;
-                    
-                    const px = baseX + Math.cos(perpAngle) * waveOffset;
-                    const py = baseY + Math.sin(perpAngle) * waveOffset;
-
-                    if (s === 0) aboutCtx.moveTo(px, py);
-                    else aboutCtx.lineTo(px, py);
-                }
-
-                const gradX = stripe.x + Math.cos(stripe.angle) * stripe.length;
-                const gradY = stripe.y + Math.sin(stripe.angle) * stripe.length;
-                const lineGrad = aboutCtx.createLinearGradient(stripe.x, stripe.y, gradX, gradY);
-                lineGrad.addColorStop(0, `rgba(255, 255, 255, ${stripe.opacity})`);
-                lineGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
-
-                aboutCtx.strokeStyle = lineGrad;
-                aboutCtx.stroke();
-                aboutCtx.restore();
-
-                if (stripe.x < -400) {
-                    Object.assign(stripe, createWindStripe());
-                    stripe.x = aboutW + 150;
-                    stripe.y = Math.random() * (aboutH * 0.7);
+            // 3. Temporarily pull or stimulate nearby stars towards or outward from click point
+            homeStars.forEach(star => {
+                const dx = star.x - clickX;
+                const dy = star.y - clickY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 180 && dist > 0) {
+                    const force = (180 - dist) / 180 * 4.0;
+                    star.vx += (dx / dist) * force * 0.3;
+                    star.vy += (dy / dist) * force * 0.3;
+                    star.alpha = 1.0;
                 }
             });
-
-            drawForestSilhouettes();
-
-            requestAnimationFrame(animateAbout);
-        }
-        animateAbout();
+        });
     </script>
 </body>
 </html>

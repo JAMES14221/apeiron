@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Aperio Research</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-brand-logo" aria-label="Aperio Home">
+            <img src="logo.png" alt="Aperio Logo" class="nav-logo-img">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" id="nav-home">Home</a></li>
+            <li><a href="about.html" id="nav-about" class="active">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#" class="search-icon">🔍</a></li>
+        </ul>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <canvas id="about-canvas"></canvas>
+
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>About Us</h2>
+                <p>Aperio Research is a student-initiated platform designed to democratize the research experience. We are not a journal, publisher, or self-publishing site. Instead, we curate and showcase selected student research projects that meet our standards.</p>
+            </div>
+            <div class="about-image-container">
+                <img src="images.jpg" alt="Mountain Landscape Sunrise">
+            </div>
+        </div>
+
+        <div class="about-bottom-grid">
+            <div class="info-block">
+                <h3>Extraordinary Experiences</h3>
+                <p>Extraordinary experiences happen when students realize that research is not distant or exclusive – it is accessible, creative, and transformative. Aperio is here to make that first step possible.</p>
+            </div>
+            <div class="info-block">
+                <h3>Our Mission</h3>
+                <ul class="mission-list">
+                    <li>Open the entry point for students beyond elite schools and labs.</li>
+                    <li>Provide workshops on research methods, writing, and ethics.</li>
+                    <li>Build a student research community where selected works inspire others.</li>
+                    <li>Ensure accessibility: no submission fees, no publication fees.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <h3>Contact Us</h3>
+            
+            <div class="footer-links-row">
+                <div class="footer-item">
+                    <span>Fanpage:</span>
+                    <a href="https://www.facebook.com/profile.php?id=61593208479696" class="footer-icon-link" aria-label="Facebook Fanpage">
+                        <svg class="footer-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                </div>
+                <div class="footer-item">
+                    <span>Apply your research:</span>
+                    <a href="https://forms.gle/F9evDGJCJm1P4XRz5" class="footer-icon-link" aria-label="Apply Research">
+                        <svg class="footer-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+
+            <p class="footer-contact-info">
+                Phone: 090 934 8508 | Email: aperio.res@gmail.com
+            </p>
+
+            <p class="footer-copyright">
+                © 2026 AperioResearch. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Canvas 2: About Page Forest Silhouette Animation
+        const aboutSection = document.getElementById('about');
+        const aboutCanvas = document.getElementById('about-canvas');
+        const aboutCtx = aboutCanvas.getContext('2d');
+        let aboutW, aboutH;
+
+        function resizeAboutCanvas() {
+            aboutW = aboutCanvas.width = window.innerWidth;
+            aboutH = aboutCanvas.height = aboutSection.offsetHeight;
+        }
+        window.addEventListener('resize', resizeAboutCanvas);
+        resizeAboutCanvas();
+
+        const aboutStars = [];
+        for (let i = 0; i < 50; i++) {
+            aboutStars.push({
+                x: Math.random() * aboutW,
+                y: Math.random() * (aboutH * 0.6),
+                radius: Math.random() * 1.5 + 0.5,
+                alpha: Math.random() * 0.4 + 0.2,
+                vx: (Math.random() - 0.5) * 0.1,
+                vy: (Math.random() - 0.5) * 0.1
+            });
+        }
+
+        const windStripes = [];
+        for (let i = 0; i < 9; i++) {
+            windStripes.push(createWindStripe());
+        }
+
+        function createWindStripe() {
+            return {
+                x: aboutW + Math.random() * 300,
+                y: Math.random() * (aboutH * 0.75),
+                length: Math.random() * 300 + 180,
+                speed: Math.random() * 2.0 + 1.2,
+                angle: Math.PI + (Math.random() - 0.5) * 0.3,
+                amplitude: Math.random() * 25 + 10,
+                frequency: Math.random() * 0.008 + 0.004,
+                phase: Math.random() * Math.PI * 2,
+                width: Math.random() * 1.4 + 0.5,
+                opacity: Math.random() * 0.35 + 0.1
+            };
+        }
+
+        function drawForestSilhouettes() {
+            aboutCtx.fillStyle = '#020d09';
+            aboutCtx.beginPath();
+            aboutCtx.moveTo(0, aboutH);
+            let baseY1 = aboutH * 0.72;
+            aboutCtx.lineTo(0, baseY1);
+            for (let x = 0; x <= aboutW; x += 30) {
+                let y = baseY1 - Math.sin(x * 0.01) * 30 - Math.cos(x * 0.03) * 15;
+                aboutCtx.lineTo(x, y);
+            }
+            aboutCtx.lineTo(aboutW, aboutH);
+            aboutCtx.closePath();
+            aboutCtx.fill();
+
+            aboutCtx.fillStyle = '#010705';
+            aboutCtx.beginPath();
+            aboutCtx.moveTo(0, aboutH);
+            for (let x = 0; x <= aboutW; x += 18) {
+                let treeHeight = 60 + Math.abs(Math.sin(x * 0.05)) * 90 + (x % 50 === 0 ? 30 : 0);
+                let baseY2 = aboutH * 0.85;
+                aboutCtx.lineTo(x, baseY2 - treeHeight);
+                aboutCtx.lineTo(x + 9, baseY2);
+            }
+            aboutCtx.lineTo(aboutW, aboutH);
+            aboutCtx.closePath();
+            aboutCtx.fill();
+        }
+
+        function animateAbout() {
+            aboutCtx.clearRect(0, 0, aboutW, aboutH);
+
+            aboutCtx.lineWidth = 0.5;
+            for (let i = 0; i < aboutStars.length; i++) {
+                for (let j = i + 1; j < aboutStars.length; j++) {
+                    const dx = aboutStars[i].x - aboutStars[j].x;
+                    const dy = aboutStars[i].y - aboutStars[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        aboutCtx.strokeStyle = `rgba(45, 212, 191, ${0.06 * (1 - dist / 120)})`;
+                        aboutCtx.beginPath();
+                        aboutCtx.moveTo(aboutStars[i].x, aboutStars[i].y);
+                        aboutCtx.lineTo(aboutStars[j].x, aboutStars[j].y);
+                        aboutCtx.stroke();
+                    }
+                }
+            }
+
+            aboutStars.forEach(star => {
+                star.x += star.vx;
+                star.y += star.vy;
+                if (star.x < 0) star.x = aboutW;
+                if (star.x > aboutW) star.x = 0;
+                if (star.y < 0) star.y = aboutH * 0.6;
+                if (star.y > aboutH * 0.6) star.y = 0;
+
+                aboutCtx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+                aboutCtx.beginPath();
+                aboutCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                aboutCtx.fill();
+            });
+
+            windStripes.forEach(stripe => {
+                stripe.x += Math.cos(stripe.angle) * stripe.speed;
+                stripe.y += Math.sin(stripe.angle) * stripe.speed;
+                stripe.phase += 0.03;
+
+                aboutCtx.save();
+                aboutCtx.beginPath();
+                aboutCtx.lineWidth = stripe.width;
+
+                const steps = 30;
+                const stepLength = stripe.length / steps;
+
+                for (let s = 0; s <= steps; s++) {
+                    const distAlong = s * stepLength;
+                    const baseX = stripe.x + Math.cos(stripe.angle) * distAlong;
+                    const baseY = stripe.y + Math.sin(stripe.angle) * distAlong;
+                    const perpAngle = stripe.angle + Math.PI / 2;
+                    const waveOffset = Math.sin(stripe.phase + distAlong * stripe.frequency) * stripe.amplitude;
+                    
+                    const px = baseX + Math.cos(perpAngle) * waveOffset;
+                    const py = baseY + Math.sin(perpAngle) * waveOffset;
+
+                    if (s === 0) aboutCtx.moveTo(px, py);
+                    else aboutCtx.lineTo(px, py);
+                }
+
+                const gradX = stripe.x + Math.cos(stripe.angle) * stripe.length;
+                const gradY = stripe.y + Math.sin(stripe.angle) * stripe.length;
+                const lineGrad = aboutCtx.createLinearGradient(stripe.x, stripe.y, gradX, gradY);
+                lineGrad.addColorStop(0, `rgba(255, 255, 255, ${stripe.opacity})`);
+                lineGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+                aboutCtx.strokeStyle = lineGrad;
+                aboutCtx.stroke();
+                aboutCtx.restore();
+
+                if (stripe.x < -400) {
+                    Object.assign(stripe, createWindStripe());
+                    stripe.x = aboutW + 150;
+                    stripe.y = Math.random() * (aboutH * 0.7);
+                }
+            });
+
+            drawForestSilhouettes();
+
+            requestAnimationFrame(animateAbout);
+        }
+        animateAbout();
+    </script>
+</body>
+</html>

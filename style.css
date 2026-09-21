@@ -61,12 +61,23 @@ nav {
     transition: background-color 0.3s ease;
 }
 
-.logo {
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #e2e8f0;
+.nav-brand-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.nav-brand-logo:hover {
+    transform: scale(1.06);
+}
+
+.nav-logo-img {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.25));
 }
 
 .nav-links {
@@ -129,13 +140,54 @@ nav {
     letter-spacing: 0.5px;
 }
 
-.hero-title {
-    font-size: 5.0rem;
-    font-weight: 800;
-    letter-spacing: 2px;
+.hero-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.hero-main-title {
+    font-family: 'Cinzel', 'Cormorant Garamond', 'Trajan Pro', Georgia, serif;
+    font-size: clamp(3.2rem, 7.5vw, 6.2rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
     color: #ffffff;
-    text-transform: uppercase;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    line-height: 1;
+    margin: 0;
+    padding-left: 0.18em; /* perfectly centers text with letter-spacing */
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6), 0 0 40px rgba(139, 92, 246, 0.35);
+}
+
+.hero-sub-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 14px;
+}
+
+.hero-line {
+    flex: 1;
+    max-width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.7));
+}
+
+.hero-sub-title .hero-line:last-child {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.1));
+}
+
+.hero-sub-text {
+    font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(0.95rem, 2vw, 1.35rem);
+    font-weight: 600;
+    letter-spacing: 0.5em;
+    color: #f1f5f9;
+    padding-left: 0.5em; /* compensate for letter-spacing */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 .hero-button {
     display: flex;
@@ -163,6 +215,15 @@ nav {
     color: #ffffff;
     border: 1px solid #8b5cf6;
     box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
+}
+
+.cta-button.apply-btn {
+    width: auto;
+    padding: 12px 32px;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .cta-button.primary:hover,.cta-button.secondary:hover {
@@ -225,20 +286,23 @@ nav {
 .carousel-container {
     position: relative;
     max-width: 900px;
+    width: 100%;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    aspect-ratio: 16 / 9;
 }
 
 .carousel-track {
     display: flex;
+    height: 100%;
     transition: transform 0.5s ease-in-out;
 }
 
 .carousel-slide {
     min-width: 100%;
-    height: 450px;
+    height: 100%;
     position: relative;
 }
 
@@ -284,22 +348,24 @@ nav {
 .carousel-indicators {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
     margin-top: 20px;
 }
 
 .indicator {
-    width: 100px;
-    height: 10px;
-    border-radius: 50%;
+    width: 32px;
+    height: 8px;
+    border-radius: 4px;
     background: #334155;
     cursor: pointer;
     border: none;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
 }
 
 .indicator.active {
     background: #8b5cf6;
+    width: 48px;
 }
 
 /* About Section */
@@ -586,4 +652,20 @@ nav {
 
 .auth-footer a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .hero-brand {
+        max-width: 95%;
+    }
+    .hero-sub-title {
+        gap: 10px;
+    }
+    .hero-line {
+        max-width: 40px;
+    }
+    .cta-button.apply-btn {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+    }
 }
