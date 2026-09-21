@@ -372,6 +372,35 @@ nav {
     width: 48px;
 }
 
+/* Shared Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: #2dd4bf;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.section-header h2 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.section-header p {
+    color: #94a3b8;
+    font-size: 1.05rem;
+}
+
 /* Research Disciplines & Tracks Section */
 .tracks-section {
     padding: 80px 40px;
@@ -380,40 +409,37 @@ nav {
 }
 
 .tracks-grid {
-    max-width: 1100px;
+    max-width: 900px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
 }
 
 .track-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    border-radius: 14px;
-    padding: 24px 28px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    padding: 14px 30px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 80px;
+    cursor: default;
 }
 
 .track-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(45, 212, 191, 0.6);
-    background: rgba(15, 23, 42, 0.85);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 20px rgba(45, 212, 191, 0.15);
+    transform: translateY(-2px);
+    border-color: rgba(139, 92, 246, 0.5);
+    background: rgba(139, 92, 246, 0.12);
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.15);
 }
 
 .track-card h3 {
-    font-size: 1.12rem;
-    font-weight: 600;
-    color: #f8fafc;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #e2e8f0;
     margin: 0;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
 }
 
 /* 3. How It Works (Workflow Journey) */
