@@ -20,7 +20,13 @@
             <li><a href="#">Services</a></li>
             <li><a href="#">Projects</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="#" class="search-icon">🔍</a></li>
+            <li>
+                <button class="nav-search-btn" aria-label="Search Aperio (Cmd+K)">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <span>Search</span>
+                    <span class="nav-search-kbd">⌘K</span>
+                </button>
+            </li>
         </ul>
     </nav>
 
@@ -77,7 +83,7 @@
     </section>
 
     <!-- Research Disciplines & Tracks -->
-    <section class="tracks-section">
+    <section class="tracks-section" id="tracks">
         <div class="section-header">
             <span class="section-tag">EXPLORATION DOMAINS</span>
             <h2>Areas of Research</h2>
@@ -106,7 +112,7 @@
     </section>
 
     <!-- How It Works (Publication Journey) -->
-    <section class="workflow-section">
+    <section class="workflow-section" id="workflow">
         <div class="section-header">
             <span class="section-tag">THE JOURNEY</span>
             <h2>How It Works</h2>
@@ -421,5 +427,6 @@
 
         window.addEventListener('click', handleHeroClick);
     </script>
+    <script src="spotlight.js"></script>
 </body>
 </html>
