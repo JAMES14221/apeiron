@@ -130,7 +130,7 @@ nav {
     align-items: center;
     justify-content: center;
     min-height: 75vh;
-    gap: 50px;
+    gap: 36px;
     pointer-events: none;
 }
 
@@ -138,11 +138,64 @@ nav {
     pointer-events: auto;
 }
 
+.hero-tagline-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 7px 24px;
+    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.15) 0%, rgba(15, 23, 42, 0.45) 70%, rgba(2, 6, 23, 0) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.28);
+    border-radius: 999px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.12), inset 0 0 15px rgba(45, 212, 191, 0.06);
+    position: relative;
+    letter-spacing: 0.18em;
+    animation: taglineAura 4s ease-in-out infinite alternate;
+}
+
+@keyframes taglineAura {
+    0% {
+        border-color: rgba(139, 92, 246, 0.25);
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.08), inset 0 0 12px rgba(45, 212, 191, 0.04);
+    }
+    100% {
+        border-color: rgba(45, 212, 191, 0.4);
+        box-shadow: 0 0 32px rgba(45, 212, 191, 0.18), inset 0 0 20px rgba(139, 92, 246, 0.1);
+    }
+}
+
+.tagline-ornament {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: #2dd4bf;
+    opacity: 0.7;
+    user-select: none;
+    transition: transform 0.3s ease;
+}
+
+.tagline-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 6px #a78bfa;
+    opacity: 0.8;
+}
+
 .hero-subtitle {
-    font-size: 1.5rem;
-    color: #cbd5e1;
-    font-weight: 400;
-    letter-spacing: 0.5px;
+    font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(0.78rem, 1.25vw, 0.96rem);
+    font-weight: 600;
+    color: #e2e8f0;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    padding-left: 0.32em; /* balance letter spacing */
+    margin: 0;
+    background: linear-gradient(90deg, #cbd5e1 0%, #ffffff 40%, #a78bfa 75%, #2dd4bf 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
 }
 
 .hero-brand {
