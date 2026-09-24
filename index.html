@@ -11,16 +11,9 @@
 </head>
 <body>
     <nav>
-        <div class="nav-left">
-            <a href="index.html" class="nav-brand-logo" aria-label="Aperio Home">
-                <img src="logo.png" alt="Aperio Logo" class="nav-logo-img">
-            </a>
-            <button class="nav-search-btn" aria-label="Search Aperio (Space)">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <span>Search</span>
-                <span class="nav-search-kbd">Space</span>
-            </button>
-        </div>
+        <a href="index.html" class="nav-brand-logo" aria-label="Aperio Home">
+            <img src="logo.png" alt="Aperio Logo" class="nav-logo-img">
+        </a>
         <ul class="nav-links">
             <li><a href="index.html" id="nav-home" class="active">Home</a></li>
             <li><a href="about.html" id="nav-about">About</a></li>
@@ -28,7 +21,11 @@
             <li><a href="#workflow">Workflow</a></li>
             <li><a href="#">Contact</a></li>
             <li>
-                <a href="https://forms.gle/F9evDGJCJm1P4XRz5" target="_blank" class="nav-apply-btn">Apply Research</a>
+                <button class="nav-search-btn" aria-label="Search Aperio (Space)">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <span>Search</span>
+                    <span class="nav-search-kbd">Space</span>
+                </button>
             </li>
         </ul>
     </nav>
@@ -48,7 +45,7 @@
             </div>
 
             <div class="hero-button">
-                <a href="https://forms.gle/F9evDGJCJm1P4XRz5" target="_blank" class="cta-button primary apply-btn">Apply Research</a>
+                <a href="https://forms.gle/F9evDGJCJm1P4XRz5" target="_blank" class="cta-button primary apply-btn">Apply my research</a>
             </div>
         </div>
 
@@ -58,87 +55,41 @@
         </div>
     </header>
 
-    <!-- Acanthus Classical Walkthrough & Featured Explorations Section -->
-    <section class="carousel-section acanthus-walkthrough-section" id="carousel">
-        <div class="acanthus-backdrop-container">
-            <img src="acanthus_gallery.jpg" alt="Acanthus Architecture & Biology Walkthrough" class="acanthus-colonnade-bg">
-            <div class="acanthus-vignette"></div>
+    <!-- Carousel Section -->
+    <section class="carousel-section" id="carousel">
+        <div class="carousel-header-row">
+            <h2>Featured Explorations</h2>
+            <a href="explorations.html" class="view-all-blog-link">🏛️ Thánh Đường Acanthus (3D Walkthrough) &rarr;</a>
         </div>
-
-        <div class="acanthus-walkthrough-header">
-            <span class="section-tag acanthus-tag">ACANTHUS ARCHIVE &bull; WALKTHROUGH</span>
-            <h2>The Acanthus Colonnade</h2>
-            <p class="acanthus-subtitle">Bước dạo qua hành lang tri thức cổ điển và sinh học &mdash; nơi nghệ thuật hội ngộ cùng phương pháp luận nghiên cứu.</p>
-        </div>
-
-        <div class="acanthus-hall-stage">
-            <button class="acanthus-nav-btn prev-btn" onclick="moveSlide(-1)" aria-label="Previous Exploration">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            </button>
-            <button class="acanthus-nav-btn next-btn" onclick="moveSlide(1)" aria-label="Next Exploration">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
-
-            <!-- 3D Perspective Exhibition Pedestal -->
-            <div class="acanthus-portal-frame" id="acanthusPortal">
-                <div class="carousel-track" id="track">
-                    <div class="carousel-slide" onclick="location.href='explorations.html#0'" title="Bấm để bước vào bài viết chi tiết">
-                        <img src="slide_tamlyhoc.png" alt="Tâm Lý Học - Hiểu để kết nối với chính mình">
-                        <div class="acanthus-plaque">
-                            <span class="plaque-num">PORTAL 01</span>
-                            <h3>Tâm Lý Học &bull; Nhận Thức &amp; Cảm Xúc</h3>
-                            <span class="plaque-cta">Đọc ghi chép &amp; Đề cương &rarr;</span>
-                        </div>
-                    </div>
-                    <div class="carousel-slide" onclick="location.href='explorations.html#1'" title="Bấm để bước vào bài viết chi tiết">
-                        <img src="slide_khoangtrong.png" alt="Từ những khoảng trống đến đề tài">
-                        <div class="acanthus-plaque">
-                            <span class="plaque-num">PORTAL 02</span>
-                            <h3>Từ Những Khoảng Trống Đến Đề Tài</h3>
-                            <span class="plaque-cta">Đọc ghi chép &amp; Đề cương &rarr;</span>
-                        </div>
-                    </div>
-                    <div class="carousel-slide" onclick="location.href='explorations.html#2'" title="Bấm để bước vào bài viết chi tiết">
-                        <img src="slide_timdoc.png" alt="Tìm, đọc, và chọn lọc nghiên cứu ở đâu?">
-                        <div class="acanthus-plaque">
-                            <span class="plaque-num">PORTAL 03</span>
-                            <h3>Tìm, Đọc &amp; Chọn Lọc Nghiên Cứu</h3>
-                            <span class="plaque-cta">Đọc ghi chép &amp; Đề cương &rarr;</span>
-                        </div>
-                    </div>
-                    <div class="carousel-slide" onclick="location.href='explorations.html#3'" title="Bấm để bước vào bài viết chi tiết">
-                        <img src="slide_batdauthenao.png" alt="Nghiên cứu bắt đầu thế nào và ở đâu?">
-                        <div class="acanthus-plaque">
-                            <span class="plaque-num">PORTAL 04</span>
-                            <h3>Nghiên Cứu Bắt Đầu Thế Nào &amp; Ở Đâu</h3>
-                            <span class="plaque-cta">Đọc ghi chép &amp; Đề cương &rarr;</span>
-                        </div>
-                    </div>
-                    <div class="carousel-slide" onclick="location.href='explorations.html#4'" title="Bấm để bước vào bài viết chi tiết">
-                        <img src="slide_batdautudau.png" alt="Nghiên cứu bắt đầu từ đâu?">
-                        <div class="acanthus-plaque">
-                            <span class="plaque-num">PORTAL 05</span>
-                            <h3>Nghiên Cứu Khởi Đầu Từ Đâu</h3>
-                            <span class="plaque-cta">Đọc ghi chép &amp; Đề cương &rarr;</span>
-                        </div>
-                    </div>
+        <div class="carousel-container">
+            <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+            
+            <div class="carousel-track" id="track">
+                <div class="carousel-slide" onclick="location.href='explorations.html#0'" style="cursor: pointer;" title="Bấm để đọc và ghi chú bài viết">
+                    <img src="slide_tamlyhoc.png" alt="Tâm Lý Học - Hiểu để kết nối với chính mình">
+                </div>
+                <div class="carousel-slide" onclick="location.href='explorations.html#1'" style="cursor: pointer;" title="Bấm để đọc và ghi chú bài viết">
+                    <img src="slide_khoangtrong.png" alt="Từ những khoảng trống đến đề tài">
+                </div>
+                <div class="carousel-slide" onclick="location.href='explorations.html#2'" style="cursor: pointer;" title="Bấm để đọc và ghi chú bài viết">
+                    <img src="slide_timdoc.png" alt="Tìm, đọc, và chọn lọc nghiên cứu ở đâu?">
+                </div>
+                <div class="carousel-slide" onclick="location.href='explorations.html#3'" style="cursor: pointer;" title="Bấm để đọc và ghi chú bài viết">
+                    <img src="slide_batdauthenao.png" alt="Nghiên cứu bắt đầu thế nào và ở đâu?">
+                </div>
+                <div class="carousel-slide" onclick="location.href='explorations.html#4'" style="cursor: pointer;" title="Bấm để đọc và ghi chú bài viết">
+                    <img src="slide_batdautudau.png" alt="Nghiên cứu bắt đầu từ đâu?">
                 </div>
             </div>
         </div>
 
-        <!-- Colonnade Stepping Stones / Indicators -->
-        <div class="acanthus-walk-nav">
-            <div class="carousel-indicators" id="indicators">
-                <button class="indicator active" onclick="currentSlide(0)"><span class="ind-pill">01</span></button>
-                <button class="indicator" onclick="currentSlide(1)"><span class="ind-pill">02</span></button>
-                <button class="indicator" onclick="currentSlide(2)"><span class="ind-pill">03</span></button>
-                <button class="indicator" onclick="currentSlide(3)"><span class="ind-pill">04</span></button>
-                <button class="indicator" onclick="currentSlide(4)"><span class="ind-pill">05</span></button>
-            </div>
-            <a href="explorations.html" class="acanthus-journal-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                Mở Sổ Tay Ghi Chép (Explorations Notebook) &rarr;
-            </a>
+        <div class="carousel-indicators" id="indicators">
+            <button class="indicator active" onclick="currentSlide(0)"></button>
+            <button class="indicator" onclick="currentSlide(1)"></button>
+            <button class="indicator" onclick="currentSlide(2)"></button>
+            <button class="indicator" onclick="currentSlide(3)"></button>
+            <button class="indicator" onclick="currentSlide(4)"></button>
         </div>
     </section>
 
@@ -215,7 +166,7 @@
                     </a>
                 </div>
                 <div class="footer-item">
-                    <span>Apply Research:</span>
+                    <span>Apply your research:</span>
                     <a href="https://forms.gle/F9evDGJCJm1P4XRz5" class="footer-icon-link" aria-label="Apply Research">
                         <svg class="footer-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                     </a>
