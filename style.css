@@ -138,64 +138,134 @@ nav {
     pointer-events: auto;
 }
 
-.hero-tagline-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 7px 24px;
-    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.15) 0%, rgba(15, 23, 42, 0.45) 70%, rgba(2, 6, 23, 0) 100%);
-    border: 1px solid rgba(139, 92, 246, 0.28);
-    border-radius: 999px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 0 25px rgba(139, 92, 246, 0.12), inset 0 0 15px rgba(45, 212, 191, 0.06);
+/* Celestial Planet & Orbit System around Hero Brand */
+.hero-celestial-stage {
     position: relative;
-    letter-spacing: 0.18em;
-    animation: taglineAura 4s ease-in-out infinite alternate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 55px;
+    width: 100%;
+    max-width: 900px;
 }
 
-@keyframes taglineAura {
+.celestial-orbit-system {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 580px;
+    height: 180px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 3D Glowing Celestial Planet */
+.celestial-planet {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 38px;
+    height: 38px;
+}
+
+.planet-core {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #5eead4 0%, #0d9488 40%, #042f2e 80%, #021210 100%);
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.6), inset -4px -4px 8px rgba(0, 0, 0, 0.7);
+    animation: planetPulse 5s ease-in-out infinite alternate;
+}
+
+.planet-atmosphere {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(94, 234, 212, 0.3) 0%, rgba(139, 92, 246, 0.2) 60%, transparent 80%);
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+.planet-glow {
+    position: absolute;
+    inset: -16px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(45, 212, 191, 0.15) 50%, transparent 75%);
+    filter: blur(8px);
+    pointer-events: none;
+    animation: planetGlowPulse 4s ease-in-out infinite alternate;
+}
+
+/* Saturn-like tilted rings */
+.planet-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%) rotateX(74deg) rotateZ(-22deg);
+}
+
+.planet-ring.ring-outer {
+    width: 76px;
+    height: 76px;
+    border: 2px solid rgba(139, 92, 246, 0.6);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    animation: ringSpin 18s linear infinite;
+}
+
+.planet-ring.ring-inner {
+    width: 60px;
+    height: 60px;
+    border: 1.5px solid rgba(45, 212, 191, 0.5);
+    box-shadow: 0 0 8px rgba(45, 212, 191, 0.3);
+}
+
+@keyframes planetPulse {
     0% {
-        border-color: rgba(139, 92, 246, 0.25);
-        box-shadow: 0 0 20px rgba(139, 92, 246, 0.08), inset 0 0 12px rgba(45, 212, 191, 0.04);
+        box-shadow: 0 0 16px rgba(45, 212, 191, 0.5), inset -4px -4px 8px rgba(0, 0, 0, 0.7);
     }
     100% {
-        border-color: rgba(45, 212, 191, 0.4);
-        box-shadow: 0 0 32px rgba(45, 212, 191, 0.18), inset 0 0 20px rgba(139, 92, 246, 0.1);
+        box-shadow: 0 0 28px rgba(45, 212, 191, 0.8), 0 0 45px rgba(139, 92, 246, 0.35), inset -4px -4px 8px rgba(0, 0, 0, 0.7);
     }
 }
 
-.tagline-ornament {
-    font-family: 'Cinzel', serif;
-    font-size: 0.85rem;
-    color: #2dd4bf;
-    opacity: 0.7;
-    user-select: none;
-    transition: transform 0.3s ease;
+@keyframes planetGlowPulse {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    100% { transform: scale(1.15); opacity: 1; }
 }
 
-.tagline-dot {
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: #a78bfa;
-    box-shadow: 0 0 6px #a78bfa;
-    opacity: 0.8;
+@keyframes ringSpin {
+    from { transform: translate(-50%, -50%) rotateX(74deg) rotateZ(0deg); }
+    to { transform: translate(-50%, -50%) rotateX(74deg) rotateZ(360deg); }
 }
 
-.hero-subtitle {
+/* SVG Orbit Curved Text */
+.celestial-orbit-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.orbit-trace-line {
+    animation: dashDrift 25s linear infinite;
+}
+
+@keyframes dashDrift {
+    to { stroke-dashoffset: -100; }
+}
+
+.orbit-tagline-text {
     font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(0.78rem, 1.25vw, 0.96rem);
-    font-weight: 600;
-    color: #e2e8f0;
-    text-transform: uppercase;
-    letter-spacing: 0.32em;
-    padding-left: 0.32em; /* balance letter spacing */
-    margin: 0;
-    background: linear-gradient(90deg, #cbd5e1 0%, #ffffff 40%, #a78bfa 75%, #2dd4bf 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+    font-size: 11.5px;
+    font-weight: 700;
+    fill: url(#orbitTextGrad);
+    letter-spacing: 0.28em;
+    user-select: none;
+    text-shadow: 0 0 14px rgba(45, 212, 191, 0.5), 0 0 24px rgba(139, 92, 246, 0.3);
 }
 
 .hero-brand {
@@ -1002,6 +1072,31 @@ nav {
 }
 
 @media (max-width: 768px) {
+    .hero-celestial-stage {
+        padding-top: 40px;
+    }
+    .celestial-orbit-system {
+        width: 380px;
+        height: 140px;
+        top: -15px;
+    }
+    .orbit-tagline-text {
+        font-size: 8.5px;
+        letter-spacing: 0.2em;
+    }
+    .celestial-planet {
+        width: 30px;
+        height: 30px;
+        top: 2px;
+    }
+    .planet-ring.ring-outer {
+        width: 58px;
+        height: 58px;
+    }
+    .planet-ring.ring-inner {
+        width: 46px;
+        height: 46px;
+    }
     .hero-brand {
         max-width: 95%;
     }

@@ -35,21 +35,65 @@
         <canvas id="hero-canvas"></canvas>
 
         <div class="hero-content">
-            <div class="hero-tagline-wrapper">
-                <span class="tagline-ornament left">⟨</span>
-                <span class="tagline-dot"></span>
-                <p class="hero-subtitle">Decoding the unseen dimensions</p>
-                <span class="tagline-dot"></span>
-                <span class="tagline-ornament right">⟩</span>
-            </div>
-            <div class="hero-brand">
-                <h1 class="hero-main-title">APERIO</h1>
-                <div class="hero-sub-title">
-                    <span class="hero-line"></span>
-                    <span class="hero-sub-text">RESEARCH</span>
-                    <span class="hero-line"></span>
+            <div class="hero-celestial-stage">
+                <!-- Cosmic Planet & Orbit System -->
+                <div class="celestial-orbit-system" aria-hidden="true">
+                    <div class="celestial-planet">
+                        <div class="planet-core"></div>
+                        <div class="planet-atmosphere"></div>
+                        <div class="planet-ring ring-outer"></div>
+                        <div class="planet-ring ring-inner"></div>
+                        <div class="planet-glow"></div>
+                    </div>
+                    <!-- Curved Orbit Ring Path with Text -->
+                    <svg class="celestial-orbit-svg" viewBox="0 0 540 160" preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <path id="orbitArcPath" d="M 40,115 Q 270,15 500,115" fill="none" />
+                            <linearGradient id="orbitLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0" />
+                                <stop offset="15%" stop-color="#8b5cf6" stop-opacity="0.3" />
+                                <stop offset="50%" stop-color="#2dd4bf" stop-opacity="0.75" />
+                                <stop offset="85%" stop-color="#a78bfa" stop-opacity="0.3" />
+                                <stop offset="100%" stop-color="#a78bfa" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="orbitTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#94a3b8" />
+                                <stop offset="30%" stop-color="#e2e8f0" />
+                                <stop offset="50%" stop-color="#5eead4" />
+                                <stop offset="70%" stop-color="#e2e8f0" />
+                                <stop offset="100%" stop-color="#c4b5fd" />
+                            </linearGradient>
+                            <filter id="cosmicGlow">
+                                <feGaussianBlur stdDeviation="3" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+                        <!-- Orbital trajectory line -->
+                        <path d="M 25,120 Q 270,10 515,120" stroke="url(#orbitLineGrad)" stroke-width="1.2" stroke-dasharray="4 6" fill="none" class="orbit-trace-line" />
+                        <!-- Subtle outer halo line -->
+                        <path d="M 50,112 Q 270,18 490,112" stroke="rgba(139, 92, 246, 0.18)" stroke-width="2.5" fill="none" />
+                        <!-- Celestial Nodes -->
+                        <circle cx="95" cy="85" r="2" fill="#2dd4bf" opacity="0.6" />
+                        <circle cx="445" cy="85" r="2" fill="#a78bfa" opacity="0.6" />
+                        <!-- Text along orbit curve -->
+                        <text class="orbit-tagline-text" filter="url(#cosmicGlow)">
+                            <textPath href="#orbitArcPath" startOffset="50%" text-anchor="middle">
+                                ✦ &nbsp; DECODING THE UNSEEN DIMENSIONS &nbsp; ✦
+                            </textPath>
+                        </text>
+                    </svg>
+                </div>
+
+                <div class="hero-brand">
+                    <h1 class="hero-main-title">APERIO</h1>
+                    <div class="hero-sub-title">
+                        <span class="hero-line"></span>
+                        <span class="hero-sub-text">RESEARCH</span>
+                        <span class="hero-line"></span>
+                    </div>
                 </div>
             </div>
+
             <div class="hero-button">
                 <a href="https://forms.gle/F9evDGJCJm1P4XRz5" target="_blank" class="cta-button primary apply-btn">Apply my research</a>
             </div>
