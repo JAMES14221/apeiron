@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Explorations - Aperio Research</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="blog-body">
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-brand-logo" aria-label="Aperio Home">
+            <img src="logo.png" alt="Aperio Logo" class="nav-logo-img">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" id="nav-home">Home</a></li>
+            <li><a href="about.html" id="nav-about">About</a></li>
+            <li><a href="explorations.html" id="nav-explorations" class="active">Explorations</a></li>
+            <li><a href="index.html#workflow">Workflow</a></li>
+            <li>
+                <button class="nav-search-btn" aria-label="Search Aperio (Space)">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <span>Search</span>
+                    <span class="nav-search-kbd">Space</span>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Blog Header Banner -->
+    <header class="blog-hero">
+        <div class="blog-hero-content">
+            <span class="section-tag">ARCHIVE & NOTEBOOK</span>
+            <h1 class="blog-title">Featured Explorations</h1>
+            <p class="blog-subtitle">Visual research guides, methodologies, and interactive study notes.</p>
+        </div>
+    </header>
+
+    <!-- Main Container: WordPress-style 2-Column Layout -->
+    <main class="blog-container">
+        <!-- Left: Article Directory & Exploration Selector -->
+        <aside class="blog-sidebar">
+            <div class="sidebar-header">
+                <h3>Explorations (5)</h3>
+                <span class="sidebar-badge">Visual Series</span>
+            </div>
+            <div class="exploration-list" id="explorationList">
+                <!-- Dynamically listed or selectable posts -->
+                <button class="exploration-nav-item active" onclick="switchArticle(0)">
+                    <span class="item-num">01</span>
+                    <div class="item-meta">
+                        <h4>Tâm Lý Học</h4>
+                        <p>Hiểu để kết nối với chính mình</p>
+                    </div>
+                </button>
+                <button class="exploration-nav-item" onclick="switchArticle(1)">
+                    <span class="item-num">02</span>
+                    <div class="item-meta">
+                        <h4>Khoảng Trống Đến Đề Tài</h4>
+                        <p>Từ những khoảng trống đến đề tài</p>
+                    </div>
+                </button>
+                <button class="exploration-nav-item" onclick="switchArticle(2)">
+                    <span class="item-num">03</span>
+                    <div class="item-meta">
+                        <h4>Chọn Lọc Nghiên Cứu</h4>
+                        <p>Tìm, đọc, và chọn lọc nghiên cứu ở đâu?</p>
+                    </div>
+                </button>
+                <button class="exploration-nav-item" onclick="switchArticle(3)">
+                    <span class="item-num">04</span>
+                    <div class="item-meta">
+                        <h4>Thế Nào & Ở Đâu</h4>
+                        <p>Nghiên cứu bắt đầu thế nào và ở đâu?</p>
+                    </div>
+                </button>
+                <button class="exploration-nav-item" onclick="switchArticle(4)">
+                    <span class="item-num">05</span>
+                    <div class="item-meta">
+                        <h4>Khởi Đầu Nghiên Cứu</h4>
+                        <p>Nghiên cứu bắt đầu từ đâu?</p>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Quick Info Card -->
+            <div class="sidebar-info-card">
+                <div class="info-card-icon">✍️</div>
+                <div class="info-card-text">
+                    <strong>Đánh máy & Soạn thảo</strong>
+                    <p>Bật chế độ "Soạn thảo bài viết" ở góc phải để tự do gõ nội dung, ghi chú, trích dẫn cho từng bài.</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right: Blog Article Canvas & Built-in Typing Editor -->
+        <article class="blog-article-canvas">
+            <!-- Article Header & Action Bar -->
+            <div class="article-top-bar">
+                <div class="article-breadcrumb">
+                    <a href="index.html">Home</a> &rsaquo; <span>Explorations</span> &rsaquo; <span id="breadcrumbCurrent">Tâm Lý Học</span>
+                </div>
+                <div class="article-controls">
+                    <button class="editor-toggle-btn" id="editToggleBtn" onclick="toggleEditMode()">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                        <span id="editBtnText">Soạn thảo bài viết</span>
+                    </button>
+                    <button class="save-status-btn" id="saveIndicator" title="Tự động lưu vào trình duyệt">
+                        <span class="status-dot"></span> Đã lưu
+                    </button>
+                </div>
+            </div>
+
+            <!-- Visual Featured Slide Banner (Cover) -->
+            <figure class="article-cover-frame">
+                <img id="articleCoverImg" src="slide_tamlyhoc.png" alt="Featured Exploration Slide">
+            </figure>
+
+            <!-- Integrated Typing Toolbar (Wordpress/Notion Style) -->
+            <div class="typing-toolbar" id="typingToolbar">
+                <div class="toolbar-group">
+                    <button type="button" class="tool-btn" onclick="execEditor('bold')" title="In đậm (Ctrl+B)"><strong>B</strong></button>
+                    <button type="button" class="tool-btn" onclick="execEditor('italic')" title="In nghiêng (Ctrl+I)"><em>I</em></button>
+                    <button type="button" class="tool-btn" onclick="execEditor('underline')" title="Gạch chân"><u>U</u></button>
+                    <button type="button" class="tool-btn" onclick="execEditor('strikeThrough')" title="Gạch ngang"><s>S</s></button>
+                </div>
+                <div class="toolbar-divider"></div>
+                <div class="toolbar-group">
+                    <button type="button" class="tool-btn" onclick="execBlock('h2')" title="Tiêu đề lớn">H2</button>
+                    <button type="button" class="tool-btn" onclick="execBlock('h3')" title="Tiêu đề vừa">H3</button>
+                    <button type="button" class="tool-btn" onclick="execBlock('p')" title="Đoạn văn">P</button>
+                </div>
+                <div class="toolbar-divider"></div>
+                <div class="toolbar-group">
+                    <button type="button" class="tool-btn" onclick="execEditor('insertUnorderedList')" title="Danh sách chấm">• Danh sách</button>
+                    <button type="button" class="tool-btn" onclick="execEditor('insertOrderedList')" title="Danh sách số">1. Số thứ tự</button>
+                    <button type="button" class="tool-btn" onclick="execBlock('blockquote')" title="Trích dẫn (Quote)">“ Trích dẫn</button>
+                </div>
+                <div class="toolbar-divider"></div>
+                <div class="toolbar-group">
+                    <button type="button" class="tool-btn" onclick="insertHighlightBox()" title="Khung ghi chú nổi bật">💡 Khung ghi chú</button>
+                    <button type="button" class="tool-btn" onclick="insertHorizontalRule()" title="Đường kẻ phân cách">— Kẻ ngang</button>
+                    <button type="button" class="tool-btn danger-tool" onclick="clearContent()" title="Xoá nội dung">Xoá hết</button>
+                </div>
+            </div>
+
+            <!-- Article Title -->
+            <header class="article-header">
+                <h1 class="article-title" id="articleTitle">Tâm Lý Học - Hiểu để kết nối với chính mình</h1>
+                <div class="article-meta-row">
+                    <span class="author-tag">Aperio Research</span>
+                    <span class="meta-bullet">•</span>
+                    <span class="read-tag" id="articleTrack">Social & Behavioral Sciences</span>
+                    <span class="meta-bullet">•</span>
+                    <span class="date-tag">GEN0.1 SERIES</span>
+                </div>
+            </header>
+
+            <!-- Editable Content Body (User can type freely) -->
+            <div class="article-editable-body" id="articleBody" contenteditable="false" spellcheck="true" data-placeholder="Nhấn vào nút 'Soạn thảo bài viết' ở góc trên để đánh máy, ghi chú đề cương, thêm phương pháp luận hoặc nội dung cho bài nghiên cứu này...">
+                <!-- User content dynamically populated or typed here -->
+            </div>
+
+            <!-- Footer / Next Article Pagination -->
+            <footer class="article-pagination-footer">
+                <button class="nav-article-btn prev-article" id="prevArticleBtn" onclick="navigateArticle(-1)">
+                    &larr; Khám phá trước
+                </button>
+                <div class="article-indicator-count" id="articleCounter">
+                    Bài 1 / 5
+                </div>
+                <button class="nav-article-btn next-article" id="nextArticleBtn" onclick="navigateArticle(1)">
+                    Khám phá tiếp theo &rarr;
+                </button>
+            </footer>
+        </article>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <h3>Contact Us</h3>
+            <div class="footer-links-row">
+                <div class="footer-item">
+                    <span>Fanpage:</span>
+                    <a href="https://www.facebook.com/profile.php?id=61593208479696" target="_blank" class="footer-icon-link" aria-label="Facebook Fanpage">
+                        <svg class="footer-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                </div>
+                <div class="footer-item">
+                    <span>Apply your research:</span>
+                    <a href="https://forms.gle/F9evDGJCJm1P4XRz5" target="_blank" class="footer-icon-link" aria-label="Apply Research">
+                        <svg class="footer-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+            <p class="footer-contact-info">Phone: 090 934 8508 | Email: aperio.res@gmail.com</p>
+            <p class="footer-copyright">© 2026 AperioResearch. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Spotlight Search -->
+    <script src="spotlight.js"></script>
+
+    <!-- Blog & Typing Controller -->
+    <script>
+        const articles = [
+            {
+                id: "tamlyhoc",
+                title: "Tâm Lý Học - Hiểu để kết nối với chính mình",
+                track: "Social & Behavioral Sciences",
+                cover: "slide_tamlyhoc.png",
+                defaultContent: `<h2>Tổng quan đề tài</h2><p>Khám phá bản ngã, các cơ chế cảm xúc và suy nghĩ thông qua lăng kính tâm lý học nhận thức và hành vi hiện đại.</p><blockquote>"Nghiên cứu tâm lý học không chỉ nhằm giải thích hành vi con người, mà trước hết là chiếc gương soi giúp chúng ta thấu suốt bản thân."</blockquote><h3>Các câu hỏi nghiên cứu cốt lõi:</h3><ul><li>Cảm xúc ảnh hưởng thế nào đến quá trình đưa ra quyết định ở lứa tuổi thanh thiếu niên?</li><li>Mối tương quan giữa môi trường học thuật và áp lực tâm lý cá nhân.</li><li>Phương pháp tự phản tư (self-reflection) trong việc cải thiện sức khỏe tinh thần.</li></ul>`
+            },
+            {
+                id: "khoangtrong",
+                title: "Từ những khoảng trống đến đề tài nghiên cứu",
+                track: "Research Methodology",
+                cover: "slide_khoangtrong.png",
+                defaultContent: `<h2>Xác định khoảng trống nghiên cứu (Research Gap)</h2><p>Khoảng trống nghiên cứu là phần kiến thức còn thiếu, các góc nhìn chưa được kiểm chứng, hoặc mâu thuẫn trong các tài liệu đã xuất bản.</p><div class="callout-box">💡 <strong>Mẹo tìm Research Gap:</strong> Đọc phần "Future Research" hoặc "Limitations" ở cuối các bài báo khoa học trên Google Scholar/ResearchGate để tìm gợi ý.</div>`
+            },
+            {
+                id: "timdoc",
+                title: "Tìm, đọc, và chọn lọc nghiên cứu ở đâu?",
+                track: "Literature Review & Tools",
+                cover: "slide_timdoc.png",
+                defaultContent: `<h2>Nguồn tài liệu khoa học chuẩn mực</h2><p>Cách tiếp cận nguồn tài liệu học thuật đáng tin cậy cho học sinh - sinh viên:</p><ul><li><strong>Google Scholar:</strong> Nền tảng tìm kiếm tài liệu học thuật phổ quát nhất.</li><li><strong>ResearchGate & arXiv:</strong> Nơi cập nhật các bản thảo preprint và kết nối trực tiếp với tác giả.</li><li><strong>JSTOR & PubMed:</strong> Dành cho khối ngành khoa học xã hội và sinh y học.</li></ul>`
+            },
+            {
+                id: "batdauthenao",
+                title: "Nghiên cứu bắt đầu thế nào và ở đâu?",
+                track: "Academic Workflow",
+                cover: "slide_batdauthenao.png",
+                defaultContent: `<h2>Bắt đầu từ sự tò mò</h2><p>Mọi công trình khoa học vĩ đại đều bắt nguồn từ một câu hỏi giản dị: <em>Tại sao điều này lại xảy ra?</em></p><p>Ghi chép lại các quan sát thường nhật và tìm kiếm xem thế giới đã trả lời câu hỏi đó đến đâu.</p>`
+            },
+            {
+                id: "batdautudau",
+                title: "Nghiên cứu bắt đầu từ đâu?",
+                track: "Foundations & Inquiries",
+                cover: "slide_batdautudau.png",
+                defaultContent: `<h2>Đặt nền móng nghiên cứu</h2><p>Chuẩn bị sổ tay ghi chép, xác lập tính khả thi của đề tài và thảo luận cùng giáo viên/người hướng dẫn để đóng khung phạm vi nghiên cứu phù hợp năng lực.</p>`
+            }
+        ];
+
+        let currentArticleIdx = 0;
+        let isEditing = false;
+
+        function loadArticle(idx) {
+            currentArticleIdx = idx;
+            const art = articles[idx];
+
+            // Update UI meta
+            document.getElementById('breadcrumbCurrent').textContent = art.title.split(' - ')[0];
+            document.getElementById('articleCoverImg').src = art.cover;
+            document.getElementById('articleCoverImg').alt = art.title;
+            document.getElementById('articleTitle').textContent = art.title;
+            document.getElementById('articleTrack').textContent = art.track;
+            document.getElementById('articleCounter').textContent = `Bài ${idx + 1} / ${articles.length}`;
+
+            // Update sidebar active status
+            const items = document.querySelectorAll('.exploration-nav-item');
+            items.forEach((it, i) => it.classList.toggle('active', i === idx));
+
+            // Load saved content from localStorage or fallback
+            const savedKey = 'aperio_exploration_' + art.id;
+            const content = localStorage.getItem(savedKey) || art.defaultContent;
+            document.getElementById('articleBody').innerHTML = content;
+        }
+
+        function switchArticle(idx) {
+            if (idx >= 0 && idx < articles.length) {
+                loadArticle(idx);
+                window.scrollTo({ top: 320, behavior: 'smooth' });
+            }
+        }
+
+        function navigateArticle(direction) {
+            const nextIdx = currentArticleIdx + direction;
+            if (nextIdx >= 0 && nextIdx < articles.length) {
+                switchArticle(nextIdx);
+            }
+        }
+
+        // Edit Mode Toggle
+        function toggleEditMode() {
+            isEditing = !isEditing;
+            const body = document.getElementById('articleBody');
+            const toolbar = document.getElementById('typingToolbar');
+            const editBtn = document.getElementById('editToggleBtn');
+            const editBtnText = document.getElementById('editBtnText');
+
+            if (isEditing) {
+                body.contentEditable = "true";
+                body.focus();
+                toolbar.classList.add('visible');
+                editBtn.classList.add('editing');
+                editBtnText.textContent = "Chế độ đọc (Lưu)";
+            } else {
+                body.contentEditable = "false";
+                toolbar.classList.remove('visible');
+                editBtn.classList.remove('editing');
+                editBtnText.textContent = "Soạn thảo bài viết";
+                saveCurrentContent();
+            }
+        }
+
+        // Live Auto-Save
+        const articleBody = document.getElementById('articleBody');
+        articleBody.addEventListener('input', () => {
+            saveCurrentContent();
+        });
+
+        function saveCurrentContent() {
+            const art = articles[currentArticleIdx];
+            const content = articleBody.innerHTML;
+            localStorage.setItem('aperio_exploration_' + art.id, content);
+
+            const indicator = document.getElementById('saveIndicator');
+            indicator.classList.add('saved-pulse');
+            setTimeout(() => indicator.classList.remove('saved-pulse'), 800);
+        }
+
+        // Typing Formatting Exec Commands
+        function execEditor(cmd, val = null) {
+            document.execCommand(cmd, false, val);
+            articleBody.focus();
+        }
+
+        function execBlock(tag) {
+            document.execCommand('formatBlock', false, `<${tag}>`);
+            articleBody.focus();
+        }
+
+        function insertHighlightBox() {
+            const html = `<div class="callout-box">💡 <strong>Ghi chú:</strong> Nhập nội dung nhấn mạnh vào đây...</div><p><br></p>`;
+            document.execCommand('insertHTML', false, html);
+            articleBody.focus();
+        }
+
+        function insertHorizontalRule() {
+            document.execCommand('insertHorizontalRule', false, null);
+            articleBody.focus();
+        }
+
+        function clearContent() {
+            if (confirm("Bạn có chắc chắn muốn xoá toàn bộ nội dung đã gõ của bài này không?")) {
+                articleBody.innerHTML = "<p>Nhập nội dung mới tại đây...</p>";
+                saveCurrentContent();
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check url hash (e.g., #1, #2)
+            const hash = window.location.hash.replace('#', '');
+            const initialIdx = parseInt(hash, 10);
+            if (!isNaN(initialIdx) && initialIdx >= 0 && initialIdx < articles.length) {
+                loadArticle(initialIdx);
+            } else {
+                loadArticle(0);
+            }
+        });
+    </script>
+</body>
+</html>
