@@ -16,28 +16,28 @@
             url: "index.html"
         },
         {
-            title: "About Us",
+            title: "About",
             category: "Pages",
-            desc: "Learn about our mission, philosophy, and meet our team",
+            desc: "Learn about our mission, philosophy, and student community",
             icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`,
             url: "about.html"
         },
         {
-            title: "Featured Explorations & Notes",
+            title: "Exploration",
             category: "Pages",
-            desc: "Browse visual slides, read methodologies, and edit interactive notes",
+            desc: "Acanthus Sanctuary: 3D gameplay walkthrough and Scholar's Codex",
             icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
             url: "explorations.html"
         },
         {
-            title: "Meet Our Team",
+            title: "Connect",
             category: "Pages",
-            desc: "Founding members, student researchers, and advisors",
-            icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
-            url: "about.html#team"
+            desc: "Open research vacancies, member recruiting, and collaborative networking",
+            icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>`,
+            url: "connect.html"
         },
         {
-            title: "Apply My Research",
+            title: "Apply Research",
             category: "Actions",
             desc: "Submit your manuscript or proposal to Aperio (Google Form)",
             icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>`,

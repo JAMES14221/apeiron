@@ -6,28 +6,31 @@
     <title>Acanthus Sanctuary - Gameplay Walkthrough | Aperio Research</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="walkthrough-body">
     <!-- Navigation -->
     <nav>
-        <a href="index.html" class="nav-brand-logo" aria-label="Aperio Home">
-            <img src="logo.png" alt="Aperio Logo" class="nav-logo-img">
-        </a>
+        <div class="nav-brand-group">
+            <a href="index.html" class="nav-brand-logo" aria-label="Aperio Home">
+                <img src="logo.png" alt="Aperio Logo" class="nav-logo-img">
+            </a>
+            <button class="nav-search-btn" aria-label="Search Aperio (Space)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <span>Search</span>
+                <span class="nav-search-kbd">Space</span>
+            </button>
+        </div>
         <ul class="nav-links">
             <li><a href="index.html" id="nav-home">Home</a></li>
             <li><a href="about.html" id="nav-about">About</a></li>
-            <li><a href="explorations.html" id="nav-explorations" class="active">Acanthus Sanctuary</a></li>
-            <li><a href="index.html#workflow">Workflow</a></li>
-            <li>
-                <button class="nav-search-btn" aria-label="Search Aperio (Space)">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <span>Search</span>
-                    <span class="nav-search-kbd">Space</span>
-                </button>
-            </li>
+            <li><a href="explorations.html" id="nav-explorations" class="active">Exploration</a></li>
+            <li><a href="connect.html" id="nav-connect">Connect</a></li>
         </ul>
+        <div class="nav-cta-wrap">
+            <a href="https://forms.gle/F9evDGJCJm1P4XRz5" target="_blank" class="nav-apply-btn">Apply Research</a>
+        </div>
     </nav>
 
     <!-- 3D Walkthrough Interactive Viewport -->
@@ -157,14 +160,6 @@
             <!-- Current Chamber Status -->
             <div class="hud-status-cluster">
                 <div class="current-chamber-name" id="hudChamberName">CHAMBER I</div>
-            </div>
-
-            <!-- Action Prompt -->
-            <div class="hud-action-cluster">
-                <button class="inspect-btn" onclick="openCurrentCodex()" aria-label="Khám phá">
-                    <span>📜</span>
-                    <span>Khám phá</span>
-                </button>
             </div>
         </footer>
     </main>
@@ -509,19 +504,54 @@
             });
         }
 
-        // Acanthus Leaves
-        const leaves = [];
-        for (let i = 0; i < 14; i++) {
-            leaves.push({
-                x: Math.random() * fxW,
-                y: Math.random() * fxH - 50,
-                size: Math.random() * 12 + 10,
-                speedY: Math.random() * 0.8 + 0.4,
-                speedX: Math.random() * 0.6 + 0.2,
+        // Authentic Acanthus Leaf Sprites & Physics Engine (from classical Acanthus artwork)
+        const leafAssetUrls = [
+            { url: 'leaf_acanthus_feather.png', isGold: false },
+            { url: 'leaf_acanthus_gold.png', isGold: true },
+            { url: 'leaf_acanthus_spiral.png', isGold: false },
+            { url: 'leaf_acanthus_gold_spiral.png', isGold: true },
+            { url: 'leaf_acanthus_single.png', isGold: false },
+            { url: 'leaf_acanthus_single_gold.png', isGold: true },
+            { url: 'leaf_acanthus_curve.png', isGold: false }
+        ];
+
+        const leafSprites = leafAssetUrls.map(asset => {
+            const img = new Image();
+            img.src = asset.url;
+            return { img, isGold: asset.isGold };
+        });
+
+        function createLeaf(fxW, fxH, startRandomY = true) {
+            const spriteIdx = Math.floor(Math.random() * leafSprites.length);
+            const depth = Math.random() * 0.7 + 0.35; // 0.35 (depth background) to 1.05 (foreground)
+            return {
+                spriteIdx: spriteIdx,
+                x: Math.random() * (fxW + 240) - 120,
+                y: startRandomY ? Math.random() * fxH : -80 - Math.random() * 100,
+                depth: depth,
+                scale: depth * (Math.random() * 0.22 + 0.26), // crisp resolution rendering
+                baseSpeedY: depth * (Math.random() * 0.8 + 0.65), // natural falling rate
+                // Aerodynamic pendulum sway
+                swayAngle: Math.random() * Math.PI * 2,
+                swaySpeed: Math.random() * 0.022 + 0.014,
+                swayRadius: Math.random() * 2.5 + 1.2,
+                // 3D Direction Flip (lật mặt lá đảo hướng)
+                flipAngle: Math.random() * Math.PI * 2,
+                flipSpeed: Math.random() * 0.026 + 0.016,
+                // 3D Pitch tilt
+                tumbleAngle: Math.random() * Math.PI * 2,
+                tumbleSpeed: Math.random() * 0.016 + 0.008,
+                // Rotation
                 rotation: Math.random() * Math.PI * 2,
-                rotSpeed: (Math.random() - 0.5) * 0.02,
-                color: Math.random() > 0.4 ? 'rgba(217, 119, 6, 0.45)' : 'rgba(45, 212, 191, 0.4)'
-            });
+                baseRotation: Math.random() * Math.PI * 2,
+                alpha: depth * (Math.random() * 0.35 + 0.6)
+            };
+        }
+
+        const leaves = [];
+        const leafCount = 18;
+        for (let i = 0; i < leafCount; i++) {
+            leaves.push(createLeaf(fxW || window.innerWidth, fxH || window.innerHeight, true));
         }
 
         function animateAtmosphericFX() {
@@ -554,27 +584,57 @@
                 fxCtx.fill();
             });
 
-            // 3. Draw Fluttering Acanthus Leaves
+            // 3. Draw Fluttering Real Acanthus Leaves with 3D Flip & Direction Inversion
+            const ambientWind = Math.sin(Date.now() * 0.0006) * 0.6 + 0.2;
+
             leaves.forEach(lf => {
-                lf.y += lf.speedY;
-                lf.x += lf.speedX;
-                lf.rotation += lf.rotSpeed;
-                if (lf.y > fxH + 50) {
-                    lf.y = -40;
-                    lf.x = Math.random() * fxW * 0.7;
+                // Advance physics angles
+                lf.swayAngle += lf.swaySpeed;
+                lf.flipAngle += lf.flipSpeed;
+                lf.tumbleAngle += lf.tumbleSpeed;
+
+                // Sway velocity & aerodynamic lift (leaves decelerate vertically when swinging sideways)
+                const swayOffset = Math.sin(lf.swayAngle) * lf.swayRadius;
+                lf.x += swayOffset + ambientWind;
+                const lift = Math.abs(Math.sin(lf.swayAngle)) * 0.35;
+                lf.y += (lf.baseSpeedY - lift);
+
+                // Oscillate rotation gracefully with sway
+                lf.rotation = lf.baseRotation + Math.sin(lf.swayAngle) * 0.45;
+
+                // Check off-screen wrap
+                if (lf.y > fxH + 70 || lf.x < -140 || lf.x > fxW + 140) {
+                    const fresh = createLeaf(fxW, fxH, false);
+                    Object.assign(lf, fresh);
                 }
+
+                const sprite = leafSprites[lf.spriteIdx];
+                if (!sprite || !sprite.img.complete || sprite.img.naturalWidth === 0) return;
 
                 fxCtx.save();
                 fxCtx.translate(lf.x, lf.y);
                 fxCtx.rotate(lf.rotation);
-                fxCtx.fillStyle = lf.color;
-                fxCtx.shadowBlur = 6;
-                fxCtx.shadowColor = lf.color;
 
-                // Stylized acanthus leaf petal shape
-                fxCtx.beginPath();
-                fxCtx.ellipse(0, 0, lf.size, lf.size * 0.45, 0, 0, Math.PI * 2);
-                fxCtx.fill();
+                // 3D Direction Flip: Math.cos(flipAngle) oscillates from -1 to +1
+                // flipping the leaf left/right like a real tumbling leaf
+                const flipX = Math.cos(lf.flipAngle);
+                const pitchY = Math.cos(lf.tumbleAngle) * 0.35 + 0.65;
+                fxCtx.scale(flipX * lf.scale, pitchY * lf.scale);
+
+                fxCtx.globalAlpha = lf.alpha;
+
+                // Atmospheric temple glow
+                if (sprite.isGold) {
+                    fxCtx.shadowBlur = 10 * lf.depth;
+                    fxCtx.shadowColor = 'rgba(253, 230, 138, 0.45)';
+                } else {
+                    fxCtx.shadowBlur = 8 * lf.depth;
+                    fxCtx.shadowColor = 'rgba(45, 212, 191, 0.35)';
+                }
+
+                const dw = sprite.img.naturalWidth;
+                const dh = sprite.img.naturalHeight;
+                fxCtx.drawImage(sprite.img, -dw / 2, -dh / 2);
                 fxCtx.restore();
             });
 
