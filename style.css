@@ -285,49 +285,118 @@ nav {
     gap: 15px;
 }
 
-.carousel-section h2 {
-    font-size: 2rem;
-    color: #f1f5f9;
-    letter-spacing: 1px;
-    margin: 0;
-}
-
-.view-all-blog-link {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #2dd4bf;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    padding: 6px 14px;
-    background: rgba(45, 212, 191, 0.08);
-    border: 1px solid rgba(45, 212, 191, 0.25);
-    border-radius: 20px;
-}
-
-.view-all-blog-link:hover {
-    background: rgba(45, 212, 191, 0.18);
-    border-color: #2dd4bf;
-    color: #ffffff;
-    transform: translateX(3px);
-}
-
-.carousel-container {
+/* ==========================================================================
+   Acanthus Classical Colonnade Walkthrough Environment
+   ========================================================================== */
+.acanthus-walkthrough-section {
     position: relative;
-    max-width: 900px;
+    padding: 100px 30px 100px;
+    background-color: #03060f;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Atmospheric Acanthus & Architecture Backdrop */
+.acanthus-backdrop-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.acanthus-colonnade-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    opacity: 0.22;
+    filter: saturate(1.15) brightness(0.65) blur(1px);
+    transform: scale(1.04);
+    animation: acanthusPan 24s ease-in-out infinite alternate;
+}
+
+@keyframes acanthusPan {
+    0% { transform: scale(1.04) translateY(0); }
+    100% { transform: scale(1.08) translateY(-12px); }
+}
+
+.acanthus-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 45%, rgba(3, 6, 15, 0.4) 0%, rgba(3, 6, 15, 0.9) 70%, #03060f 100%),
+                linear-gradient(180deg, #050814 0%, transparent 20%, transparent 80%, #050814 100%);
+}
+
+.acanthus-walkthrough-header {
+    position: relative;
+    z-index: 2;
+    max-width: 820px;
+    margin: 0 auto 50px;
+}
+
+.acanthus-tag {
+    color: #5eead4;
+    background: rgba(45, 212, 191, 0.1);
+    border: 1px solid rgba(45, 212, 191, 0.25);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.76rem;
+    letter-spacing: 2px;
+}
+
+.acanthus-walkthrough-header h2 {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    color: #ffffff;
+    margin: 14px 0 12px;
+    letter-spacing: 1px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+.acanthus-subtitle {
+    color: #cbd5e1;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* Colonnade Exhibition Stage */
+.acanthus-hall-stage {
+    position: relative;
+    z-index: 2;
+    max-width: 980px;
+    margin: 0 auto;
+    perspective: 1200px;
+}
+
+.acanthus-portal-frame {
+    position: relative;
     width: 100%;
     margin: 0 auto;
     overflow: hidden;
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
     background: #02040a;
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(139, 92, 246, 0.12);
+    box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9),
+                0 0 35px rgba(94, 234, 212, 0.12),
+                inset 0 0 30px rgba(0, 0, 0, 0.8);
     aspect-ratio: 16 / 9;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.acanthus-portal-frame:hover {
+    box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.95),
+                0 0 45px rgba(139, 92, 246, 0.25);
 }
 
 .carousel-track {
     display: flex;
     height: 100%;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .carousel-slide {
@@ -338,6 +407,7 @@ nav {
     align-items: center;
     justify-content: center;
     background: #02040a;
+    overflow: hidden;
 }
 
 .carousel-slide img {
@@ -345,62 +415,183 @@ nav {
     height: 100%;
     object-fit: contain;
     display: block;
+    transition: transform 0.5s ease;
 }
 
-.carousel-caption {
+.carousel-slide:hover img {
+    transform: scale(1.02);
+}
+
+/* Museum Gallery Plaque / Overlay Caption */
+.acanthus-plaque {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 20px;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-    color: #fff;
+    padding: 24px 30px 20px;
+    background: linear-gradient(180deg, transparent 0%, rgba(2, 6, 23, 0.75) 40%, rgba(2, 6, 23, 0.96) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    transform: translateY(20px);
+    opacity: 0.9;
+    transition: all 0.3s ease;
 }
 
-.carousel-btn {
+.carousel-slide:hover .acanthus-plaque {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.plaque-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #2dd4bf;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.acanthus-plaque h3 {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.plaque-cta {
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    padding: 6px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.carousel-slide:hover .plaque-cta {
+    background: #8b5cf6;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+}
+
+/* Classical Nav Buttons */
+.acanthus-nav-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 12px 16px;
-    cursor: pointer;
-    font-size: 1.2rem;
+    width: 48px;
+    height: 48px;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px);
     border-radius: 50%;
-    transition: background 0.2s;
-    z-index: 5;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.25s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
 }
 
-.carousel-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
+.acanthus-nav-btn:hover {
+    background: rgba(45, 212, 191, 0.2);
+    border-color: #2dd4bf;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
+    transform: translateY(-50%) scale(1.08);
 }
 
-.prev-btn { left: 15px; }
-.next-btn { right: 15px; }
+.acanthus-nav-btn.prev-btn { left: -24px; }
+.acanthus-nav-btn.next-btn { right: -24px; }
+
+/* Walk Navigation & Stepping Stones */
+.acanthus-walk-nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    margin-top: 35px;
+}
 
 .carousel-indicators {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 12px;
 }
 
 .indicator {
-    width: 32px;
-    height: 8px;
-    border-radius: 4px;
-    background: #334155;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
     cursor: pointer;
-    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
 }
 
+.indicator .ind-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.indicator:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
 .indicator.active {
-    background: #8b5cf6;
-    width: 48px;
+    background: linear-gradient(135deg, rgba(45, 212, 191, 0.25), rgba(139, 92, 246, 0.25));
+    border-color: #2dd4bf;
+    color: #ffffff;
+    box-shadow: 0 0 16px rgba(45, 212, 191, 0.3);
+    padding: 0 16px;
+}
+
+.acanthus-journal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #5eead4;
+    text-decoration: none;
+    padding: 9px 20px;
+    background: rgba(45, 212, 191, 0.08);
+    border: 1px solid rgba(45, 212, 191, 0.25);
+    border-radius: 25px;
+    transition: all 0.25s ease;
+}
+
+.acanthus-journal-link:hover {
+    background: rgba(45, 212, 191, 0.2);
+    border-color: #5eead4;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.35);
+    transform: translateY(-2px);
 }
 
 /* Shared Section Header */
@@ -1279,10 +1470,13 @@ nav {
 }
 
 .blog-hero {
-    padding: 70px 40px 40px;
+    position: relative;
+    padding: 85px 40px 50px;
     text-align: center;
-    background: radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.12) 0%, rgba(6, 9, 19, 0) 70%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: radial-gradient(circle at 50% 20%, rgba(45, 212, 191, 0.12) 0%, rgba(6, 9, 19, 0) 70%),
+                linear-gradient(180deg, rgba(6, 9, 19, 0.8) 0%, #060913 100%),
+                url('acanthus_gallery.jpg') center 20% / cover no-repeat;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .blog-hero-content {
