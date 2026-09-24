@@ -148,20 +148,6 @@ nav {
     position: relative;
 }
 
-.hero-tagline {
-    font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(0.72rem, 1.1vw, 0.9rem);
-    font-weight: 500;
-    letter-spacing: 0.35em;
-    padding-left: 0.35em; /* balance letter spacing */
-    text-transform: uppercase;
-    color: #94a3b8;
-    margin-top: 22px;
-    opacity: 0.8;
-    transition: opacity 0.3s ease, color 0.3s ease;
-    text-shadow: 0 0 16px rgba(139, 92, 246, 0.3);
-}
-
 .hero-main-title {
     font-family: 'Cinzel', 'Cormorant Garamond', 'Trajan Pro', Georgia, serif;
     font-size: clamp(3.2rem, 7.5vw, 6.2rem);
