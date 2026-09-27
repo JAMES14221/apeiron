@@ -23,11 +23,11 @@
             url: "about.html"
         },
         {
-            title: "Exploration",
+            title: "Research Archive",
             category: "Pages",
-            desc: "Acanthus Sanctuary: 3D gameplay walkthrough and Scholar's Codex",
+            desc: "Explore curated student scientific papers, methodologies, and publications",
             icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
-            url: "explorations.html"
+            url: "research.html"
         },
         {
             title: "Connect",
@@ -45,11 +45,32 @@
             external: true
         },
         {
-            title: "Featured Explorations Carousel",
+            title: "Featured Explorations & Latest Research",
             category: "Actions",
-            desc: "Browse visual slides of research methodologies and frameworks",
+            desc: "Browse visual slides and peer-reviewed research papers",
             icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`,
-            url: "index.html#carousel"
+            url: "research.html"
+        },
+        {
+            title: "Biodegradable Cement from Agricultural Waste",
+            category: "Featured Research",
+            desc: "Environment & Green Material: Sustainable bio-cement synthesis from agricultural residues",
+            icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
+            url: "research.html#paper-0"
+        },
+        {
+            title: "AI-Assisted Early Detection of Neurological Disorders",
+            category: "Featured Research",
+            desc: "Health & Neural AI: Graph Neural Networks for micro MRI biomarker diagnostics",
+            icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>`,
+            url: "research.html#paper-1"
+        },
+        {
+            title: "The Impact of Sleep Quality on Academic Performance",
+            category: "Featured Research",
+            desc: "Education & Chronobiology: 6-month study on adolescent REM cycles and cognitive problem-solving",
+            icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
+            url: "research.html#paper-2"
         },
         {
             title: "Computer Science & AI",

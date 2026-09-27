@@ -6,53 +6,100 @@
     <title>About Us - Aperio Research</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=astral_tarot_v4_polished">
 </head>
 <body>
+    <!-- Full-Page Interactive Cosmic Constellation Canvas (Synced with Homepage) -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation Bar -->
     <nav>
         <div class="nav-brand-group">
-            <a href="index.html" class="nav-brand-logo" aria-label="Aperio Home">
+            <a href="index.html" class="nav-brand-logo" aria-label="Aperio Research Home">
                 <img src="logo.png" alt="Aperio Logo" class="nav-logo-img">
             </a>
-            <button class="nav-search-btn" aria-label="Search Aperio (Space)">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <span>Search</span>
-                <span class="nav-search-kbd">Space</span>
-            </button>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html" id="nav-home">Home</a></li>
-            <li><a href="about.html" id="nav-about" class="active">About</a></li>
-            <li><a href="explorations.html" id="nav-explorations">Exploration</a></li>
-            <li><a href="connect.html" id="nav-connect">Connect</a></li>
+            <li><a href="index.html" id="nav-home">HOME</a></li>
+            <li><a href="about.html" id="nav-about" class="active">ABOUT</a></li>
+            <li><a href="research.html" id="nav-research">RESEARCH</a></li>
+            <li><a href="connect.html" id="nav-connect">CONNECT</a></li>
         </ul>
-        <div class="nav-cta-wrap">
-            <a href="https://forms.gle/F9evDGJCJm1P4XRz5" target="_blank" class="nav-apply-btn">Apply Research</a>
+        <div class="nav-right-actions">
+            <button class="nav-search-btn" onclick="openSpotlight()" aria-label="Spotlight Search (Space / Cmd+K)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+            <div class="nav-divider"></div>
+            <a href="https://forms.gle/F9evDGJCJm1P4XRz5" target="_blank" class="nav-explore-btn">
+                <span>APPLY</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
         </div>
     </nav>
 
-    <!-- About Section -->
+    <!-- Main About Stage: Astral Cosmic Tarot 3D Gacha Wheel Arena -->
     <section class="about-section" id="about">
-        <canvas id="about-canvas"></canvas>
+        <div class="about-hero-header">
+            <h1 class="about-main-title">MEET OUR TEAM</h1>
+        </div>
 
-        <div class="about-grid">
-            <div class="about-text">
-                <h2>About Us</h2>
-                <p>Aperio Research is a student-initiated platform designed to democratize the research experience. We are not a journal, publisher, or self-publishing site. Instead, we curate and showcase selected student research projects that meet our standards.</p>
+        <!-- Astral Cosmic Tarot 3D Gacha Wheel Arena (400 DPI Ultra-Luxury 1:1 Replica) -->
+        <div class="gacha-stage" id="gachaStage">
+            <!-- 400 DPI Celestial Gyroscope Background Plate (Feathered Seamless Blend) -->
+            <div class="gacha-backdrop">
+                <img src="astral_stage_bg_feathered.png" alt="Astral Cosmic Gyroscope Stage" class="gacha-backdrop-img">
+                <canvas id="gacha-twinkle-canvas" class="gacha-twinkle-canvas"></canvas>
             </div>
-            <div class="about-image-container">
-                <img src="images.jpg" alt="Mountain Landscape Sunrise">
+
+            <div class="gacha-viewport" id="gachaViewport" tabindex="0" aria-label="Scholar codex carousel. Use the left and right arrow keys to rotate.">
+                <!-- 3D Rotating Floor Astrolabe Seal -->
+                <div class="gacha-floor-astrolabe"></div>
+
+                <!-- 3D Floating Aperio Center Core Crystal (Spatial Anchor) -->
+                <div class="gacha-center-core" id="gachaCenterCore">
+                    <div class="core-aura-pulse"></div>
+                    <img src="aperio_monument_hd.png" alt="Aperio Core Crystal" class="core-crystal-img" id="coreCrystalImg">
+                </div>
+
+                <!-- 3D Orbiting Cards Container -->
+                <div class="gacha-cards-stage" id="gachaCardsStage"></div>
+
+                <!-- Particle Burst Canvas -->
+                <canvas class="gacha-vfx-canvas" id="gachaVfxCanvas"></canvas>
+
+                <!-- Reveal Detail Modal HUD -->
+                <div class="gacha-reveal-modal" id="gachaModal">
+                    <button class="gacha-modal-close" onclick="closeCardDetail(event)" aria-label="Close Codex">✕</button>
+                    <div class="gacha-modal-badge" id="modalBadge">SCHOLAR CODEX · APERIO 01</div>
+                    <h2 class="gacha-modal-title" id="modalName">Sarah Nguyen</h2>
+                    <div class="gacha-modal-role" id="modalRole">Founder &amp; Research Director</div>
+                    <div class="gacha-modal-quote-wrap">
+                        <span class="quote-glyph">“</span>
+                        <p class="gacha-modal-quote" id="modalQuote"></p>
+                    </div>
+                    <div class="gacha-modal-details">
+                        <div class="gacha-meta-item">
+                            <span class="meta-label">CHUYÊN MÔN / FOCUS</span>
+                            <span class="meta-val" id="modalFocus"></span>
+                        </div>
+                        <div class="gacha-meta-item">
+                            <span class="meta-label">BỘ PHẬN / DEPT</span>
+                            <span class="meta-val" id="modalDept"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="about-bottom-grid">
-            <div class="info-block">
-                <h3>Extraordinary Experiences</h3>
-                <p>Extraordinary experiences happen when students realize that research is not distant or exclusive – it is accessible, creative, and transformative. Aperio is here to make that first step possible.</p>
+        <!-- Aperio Story & Mission in Glassmorphic Sci-Fi Dossier -->
+        <div class="about-dossier-grid">
+            <div class="about-dossier-card">
+                <h2>About Aperio</h2>
+                <p>Aperio Research is a student-initiated platform designed to democratize the research experience. We curate and showcase selected student research projects that illuminate the frontiers of scientific inquiry.</p>
             </div>
-            <div class="info-block">
-                <h3>Our Mission</h3>
+            <div class="about-dossier-card">
+                <h2>Our Mission</h2>
                 <ul class="mission-list">
                     <li>Open the entry point for students beyond elite schools and labs.</li>
                     <li>Provide workshops on research methods, writing, and ethics.</li>
@@ -61,245 +108,1524 @@
                 </ul>
             </div>
         </div>
-
-        <!-- Team Members & Quotes Section -->
-        <div class="about-team-section" id="team">
-            <h2 class="team-heading">Meet Our Team</h2>
-            <p class="team-subheading">The dedicated minds shaping the future of student research at Aperio.</p>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="member-avatar-wrapper">
-                        <div class="member-avatar placeholder-avatar">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4 class="member-name">Sarah Nguyen</h4>
-                        <span class="member-role">Founder & Research Director</span>
-                        <blockquote class="member-quote">
-                            "Research shouldn't be confined to elite labs; curiosity belongs to every student with the courage to ask questions."
-                        </blockquote>
-                    </div>
-                </div>
-
-                <div class="team-card">
-                    <div class="member-avatar-wrapper">
-                        <div class="member-avatar placeholder-avatar">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4 class="member-name">Minh Tran</h4>
-                        <span class="member-role">Head of Community & Programs</span>
-                        <blockquote class="member-quote">
-                            "When we empower young researchers, we don't just solve problems — we cultivate tomorrow's innovators."
-                        </blockquote>
-                    </div>
-                </div>
-
-                <div class="team-card">
-                    <div class="member-avatar-wrapper">
-                        <div class="member-avatar placeholder-avatar">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4 class="member-name">Elena Pham</h4>
-                        <span class="member-role">Editorial & Peer Review Lead</span>
-                        <blockquote class="member-quote">
-                            "Rigorous methodology and intellectual curiosity are the true pillars of impactful student discovery."
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- Footer Section -->
     <footer class="site-footer">
         <div class="footer-content">
             <h3>Contact Us</h3>
-            
             <div class="footer-links-row">
                 <div class="footer-item">
                     <span>Fanpage:</span>
-                    <a href="https://www.facebook.com/profile.php?id=61593208479696" class="footer-icon-link" aria-label="Facebook Fanpage">
+                    <a href="https://www.facebook.com/profile.php?id=61593208479696" target="_blank" class="footer-icon-link" aria-label="Facebook Fanpage">
                         <svg class="footer-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                     </a>
                 </div>
                 <div class="footer-item">
                     <span>Apply Research:</span>
-                    <a href="https://forms.gle/F9evDGJCJm1P4XRz5" class="footer-icon-link" aria-label="Apply Research">
+                    <a href="https://forms.gle/F9evDGJCJm1P4XRz5" target="_blank" class="footer-icon-link" aria-label="Apply Research">
                         <svg class="footer-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                     </a>
                 </div>
             </div>
-
-            <p class="footer-contact-info">
-                Phone: 090 934 8508 | Email: aperio.res@gmail.com
-            </p>
-
-            <p class="footer-copyright">
-                © 2026 AperioResearch. All rights reserved.
-            </p>
+            <p class="footer-contact-info">Phone: 090 934 8508 | Email: aperio.res@gmail.com</p>
+            <p class="footer-copyright">© 2026 AperioResearch. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
-        // Canvas 2: About Page Forest Silhouette Animation
-        const aboutSection = document.getElementById('about');
-        const aboutCanvas = document.getElementById('about-canvas');
-        const aboutCtx = aboutCanvas.getContext('2d');
-        let aboutW, aboutH;
+        // ==========================================================================
+        // 1. DATA MODEL FOR SCHOLAR CODEX CARDS (400 DPI LUXURY REPLICA)
+        // ==========================================================================
+        const GACHA_ITEMS = [
+            {
+                id: "01",
+                roman: "I",
+                initials: "SN",
+                name: "Sarah Nguyen",
+                role: "Founder & Research Director",
+                dept: "Aperio Founding Council",
+                focus: "Materials & Interdisciplinary Science",
+                quote: "Research shouldn't be confined to elite labs; curiosity belongs to every student with the courage to ask questions.",
+                backSigil: "astral_card_roman_I.png",
+                frontBg: "astral_card_front_base.png",
+                bio: "Directs Aperio's interdisciplinary research initiatives, connecting student researchers with advanced mentorship in nanomaterials and biomolecular engineering."
+            },
+            {
+                id: "02",
+                roman: "II",
+                initials: "MT",
+                name: "Minh Tran",
+                role: "Head of Community & Programs",
+                dept: "Community & Youth Programs",
+                focus: "Youth Incubation & Partnerships",
+                quote: "When we empower young researchers, we don't just solve problems — we cultivate tomorrow's innovators.",
+                backSigil: "astral_card_roman_II.png",
+                frontBg: "astral_card_front_base.png",
+                bio: "Leads national outreach programs and university partnerships, building pathways for high school and undergraduate researchers across Vietnam."
+            },
+            {
+                id: "03",
+                roman: "III",
+                initials: "EP",
+                name: "Elena Pham",
+                role: "Editorial & Peer Review Lead",
+                dept: "Scholarly Publications Lead",
+                focus: "Peer Review & Integrity",
+                quote: "Rigorous methodology and intellectual curiosity are the true pillars of impactful student discovery.",
+                backSigil: "astral_card_roman_III.png",
+                frontBg: "astral_card_front_base.png",
+                bio: "Oversees the double-blind peer review system, ensuring academic rigor, ethical standards, and publication excellence across all accepted papers."
+            },
+            {
+                id: "04",
+                roman: "IV",
+                initials: "LC",
+                name: "Lucas Chen",
+                role: "Lead Computational Systems",
+                dept: "Algorithmic Physics Div.",
+                focus: "Simulation Engines & Deep Data",
+                quote: "Connecting fundamental theorems to real computational models is where human insight truly sparks.",
+                backSigil: "astral_card_roman_IV.png",
+                frontBg: "astral_card_front_base.png",
+                bio: "Develops computational physics simulation workflows and algorithmic pipelines powering open-access student scientific investigations."
+            },
+            {
+                id: "05",
+                roman: "V",
+                initials: "EV",
+                name: "Elara Vance",
+                role: "Astrophysics & Quantum Fellow",
+                dept: "Astrophysics Research Div.",
+                focus: "Cosmology & Particle Physics",
+                quote: "To chart the unknowns of the cosmos, we must first learn to listen to the whisper of distant stars.",
+                backSigil: "astral_card_roman_V.png",
+                frontBg: "astral_card_front_base.png",
+                bio: "Specializes in observational cosmology, data reduction from orbital telescopes, and high-energy astroparticle theoretical simulations."
+            }
+        ];
 
-        function resizeAboutCanvas() {
-            aboutW = aboutCanvas.width = window.innerWidth;
-            aboutH = aboutCanvas.height = aboutSection.offsetHeight;
+        // ==========================================================================
+        // 2. DOM INITIALIZATION (CRYSTAL CARDS & NAVIGATION DOTS)
+        // ==========================================================================
+        const cardsStage = document.getElementById('gachaCardsStage');
+        const viewport = document.getElementById('gachaViewport');
+        const gachaModal = document.getElementById('gachaModal');
+        const indicatorsWrap = document.getElementById('gachaIndicators');
+        const vfxCanvas = document.getElementById('gachaVfxCanvas');
+        const vfxCtx = vfxCanvas.getContext('2d');
+        const twinkleCanvas = document.getElementById('gacha-twinkle-canvas');
+        const twinkleCtx = twinkleCanvas.getContext('2d');
+        const backdropImg = document.querySelector('.gacha-backdrop-img');
+
+        const N = GACHA_ITEMS.length;
+        const stepAngle = (2 * Math.PI) / N;
+        const cardElements = [];
+        const dotElements = [];
+
+        // Build 400 DPI Translucent Crystal Cards
+        GACHA_ITEMS.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = 'gacha-card' + (idx === 0 ? ' is-active-card' : '');
+            card.dataset.index = idx;
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', `Reveal ${item.name}'s scholar codex`);
+            card.innerHTML = `
+                <div class="gacha-card-flipper">
+                    <!-- Back Face: Translucent Crystal Astral Tarot Card with Roman Numeral (Default View) -->
+                    <div class="gacha-card-face gacha-card-back">
+                        <img src="${item.backSigil}" alt="Astral Sigil ${item.roman}" class="gacha-crystal-img">
+                        <div class="gacha-card-crystal-overlay"></div>
+                        <div class="gacha-card-glare"></div>
+                    </div>
+
+                    <!-- Front Face: Pristine Crystal Scholar Dossier (Clean Typography, No AI Slop) -->
+                    <div class="gacha-card-face gacha-card-front">
+                        <img src="${item.frontBg}" alt="Crystal Frame" class="gacha-front-card-bg">
+                        <button class="gacha-card-close-btn" onclick="closeCardDetail(event)" aria-label="Close card">✕</button>
+                        <div class="gacha-front-content">
+                            <div class="gacha-card-badge">✦ CODEX ${item.roman} · APERIO ✦</div>
+                            
+                            <!-- Elegant Avatar Frame (Initials Monogram placeholder, ready for user photos) -->
+                            <div class="gacha-avatar-frame">
+                                <span class="gacha-avatar-monogram">${item.initials}</span>
+                            </div>
+
+                            <h3 class="gacha-card-name">${item.name}</h3>
+                            <div class="gacha-card-role">${item.role}</div>
+
+                            <div class="gacha-card-quote-box">
+                                <p class="gacha-card-quote">“${item.quote}”</p>
+                            </div>
+
+                            <div class="gacha-card-tags-row">
+                                <span class="gacha-card-tag">✦ ${item.focus}</span>
+                                <span class="gacha-card-tag tag-dept">${item.dept}</span>
+                            </div>
+                        </div>
+                        <div class="gacha-card-crystal-overlay"></div>
+                        <div class="gacha-card-glare"></div>
+                    </div>
+                </div>
+            `;
+            cardsStage.appendChild(card);
+            cardElements.push(card);
+
+            card.addEventListener('click', (e) => {
+                onCardClicked(idx, e);
+            });
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onCardClicked(idx, e);
+                }
+            });
+
+            // Create indicator dot (if present)
+            if (indicatorsWrap) {
+                const dot = document.createElement('div');
+                dot.className = 'gacha-dot' + (idx === 0 ? ' is-active' : '');
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    rotateWheelTo(idx);
+                });
+                indicatorsWrap.appendChild(dot);
+                dotElements.push(dot);
+            }
+        });
+
+        // ==========================================================================
+        // 3. 3D ORBITAL GEOMETRY & PHYSICS ENGINE WITH MOUSE PARALLAX TILT
+        // ==========================================================================
+        let currentRotation = 0;
+        let targetRotation = null;
+        let momentum = 0;
+        let isDragging = false;
+        let startPointerX = 0;
+        let lastPointerX = 0;
+        let dragVelocity = 0;
+        let hasDragged = false;
+        let focusedIndex = null;
+        let activeCardIndex = 0;
+        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let prefersReducedMotion = reducedMotionQuery.matches;
+        let wheelLastFrameTime = performance.now();
+
+        // Continuous smooth transition state per card (no abrupt snapping!)
+        const cardStates = GACHA_ITEMS.map(() => ({
+            focusP: 0.0,
+            targetFocus: 0.0,
+            flipP: 0.0,
+            targetFlip: 0.0
+        }));
+
+        let currentParallaxX = 0;
+        let currentParallaxY = 0;
+        let targetParallaxX = 0;
+        let targetParallaxY = 0;
+
+        let radiusX = 460;
+        let radiusZ = 290;
+        let tiltY = 48;
+        let tiltX = 14;
+
+        function updateGeometryRadii() {
+            const w = window.innerWidth;
+            if (w < 768) {
+                radiusX = 250;
+                radiusZ = 160;
+                tiltY = 28;
+                tiltX = 8;
+            } else if (w < 1024) {
+                radiusX = 350;
+                radiusZ = 220;
+                tiltY = 38;
+                tiltX = 10;
+            } else {
+                radiusX = 460;
+                radiusZ = 290;
+                tiltY = 48;
+                tiltX = 14;
+            }
+
+            vfxCanvas.width = viewport.clientWidth;
+            vfxCanvas.height = viewport.clientHeight;
+            twinkleCanvas.width = twinkleCanvas.parentElement.clientWidth;
+            twinkleCanvas.height = twinkleCanvas.parentElement.clientHeight;
         }
-        window.addEventListener('resize', resizeAboutCanvas);
-        resizeAboutCanvas();
+        window.addEventListener('resize', updateGeometryRadii);
+        updateGeometryRadii();
 
-        const aboutStars = [];
-        for (let i = 0; i < 50; i++) {
-            aboutStars.push({
-                x: Math.random() * aboutW,
-                y: Math.random() * (aboutH * 0.6),
-                radius: Math.random() * 1.5 + 0.5,
-                alpha: Math.random() * 0.4 + 0.2,
-                vx: (Math.random() - 0.5) * 0.1,
-                vy: (Math.random() - 0.5) * 0.1
+        // Pointer Events for Drag / Swipe
+        viewport.addEventListener('mousedown', (e) => {
+            if (e.target.closest('.gacha-controls-bar') || e.target.closest('.gacha-card-close-btn')) return;
+            startDrag(e.clientX);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = viewport.getBoundingClientRect();
+            const relX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+            const relY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+            targetParallaxX = Math.max(-1, Math.min(1, relX)) * 8;
+            targetParallaxY = Math.max(-1, Math.min(1, relY)) * -6;
+            const glareX = `${Math.max(0, Math.min(100, (relX + 1) * 50))}%`;
+            const glareY = `${Math.max(0, Math.min(100, (relY + 1) * 50))}%`;
+            cardElements.forEach((card) => {
+                card.style.setProperty('--glare-x', glareX);
+                card.style.setProperty('--glare-y', glareY);
+            });
+
+            if (!isDragging) return;
+            moveDrag(e.clientX);
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            endDrag();
+        });
+
+        viewport.addEventListener('touchstart', (e) => {
+            if (e.target.closest('.gacha-controls-bar') || e.target.closest('.gacha-card-close-btn')) return;
+            if (e.touches.length > 0) startDrag(e.touches[0].clientX);
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging || e.touches.length === 0) return;
+            moveDrag(e.touches[0].clientX);
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            endDrag();
+        });
+
+        function startDrag(clientX) {
+            isDragging = true;
+            hasDragged = false;
+            startPointerX = clientX;
+            lastPointerX = clientX;
+            dragVelocity = 0;
+            targetRotation = null;
+        }
+
+        function moveDrag(clientX) {
+            const dx = clientX - lastPointerX;
+            if (Math.abs(clientX - startPointerX) > 6) {
+                hasDragged = true;
+            }
+            dragVelocity = dx * 0.0044;
+            currentRotation += dragVelocity;
+            lastPointerX = clientX;
+        }
+
+        function endDrag() {
+            isDragging = false;
+            momentum = prefersReducedMotion ? 0 : Math.max(-0.045, Math.min(0.045, dragVelocity));
+        }
+
+        function rotateWheelStep(direction) {
+            playCrystalTick();
+            closeCardDetail();
+            let nextIndex = (activeCardIndex + direction) % N;
+            if (nextIndex < 0) nextIndex += N;
+            rotateWheelTo(nextIndex);
+        }
+
+        function rotateWheelTo(idx) {
+            closeCardDetail();
+            playCrystalTick();
+
+            const cardBaseAngle = idx * stepAngle;
+            let currentCardAngle = (currentRotation + cardBaseAngle) % (2 * Math.PI);
+            if (currentCardAngle < 0) currentCardAngle += 2 * Math.PI;
+
+            let diff = -currentCardAngle;
+            if (diff < -Math.PI) diff += 2 * Math.PI;
+            if (diff > Math.PI) diff -= 2 * Math.PI;
+
+            targetRotation = currentRotation + diff;
+        }
+
+        // ======================================================================
+        // SCROLL WHEEL CONTROLLER (LIKE LATEST RESEARCH SECTION IN HOMEPAGE)
+        // ======================================================================
+        let isStageWheelLocked = false;
+        let stageWheelLockTimer = null;
+        let stageWheelAccum = 0;
+        const STAGE_WHEEL_THRESHOLD = 20;
+
+        function onGachaWheel(e) {
+            const isHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+
+            // Compact interactive deck bounds (radius ~300px horizontally, ~210px vertically around center)
+            const rect = viewport.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const inDeckZone = Math.abs(e.clientX - centerX) < 300 && Math.abs(e.clientY - centerY) < 210;
+
+            // If cursor is outside the compact deck zone and scrolling vertically, allow normal page scroll down!
+            if (!inDeckZone && !isHorizontal) {
+                return;
+            }
+
+            // Intercept only when directly interacting on top of the card deck:
+            e.preventDefault();
+
+            const delta = isHorizontal ? e.deltaX : e.deltaY;
+            if (Math.abs(delta) < 2) return;
+
+            if (isStageWheelLocked) return;
+
+            stageWheelAccum += delta;
+
+            if (Math.abs(stageWheelAccum) >= STAGE_WHEEL_THRESHOLD) {
+                isStageWheelLocked = true;
+
+                // If a card is currently flipped/revealed, smoothly glide it back
+                if (focusedIndex !== null) {
+                    closeCardDetail();
+                }
+
+                if (stageWheelAccum > 0) {
+                    rotateWheelStep(1);
+                } else {
+                    rotateWheelStep(-1);
+                }
+                stageWheelAccum = 0;
+
+                clearTimeout(stageWheelLockTimer);
+                stageWheelLockTimer = setTimeout(() => {
+                    isStageWheelLocked = false;
+                    stageWheelAccum = 0;
+                }, 220);
+            }
+        }
+
+        const gachaStageEl = document.getElementById('gachaStage');
+        if (gachaStageEl) {
+            gachaStageEl.addEventListener('wheel', onGachaWheel, { passive: false });
+        }
+
+        // ======================================================================
+        // SILKY SMOOTH CARD CLICK & REVEAL (NO KHỰNG, NO CROPPING!)
+        // ======================================================================
+        function onCardClicked(idx, e) {
+            if (hasDragged) return;
+            if (e) e.stopPropagation();
+
+            // If clicking currently revealed card, smoothly flip back & dismiss
+            if (focusedIndex === idx) {
+                closeCardDetail();
+                return;
+            }
+
+            // If another card is open, glide it back first
+            if (focusedIndex !== null) {
+                closeCardDetail();
+            }
+
+            // If this card is already in the active center spotlight, REVEAL CODEX!
+            if (idx === activeCardIndex) {
+                playCrystalTick();
+                focusedIndex = idx;
+                cardStates[idx].targetFocus = 1.0;
+                cardStates[idx].targetFlip = 1.0;
+                cardElements[idx].classList.add('is-revealed');
+
+                spawnParticleBurst(vfxCanvas.width / 2, vfxCanvas.height / 2);
+                playGachaRevealSound();
+            } else {
+                // Orbiting side card clicked -> Smoothly rotate wheel to bring it to center spotlight!
+                rotateWheelTo(idx);
+            }
+        }
+
+        function closeCardDetail(e) {
+            if (e) e.stopPropagation();
+            if (focusedIndex === null) return;
+
+            const prev = focusedIndex;
+            focusedIndex = null;
+            cardStates[prev].targetFocus = 0.0;
+            cardStates[prev].targetFlip = 0.0;
+            cardElements[prev].classList.remove('is-revealed');
+            playWhooshSound();
+        }
+
+        // Click on background closes card
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.gacha-card') && !e.target.closest('.gacha-controls-bar')) {
+                closeCardDetail();
+            }
+        });
+
+        // ======================================================================
+        // 60 FPS CONTINUOUS MATRIX INTERPOLATION LOOP
+        // ======================================================================
+        function update3DWheel(frameTime) {
+            const delta = Math.min(2.5, Math.max(0.35, (frameTime - wheelLastFrameTime) / 16.667));
+            wheelLastFrameTime = frameTime;
+
+            const parallaxEase = prefersReducedMotion ? 0.18 : 0.08;
+            currentParallaxX += (targetParallaxX - currentParallaxX) * parallaxEase;
+            currentParallaxY += (targetParallaxY - currentParallaxY) * parallaxEase;
+
+            if (backdropImg) {
+                backdropImg.style.transform = `translate(${currentParallaxX * -0.5}px, ${currentParallaxY * -0.5}px) scale(1.02)`;
+            }
+
+            if (targetRotation !== null) {
+                const diff = targetRotation - currentRotation;
+                if (Math.abs(diff) > 0.002) {
+                    currentRotation += diff * Math.min(0.25, 0.12 * delta);
+                } else {
+                    currentRotation = targetRotation;
+                    targetRotation = null;
+                }
+            } else if (!isDragging && focusedIndex === null) {
+                if (Math.abs(momentum) > 0.0001) {
+                    currentRotation += momentum * delta;
+                    momentum *= Math.pow(0.94, delta);
+                } else {
+                    currentRotation += prefersReducedMotion ? 0 : 0.00055 * delta;
+                }
+            }
+
+            let closestDist = Infinity;
+            let closestIdx = 0;
+
+            const t = gyroTime;
+            const mouseShiftX = currentParallaxX * 0.3;
+            const mouseShiftY = currentParallaxY * 0.3;
+            const mouseRotX = currentParallaxY * 0.12;
+            const mouseRotY = currentParallaxX * 0.12;
+
+            for (let i = 0; i < N; i++) {
+                const card = cardElements[i];
+                const state = cardStates[i];
+
+                // Continuous spring-like lerp for focus progress and 3D flip (NO khựng!)
+                const lerpSpd = prefersReducedMotion ? 0.25 : (0.10 * delta);
+                state.focusP += (state.targetFocus - state.focusP) * lerpSpd;
+                state.flipP += (state.targetFlip - state.flipP) * (0.09 * delta);
+                const fp = state.focusP;
+                const flipDeg = state.flipP * 180;
+
+                const angle = currentRotation + i * stepAngle;
+                let normAngle = (angle % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+                if (normAngle > Math.PI) normAngle = 2 * Math.PI - normAngle;
+                if (normAngle < closestDist) {
+                    closestDist = normAngle;
+                    closestIdx = i;
+                }
+
+                // Zero-gravity multi-harmonic floating drift per card
+                const floatBobY = Math.sin(t * 1.1 + i * 1.618) * 8.5 + Math.cos(t * 0.55 + i * 2.7) * 4.0;
+                const floatDriftX = Math.sin(t * 0.72 + i * 1.414) * 6.0;
+                const floatDepthZ = Math.cos(t * 0.85 + i * 1.9) * 8.0;
+
+                const floatRollZ = Math.sin(t * 0.65 + i * 1.3) * 3.4 + Math.cos(t * 0.35 + i * 2.1) * 1.5;
+                const floatPitchX = Math.cos(t * 0.8 + i * 1.7) * 2.5;
+                const floatYawY = Math.sin(t * 0.55 + i * 2.4) * 2.0;
+
+                // Base orbit position
+                const x = Math.sin(angle) * radiusX;
+                const z = Math.cos(angle) * radiusZ;
+                const y = -Math.cos(angle) * tiltY - Math.sin(angle) * tiltX;
+                const zNorm = (z + radiusZ) / (2 * radiusZ);
+
+                const baseTiltZ = -14 + Math.sin(angle) * 20 - (1 - zNorm) * Math.cos(angle) * 18;
+                const baseRotX = 12 + (1 - zNorm) * 8;
+                const baseRotY = -Math.sin(angle) * 22;
+
+                const orbitX = x + floatDriftX + mouseShiftX;
+                const orbitY = y + floatBobY + mouseShiftY;
+                const orbitZ = z + floatDepthZ;
+                const orbitRotX = baseRotX + floatPitchX + mouseRotX;
+                const orbitRotY = baseRotY + floatYawY + mouseRotY;
+                const orbitRotZ = baseTiltZ + floatRollZ;
+                const orbitScale = 0.65 + 0.43 * zNorm;
+
+                // Focused position (perfectly centered, golden ratio scale, NEVER cropped)
+                const focusX = mouseShiftX * 0.7;
+                const focusY = 0 + mouseShiftY * 0.7;
+                const focusZ = radiusZ + 20;
+                const focusRotX = 0 + mouseRotX * 0.35;
+                const focusRotY = mouseRotY * 0.35;
+                const focusRotZ = 0;
+                const focusScale = 1.05;
+
+                // Silky smooth interpolation between orbit and focus:
+                const curX = orbitX * (1 - fp) + focusX * fp;
+                const curY = orbitY * (1 - fp) + focusY * fp;
+                const curZ = orbitZ * (1 - fp) + focusZ * fp;
+                const curRotX = orbitRotX * (1 - fp) + focusRotX * fp;
+                const curRotY = orbitRotY * (1 - fp) + focusRotY * fp;
+                const curRotZ = orbitRotZ * (1 - fp) + focusRotZ * fp;
+                const curScale = orbitScale * (1 - fp) + focusScale * fp;
+
+                // Flipper rotates 180deg during glide
+                const flipper = card.querySelector('.gacha-card-flipper');
+                if (flipper) {
+                    flipper.style.transform = `rotateY(${flipDeg.toFixed(2)}deg)`;
+                }
+
+                card.style.transform = `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, ${curZ.toFixed(2)}px) rotateX(${curRotX.toFixed(2)}deg) rotateY(${curRotY.toFixed(2)}deg) rotateZ(${curRotZ.toFixed(2)}deg) scale(${curScale.toFixed(3)})`;
+
+                // Dim non-focused cards slightly while one card is focused
+                const nonFocusDim = focusedIndex !== null ? (i === focusedIndex ? 1.0 : 0.28) : 1.0;
+                const orbitOpacity = 0.45 + 0.55 * zNorm;
+                card.style.opacity = ((orbitOpacity * (1 - fp) + 1.0 * fp) * nonFocusDim).toFixed(3);
+                card.style.zIndex = Math.round(zNorm * 100 + fp * 600);
+
+                const blur = (1 - zNorm) * 2.0 * (1 - fp);
+                const shadowY = (16 * zNorm + fp * 15).toFixed(0);
+                const shadowBlur = (26 * zNorm + 4 + fp * 25).toFixed(0);
+                const rimBlur = (10 * zNorm + 2 + fp * 10).toFixed(0);
+                const rimAlpha = (0.35 * zNorm + fp * 0.25).toFixed(2);
+                card.style.filter = `blur(${blur.toFixed(1)}px) brightness(${(0.82 + 0.22 * zNorm + fp * 0.08).toFixed(2)}) drop-shadow(0 ${shadowY}px ${shadowBlur}px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 ${rimBlur}px rgba(150, 130, 255, ${rimAlpha}))`;
+            }
+
+            if (closestIdx !== activeCardIndex) {
+                activeCardIndex = closestIdx;
+                dotElements.forEach((d, idx) => {
+                    d.classList.toggle('is-active', idx === activeCardIndex);
+                });
+                cardElements.forEach((card, idx) => {
+                    card.classList.toggle('is-active-card', idx === activeCardIndex);
+                });
+            }
+
+            updateVfxParticles(delta);
+            drawLivingGyroscopicStage(delta);
+
+            requestAnimationFrame(update3DWheel);
+        }
+        requestAnimationFrame(update3DWheel);
+
+        // ==========================================================================
+        // 5. RADIAL PARTICLE BURST VFX (CELESTIAL STARBURST)
+        // ==========================================================================
+        let vfxParticles = [];
+        let shockwaveRadius = 0;
+        let shockwaveAlpha = 0;
+        let shockwaveOrigin = { x: 0, y: 0 };
+
+        function spawnParticleBurst(x, y) {
+            vfxParticles = [];
+            shockwaveRadius = 10;
+            shockwaveAlpha = 1.0;
+            shockwaveOrigin = { x, y };
+
+            const colors = ['#00f0ff', '#38bdf8', '#c084fc', '#a855f7', '#ffffff', '#7e22ce'];
+            for (let i = 0; i < 75; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 12 + 3;
+                vfxParticles.push({
+                    x: x,
+                    y: y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    size: Math.random() * 4.2 + 1.8,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    alpha: 1.0,
+                    decay: Math.random() * 0.02 + 0.016
+                });
+            }
+        }
+
+        function updateVfxParticles(delta = 1) {
+            vfxCtx.clearRect(0, 0, vfxCanvas.width, vfxCanvas.height);
+
+            // Draw expanding shockwave ring
+            if (shockwaveAlpha > 0.01) {
+                vfxCtx.save();
+                vfxCtx.strokeStyle = `rgba(0, 240, 255, ${shockwaveAlpha})`;
+                vfxCtx.lineWidth = 3.5;
+                vfxCtx.shadowColor = '#00f0ff';
+                vfxCtx.shadowBlur = 25;
+                vfxCtx.beginPath();
+                vfxCtx.arc(shockwaveOrigin.x, shockwaveOrigin.y, shockwaveRadius, 0, Math.PI * 2);
+                vfxCtx.stroke();
+                vfxCtx.restore();
+
+                shockwaveRadius += 13 * delta;
+                shockwaveAlpha *= Math.pow(0.92, delta);
+            }
+
+            if (vfxParticles.length === 0) return;
+
+            for (let i = vfxParticles.length - 1; i >= 0; i--) {
+                const p = vfxParticles[i];
+                p.x += p.vx * delta;
+                p.y += p.vy * delta;
+                p.vx *= Math.pow(0.94, delta);
+                p.vy *= Math.pow(0.94, delta);
+                p.alpha -= p.decay * delta;
+
+                if (p.alpha <= 0) {
+                    vfxParticles.splice(i, 1);
+                    continue;
+                }
+
+                vfxCtx.save();
+                vfxCtx.globalAlpha = p.alpha;
+                vfxCtx.fillStyle = p.color;
+                vfxCtx.shadowColor = p.color;
+                vfxCtx.shadowBlur = 14;
+                vfxCtx.beginPath();
+                vfxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                vfxCtx.fill();
+                vfxCtx.restore();
+            }
+        }
+
+        // ==========================================================================
+        // 6. LIVING GYROSCOPIC STAGE: FLOWING PLASMA, NORTH STAR CORONA, CONSTELLATION & CORE AURA
+        // ==========================================================================
+        const stardust = [];
+        for (let i = 0; i < 90; i++) {
+            stardust.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * 900,
+                radius: Math.random() * 1.8 + 0.5,
+                alpha: Math.random() * 0.7 + 0.3,
+                baseAlpha: Math.random() * 0.7 + 0.3,
+                twinkleSpeed: Math.random() * 0.03 + 0.015,
+                twinkleOffset: Math.random() * Math.PI * 2,
+                vy: -(Math.random() * 0.4 + 0.1),
+                isCrossStar: Math.random() > 0.75,
+                color: Math.random() > 0.4 ? '#00f0ff' : (Math.random() > 0.5 ? '#ffffff' : '#c084fc')
             });
         }
 
-        const windStripes = [];
-        for (let i = 0; i < 9; i++) {
-            windStripes.push(createWindStripe());
+        // 6 Plasma comets along the dual orbital ribbons
+        const orbitalComets = [
+            { t: 0.05, speed: 0.0035, ribbon: 0, size: 4.8, color: '#00f0ff' },
+            { t: 0.38, speed: 0.0032, ribbon: 0, size: 5.2, color: '#c084fc' },
+            { t: 0.72, speed: 0.0038, ribbon: 0, size: 4.5, color: '#38bdf8' },
+            { t: 0.18, speed: -0.0036, ribbon: 1, size: 4.6, color: '#00f0ff' },
+            { t: 0.52, speed: -0.0034, ribbon: 1, size: 5.0, color: '#ffffff' },
+            { t: 0.85, speed: -0.0040, ribbon: 1, size: 4.4, color: '#c084fc' }
+        ];
+
+        // Constellation nodes in upper right
+        const zigzagNodes = [
+            { x: 0.65, y: 0.11 },
+            { x: 0.68, y: 0.16 },
+            { x: 0.72, y: 0.14 },
+            { x: 0.74, y: 0.22 },
+            { x: 0.78, y: 0.25 },
+            { x: 0.81, y: 0.32 }
+        ];
+        let photonProgress = 0;
+        let gyroTime = 0;
+
+        // Expanding ambient shockwaves from center core
+        const coreShockwaves = [];
+        let nextCorePulseTime = 0;
+
+        function drawLivingGyroscopicStage(delta = 1) {
+            const w = twinkleCanvas.width;
+            const h = twinkleCanvas.height;
+            twinkleCtx.clearRect(0, 0, w, h);
+            gyroTime += (prefersReducedMotion ? 0.002 : 0.016) * delta;
+
+            const cx = w * 0.5 + currentParallaxX * 0.5;
+            const cy = h * 0.48 + currentParallaxY * 0.5;
+            const plateW = Math.min(w, 1700);
+            const plateH = h;
+
+            // ======================================================================
+            // A. ANIMATED "DỆT PHÁT SÁNG" (LIVING WOVEN ENERGY RIBBONS)
+            // ======================================================================
+            // Render broad, vibrant, liquid starlight bands with active flowing caustic waves!
+            twinkleCtx.save();
+            twinkleCtx.globalCompositeOperation = 'screen';
+
+            const ribbonsConfig = [
+                { tilt: -0.31, rx: radiusX * 1.08, ry: radiusZ * 0.64, speed: 2.5, baseWidth: 36, color: '168, 140, 255', coreColor: '210, 200, 255' },
+                { tilt: 0.36, rx: radiusX * 0.92, ry: radiusZ * 0.52, speed: -2.2, baseWidth: 28, color: '130, 110, 255', coreColor: '190, 180, 255' }
+            ];
+
+            ribbonsConfig.forEach((rib, rIdx) => {
+                // 1. Broad Ambient Luminous Aurora Band (Full Ribbon Body Glow)
+                const numSteps = 80;
+                twinkleCtx.beginPath();
+                for (let step = 0; step <= numSteps; step++) {
+                    const theta = (step / numSteps) * Math.PI * 2;
+                    const wave = Math.sin(3 * theta - gyroTime * rib.speed) * 6.0;
+                    const px = Math.cos(theta) * (rib.rx + wave);
+                    const py = Math.sin(theta) * (rib.ry + wave * 0.55);
+                    const rotX = px * Math.cos(rib.tilt) - py * Math.sin(rib.tilt);
+                    const rotY = px * Math.sin(rib.tilt) + py * Math.cos(rib.tilt);
+                    const fx = cx + rotX;
+                    const fy = cy + rotY;
+                    if (step === 0) twinkleCtx.moveTo(fx, fy);
+                    else twinkleCtx.lineTo(fx, fy);
+                }
+                const bandPulse = 0.22 + 0.08 * Math.sin(gyroTime * 1.8 + rIdx);
+                twinkleCtx.strokeStyle = `rgba(${rib.color}, ${bandPulse.toFixed(2)})`;
+                twinkleCtx.lineWidth = rib.baseWidth;
+                twinkleCtx.shadowBlur = 18;
+                twinkleCtx.shadowColor = `rgba(${rib.color}, 0.7)`;
+                twinkleCtx.stroke();
+
+                // 2. Active Braided Caustic Energy Veins ("Dệt Ánh Sáng" - 6 Undulating Plasma Threads)
+                for (let strand = 0; strand < 6; strand++) {
+                    twinkleCtx.beginPath();
+                    for (let step = 0; step <= numSteps; step++) {
+                        const theta = (step / numSteps) * Math.PI * 2;
+                        // Intertwined multi-frequency sinusoidal braiding:
+                        const braidOffset = ((strand - 2.5) / 2.5) * (rib.baseWidth * 0.42);
+                        const wave = Math.sin(4 * theta - gyroTime * (rib.speed * 1.2) + strand * 1.05) * 8.5
+                                   + Math.cos(2 * theta + gyroTime * 0.8) * 3.5;
+                        const currRx = rib.rx + braidOffset + wave;
+                        const currRy = rib.ry + (braidOffset + wave) * 0.55;
+
+                        const px = Math.cos(theta) * currRx;
+                        const py = Math.sin(theta) * currRy;
+
+                        const rotX = px * Math.cos(rib.tilt) - py * Math.sin(rib.tilt);
+                        const rotY = px * Math.sin(rib.tilt) + py * Math.cos(rib.tilt);
+
+                        const fx = cx + rotX;
+                        const fy = cy + rotY;
+
+                        if (step === 0) twinkleCtx.moveTo(fx, fy);
+                        else twinkleCtx.lineTo(fx, fy);
+                    }
+                    const isCore = strand === 2 || strand === 3;
+                    const strandAlpha = isCore ? (0.45 + 0.2 * Math.sin(gyroTime * 2.5 + strand)) : (0.28 + 0.12 * Math.sin(gyroTime * 1.8 + strand));
+                    twinkleCtx.strokeStyle = isCore ? `rgba(${rib.coreColor}, ${strandAlpha.toFixed(2)})` : `rgba(${rib.color}, ${strandAlpha.toFixed(2)})`;
+                    twinkleCtx.lineWidth = isCore ? 2.8 : 1.6;
+                    twinkleCtx.shadowBlur = isCore ? 12 : 6;
+                    twinkleCtx.shadowColor = isCore ? '#ffffff' : `rgba(${rib.color}, 0.8)`;
+                    twinkleCtx.stroke();
+                }
+
+                // 3. Traveling Energy Surges (Luminous Photon Packets Racing Along Ribbon)
+                for (let p = 0; p < 3; p++) {
+                    const surgePhase = (gyroTime * (rib.speed * 0.08) + (p / 3.0)) % 1.0;
+                    const surgeTheta = surgePhase * Math.PI * 2;
+                    const spx = Math.cos(surgeTheta) * rib.rx;
+                    const spy = Math.sin(surgeTheta) * rib.ry;
+                    const sRotX = cx + spx * Math.cos(rib.tilt) - spy * Math.sin(rib.tilt);
+                    const sRotY = cy + spx * Math.sin(rib.tilt) + spy * Math.cos(rib.tilt);
+
+                    twinkleCtx.save();
+                    twinkleCtx.fillStyle = '#ffffff';
+                    twinkleCtx.shadowBlur = 20;
+                    twinkleCtx.shadowColor = '#c084fc';
+                    twinkleCtx.beginPath();
+                    twinkleCtx.arc(sRotX, sRotY, 3.8, 0, Math.PI * 2);
+                    twinkleCtx.fill();
+                    twinkleCtx.restore();
+                }
+            });
+            twinkleCtx.restore();
+
+            // ======================================================================
+            // ======================================================================
+            // B. ANIMATED PLANETS: 3D AXIAL SPHERE ROTATION & INDEPENDENT ROTATING RINGS
+            // ======================================================================
+            function drawPlanetRings(ctx, px, py, rx, ry, tilt, startAngle, endAngle, spinOffset, pIdx) {
+                ctx.save();
+                ctx.translate(px, py);
+                ctx.rotate(tilt);
+
+                // Outer ethereal luminous ring
+                ctx.beginPath();
+                ctx.ellipse(0, 0, rx, ry, 0, startAngle, endAngle);
+                ctx.strokeStyle = 'rgba(168, 140, 255, 0.72)';
+                ctx.lineWidth = 3.2;
+                ctx.shadowColor = '#c084fc';
+                ctx.shadowBlur = 10;
+                ctx.stroke();
+
+                // Inner bright electric neon ring
+                ctx.beginPath();
+                ctx.ellipse(0, 0, rx * 0.82, ry * 0.82, 0, startAngle, endAngle);
+                ctx.strokeStyle = 'rgba(220, 245, 255, 0.92)';
+                ctx.lineWidth = 2.0;
+                ctx.shadowColor = '#00f0ff';
+                ctx.shadowBlur = 14;
+                ctx.stroke();
+
+                // Independent orbiting starlight sparkles along the rings
+                for (let g = 0; g < 2; g++) {
+                    const glintAngle = ((spinOffset + g * Math.PI) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+                    if (glintAngle >= startAngle && glintAngle <= endAngle) {
+                        const gx = Math.cos(glintAngle) * rx;
+                        const gy = Math.sin(glintAngle) * ry;
+                        ctx.save();
+                        ctx.translate(gx, gy);
+                        ctx.fillStyle = '#ffffff';
+                        ctx.shadowColor = '#00f0ff';
+                        ctx.shadowBlur = 12;
+                        ctx.beginPath();
+                        ctx.arc(0, 0, 2.2, 0, Math.PI * 2);
+                        ctx.fill();
+
+                        // 4-point cross ray
+                        ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(-6, 0); ctx.lineTo(6, 0);
+                        ctx.moveTo(0, -6); ctx.lineTo(0, 6);
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+                }
+                ctx.restore();
+            }
+
+            function drawLivingPlanetSphere(ctx, px, py, r, planetSpin, pIdx) {
+                ctx.save();
+
+                // A. Atmospheric Breathing Halo
+                const atmPulse = Math.sin(gyroTime * 1.8 + pIdx * 1.4) * 0.2 + 0.8;
+                const atmoGrad = ctx.createRadialGradient(px, py, r * 0.75, px, py, r * 1.6 * atmPulse);
+                atmoGrad.addColorStop(0, 'rgba(168, 140, 255, 0.42)');
+                atmoGrad.addColorStop(0.5, 'rgba(0, 240, 255, 0.18)');
+                atmoGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                ctx.fillStyle = atmoGrad;
+                ctx.beginPath();
+                ctx.arc(px, py, r * 1.6 * atmPulse, 0, Math.PI * 2);
+                ctx.fill();
+
+                // B. Spherical Body with 3D Clip
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(px, py, r, 0, Math.PI * 2);
+                ctx.clip();
+
+                // Rich purple-violet gas sphere base
+                const sphereGrad = ctx.createRadialGradient(px - r * 0.35, py - r * 0.35, r * 0.05, px, py, r);
+                sphereGrad.addColorStop(0, '#c084fc');
+                sphereGrad.addColorStop(0.35, '#7c3aed');
+                sphereGrad.addColorStop(0.7, '#1e1b4b');
+                sphereGrad.addColorStop(1, '#09051d');
+                ctx.fillStyle = sphereGrad;
+                ctx.fillRect(px - r, py - r, r * 2, r * 2);
+
+                // C. 3D Surface Cloud Bands & Lightning Filaments Rotating Around Axis
+                ctx.globalCompositeOperation = 'screen';
+                for (let band = -3; band <= 3; band++) {
+                    const bandY = py + (band / 3.8) * (r * 0.85);
+                    const bandR = Math.sqrt(Math.max(0, r * r - (bandY - py) * (bandY - py)));
+                    if (bandR < 2) continue;
+
+                    for (let wave = 0; wave < 3; wave++) {
+                        const phase = planetSpin + wave * 2.1 + band * 0.8;
+                        const xNorm = ((phase % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2) - Math.PI) / Math.PI;
+                        const wx = px + xNorm * bandR;
+
+                        ctx.beginPath();
+                        ctx.ellipse(wx, bandY, bandR * 0.65, r * 0.14, 0, 0, Math.PI * 2);
+                        ctx.fillStyle = band % 2 === 0 ? 'rgba(0, 240, 255, 0.32)' : 'rgba(232, 121, 249, 0.28)';
+                        ctx.fill();
+                    }
+                }
+
+                // D. Spherical 3D Terminator Shadow (darkens lower-right hemisphere)
+                ctx.globalCompositeOperation = 'multiply';
+                const shadowGrad = ctx.createRadialGradient(px + r * 0.35, py + r * 0.35, r * 0.2, px + r * 0.2, py + r * 0.2, r * 1.15);
+                shadowGrad.addColorStop(0, 'rgba(4, 3, 18, 0)');
+                shadowGrad.addColorStop(0.6, 'rgba(4, 3, 18, 0.7)');
+                shadowGrad.addColorStop(1, 'rgba(4, 3, 18, 0.98)');
+                ctx.fillStyle = shadowGrad;
+                ctx.fillRect(px - r, py - r, r * 2, r * 2);
+
+                ctx.restore(); // end sphere clip
+
+                // E. Starlight Limb Highlight Rim
+                ctx.save();
+                ctx.strokeStyle = 'rgba(215, 245, 255, 0.85)';
+                ctx.lineWidth = 1.8;
+                ctx.shadowColor = '#00f0ff';
+                ctx.shadowBlur = 10;
+                ctx.beginPath();
+                ctx.arc(px, py, r - 0.9, Math.PI * 0.72, Math.PI * 1.48);
+                ctx.stroke();
+                ctx.restore();
+
+                ctx.restore();
+            }
+
+            const planets = [
+                { rx: -0.302, ry: -0.244, r: 24, ringR: 48, ringTilt: -0.21, spinSpd: 0.9, ringSpd: -0.5, name: 'mid-left' },
+                { rx: 0.228, ry: -0.348, r: 26, ringR: 54, ringTilt: -0.24, spinSpd: 1.1, ringSpd: -0.65, name: 'top-right' },
+                { rx: 0.228, ry: 0.589, r: 42, ringR: 82, ringTilt: -0.31, spinSpd: 1.4, ringSpd: -0.75, name: 'bottom-main' }
+            ];
+
+            planets.forEach((p, pIdx) => {
+                const pBobX = Math.sin(gyroTime * 1.1 + pIdx * 2.1) * 3.5;
+                const pBobY = Math.cos(gyroTime * 0.85 + pIdx * 1.7) * 4.0;
+                const px = cx + p.rx * (plateW * 0.5) + pBobX;
+                const py = cy + p.ry * (plateH * 0.5) + pBobY;
+
+                const planetSpin = gyroTime * p.spinSpd;
+                const ringSpin = gyroTime * p.ringSpd;
+                const ringAspect = 0.27;
+
+                // 1. BACK HALF OF INDEPENDENT ROTATING RINGS (passes behind planet sphere)
+                drawPlanetRings(twinkleCtx, px, py, p.ringR, p.ringR * ringAspect, p.ringTilt, Math.PI, Math.PI * 2, ringSpin, pIdx);
+
+                // 2. 3D ROTATING PLANET SPHERE (surface clouds & lightning rotate on polar axis)
+                drawLivingPlanetSphere(twinkleCtx, px, py, p.r, planetSpin, pIdx);
+
+                // 3. FRONT HALF OF INDEPENDENT ROTATING RINGS (passes across front of planet)
+                drawPlanetRings(twinkleCtx, px, py, p.ringR, p.ringR * ringAspect, p.ringTilt, 0, Math.PI, ringSpin, pIdx);
+            });
+
+            // ======================================================================
+            // C. FLOWING PLASMA COMETS ALONG WOVEN ORBITAL RIBBONS
+            // ======================================================================
+            orbitalComets.forEach(c => {
+                c.t += c.speed * delta;
+                if (c.t > 1) c.t -= 1;
+                if (c.t < 0) c.t += 1;
+
+                const angle = c.t * Math.PI * 2;
+                const tiltAngle = c.ribbon === 0 ? -0.31 : 0.36;
+                const rx = radiusX * (c.ribbon === 0 ? 1.08 : 0.92);
+                const ry = radiusZ * (c.ribbon === 0 ? 0.64 : 0.52);
+
+                const px = Math.cos(angle) * rx;
+                const py = Math.sin(angle) * ry;
+
+                const rotX = px * Math.cos(tiltAngle) - py * Math.sin(tiltAngle);
+                const rotY = px * Math.sin(tiltAngle) + py * Math.cos(tiltAngle);
+
+                const finalX = cx + rotX;
+                const finalY = cy + rotY;
+
+                // Plasma comet head & starlight halo
+                twinkleCtx.save();
+                twinkleCtx.shadowBlur = 12;
+                twinkleCtx.shadowColor = c.color;
+                twinkleCtx.fillStyle = c.color;
+                twinkleCtx.beginPath();
+                twinkleCtx.arc(finalX, finalY, c.size * 0.7, 0, Math.PI * 2);
+                twinkleCtx.fill();
+
+                twinkleCtx.fillStyle = '#ffffff';
+                twinkleCtx.beginPath();
+                twinkleCtx.arc(finalX, finalY, c.size * 0.28, 0, Math.PI * 2);
+                twinkleCtx.fill();
+
+                // Trailing stardust tail along the woven curve
+                for (let tail = 1; tail <= 4; tail++) {
+                    const tailT = c.t - c.speed * tail * 2.5;
+                    const tailAngle = tailT * Math.PI * 2;
+                    const tpx = Math.cos(tailAngle) * rx;
+                    const tpy = Math.sin(tailAngle) * ry;
+                    const tRotX = cx + tpx * Math.cos(tiltAngle) - tpy * Math.sin(tiltAngle);
+                    const tRotY = cy + tpx * Math.sin(tiltAngle) + tpy * Math.cos(tiltAngle);
+
+                    twinkleCtx.fillStyle = c.color;
+                    twinkleCtx.globalAlpha = (0.55 / tail).toFixed(2);
+                    twinkleCtx.beginPath();
+                    twinkleCtx.arc(tRotX, tRotY, c.size * 0.35 * (1 - tail * 0.18), 0, Math.PI * 2);
+                    twinkleCtx.fill();
+                }
+                twinkleCtx.restore();
+            });
+
+            // ======================================================================
+            // D. INTERACTIVE ZIGZAG CONSTELLATION & TRAVELING PHOTON PACKET
+            // ======================================================================
+            photonProgress += 0.014 * delta;
+            if (photonProgress >= zigzagNodes.length - 1) photonProgress = 0;
+            const currentSeg = Math.floor(photonProgress);
+            const segFrac = photonProgress - currentSeg;
+
+            twinkleCtx.save();
+            twinkleCtx.lineWidth = 1.2;
+            twinkleCtx.strokeStyle = 'rgba(168, 140, 255, 0.35)';
+            twinkleCtx.shadowColor = '#c084fc';
+            twinkleCtx.shadowBlur = 6;
+            twinkleCtx.beginPath();
+            zigzagNodes.forEach((node, idx) => {
+                const nx = node.x * w;
+                const ny = node.y * h;
+                if (idx === 0) twinkleCtx.moveTo(nx, ny);
+                else twinkleCtx.lineTo(nx, ny);
+            });
+            twinkleCtx.stroke();
+
+            // Star nodes
+            zigzagNodes.forEach((node, idx) => {
+                const nx = node.x * w;
+                const ny = node.y * h;
+                const pulse = Math.sin(gyroTime * 2.2 + idx) * 0.25 + 0.75;
+                twinkleCtx.fillStyle = '#ffffff';
+                twinkleCtx.shadowBlur = 10 * pulse;
+                twinkleCtx.beginPath();
+                twinkleCtx.arc(nx, ny, 2.4 * pulse, 0, Math.PI * 2);
+                twinkleCtx.fill();
+            });
+
+            // Traveling photon packet zipping between nodes
+            if (currentSeg < zigzagNodes.length - 1) {
+                const p1 = zigzagNodes[currentSeg];
+                const p2 = zigzagNodes[currentSeg + 1];
+                const phX = (p1.x + (p2.x - p1.x) * segFrac) * w;
+                const phY = (p1.y + (p2.y - p1.y) * segFrac) * h;
+
+                twinkleCtx.fillStyle = '#ffffff';
+                twinkleCtx.shadowBlur = 16;
+                twinkleCtx.shadowColor = '#c084fc';
+                twinkleCtx.beginPath();
+                twinkleCtx.arc(phX, phY, 3.8, 0, Math.PI * 2);
+                twinkleCtx.fill();
+            }
+            twinkleCtx.restore();
+
+            // ======================================================================
+            // E. PULSATING APEX CELESTIAL NORTH STAR
+            // ======================================================================
+            const northStarX = cx;
+            const northStarY = h * 0.08 + Math.sin(gyroTime * 1.4) * 3;
+
+            twinkleCtx.save();
+            twinkleCtx.translate(northStarX, northStarY);
+            twinkleCtx.rotate(gyroTime * 0.18);
+            const rayPulse = 1.0 + Math.sin(gyroTime * 2.8) * 0.15;
+
+            // 8-pointed star corona
+            for (let i = 0; i < 8; i++) {
+                const rayAngle = (i * Math.PI) / 4;
+                const isCardinal = i % 2 === 0;
+                const rayLen = (isCardinal ? 38 : 22) * rayPulse;
+                twinkleCtx.strokeStyle = isCardinal ? 'rgba(255, 255, 255, 0.85)' : 'rgba(168, 140, 255, 0.5)';
+                twinkleCtx.lineWidth = isCardinal ? 1.8 : 1.0;
+                twinkleCtx.shadowBlur = 12;
+                twinkleCtx.shadowColor = '#a78bfa';
+                twinkleCtx.beginPath();
+                twinkleCtx.moveTo(0, 0);
+                twinkleCtx.lineTo(Math.cos(rayAngle) * rayLen, Math.sin(rayAngle) * rayLen);
+                twinkleCtx.stroke();
+            }
+            twinkleCtx.fillStyle = '#ffffff';
+            twinkleCtx.beginPath();
+            twinkleCtx.arc(0, 0, 3.5 * rayPulse, 0, Math.PI * 2);
+            twinkleCtx.fill();
+            twinkleCtx.restore();
+
+            // ======================================================================
+            // F. DRIFTING STARDUST & TWINKLING 4-POINT STARS
+            // ======================================================================
+            stardust.forEach(star => {
+                star.y += star.vy * delta;
+                if (star.y < 0) {
+                    star.y = h;
+                    star.x = Math.random() * w;
+                }
+
+                const tw = Math.sin(gyroTime * star.twinkleSpeed * 60 + star.twinkleOffset) * 0.35 + 0.65;
+                twinkleCtx.save();
+                twinkleCtx.globalAlpha = star.baseAlpha * tw * 0.65;
+                twinkleCtx.fillStyle = star.color;
+                twinkleCtx.shadowColor = star.color;
+                twinkleCtx.shadowBlur = 6;
+
+                if (star.isCrossStar && tw > 0.75) {
+                    const s = star.radius * 2.5;
+                    twinkleCtx.beginPath();
+                    twinkleCtx.moveTo(star.x, star.y - s);
+                    twinkleCtx.lineTo(star.x + s * 0.25, star.y - s * 0.25);
+                    twinkleCtx.lineTo(star.x + s, star.y);
+                    twinkleCtx.lineTo(star.x + s * 0.25, star.y + s * 0.25);
+                    twinkleCtx.lineTo(star.x, star.y + s);
+                    twinkleCtx.lineTo(star.x - s * 0.25, star.y + s * 0.25);
+                    twinkleCtx.lineTo(star.x - s, star.y);
+                    twinkleCtx.lineTo(star.x - s * 0.25, star.y - s * 0.25);
+                    twinkleCtx.closePath();
+                    twinkleCtx.fill();
+                } else {
+                    twinkleCtx.beginPath();
+                    twinkleCtx.arc(star.x, star.y, star.radius * 0.8, 0, Math.PI * 2);
+                    twinkleCtx.fill();
+                }
+                twinkleCtx.restore();
+            });
         }
 
-        function createWindStripe() {
-            return {
-                x: aboutW + Math.random() * 300,
-                y: Math.random() * (aboutH * 0.75),
+        // ==========================================================================
+        // 7. FULL-PAGE INTERACTIVE COSMIC CANVAS (SYNCED WITH HOMEPAGE)
+        // ==========================================================================
+        const bgCanvas = document.getElementById('bg-canvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let canvasW, canvasH;
+
+        function resizeBgCanvas() {
+            canvasW = bgCanvas.width = window.innerWidth;
+            canvasH = bgCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeBgCanvas);
+        resizeBgCanvas();
+
+        const cosmicStars = [];
+        const starCount = 135;
+        for (let i = 0; i < starCount; i++) {
+            cosmicStars.push({
+                x: Math.random() * canvasW,
+                y: Math.random() * canvasH,
+                baseRadius: Math.random() * 1.8 + 0.6,
+                radius: Math.random() * 1.8 + 0.6,
+                alpha: Math.random() * 0.7 + 0.3,
+                baseAlpha: Math.random() * 0.7 + 0.3,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                twinkleSpeed: Math.random() * 0.02 + 0.01,
+                twinkleAngle: Math.random() * Math.PI * 2
+            });
+        }
+
+        const cosmicComets = [];
+        for (let i = 0; i < 6; i++) {
+            cosmicComets.push({
+                x: Math.random() * canvasW * 1.5 - canvasW * 0.25,
+                y: Math.random() * canvasH * 0.5 - 100,
                 length: Math.random() * 300 + 180,
-                speed: Math.random() * 2.0 + 1.2,
-                angle: Math.PI + (Math.random() - 0.5) * 0.3,
-                amplitude: Math.random() * 25 + 10,
-                frequency: Math.random() * 0.008 + 0.004,
-                phase: Math.random() * Math.PI * 2,
-                width: Math.random() * 1.4 + 0.5,
-                opacity: Math.random() * 0.35 + 0.1
-            };
+                speed: Math.random() * 2.4 + 1.8,
+                angle: Math.PI / 4 + (Math.random() - 0.5) * 0.22,
+                width: Math.random() * 1.8 + 0.8,
+                opacity: Math.random() * 0.5 + 0.3,
+                color: Math.random() > 0.4 ? '0, 240, 255' : '192, 132, 252'
+            });
         }
 
-        function drawForestSilhouettes() {
-            aboutCtx.fillStyle = '#020d09';
-            aboutCtx.beginPath();
-            aboutCtx.moveTo(0, aboutH);
-            let baseY1 = aboutH * 0.72;
-            aboutCtx.lineTo(0, baseY1);
-            for (let x = 0; x <= aboutW; x += 30) {
-                let y = baseY1 - Math.sin(x * 0.01) * 30 - Math.cos(x * 0.03) * 15;
-                aboutCtx.lineTo(x, y);
+        let mouseX = -9999;
+        let mouseY = -9999;
+        let mouseActive = false;
+        const stardustTrail = [];
+        const clickRipples = [];
+        const clickParticles = [];
+
+        window.addEventListener('mousemove', (e) => {
+            const prevX = mouseX;
+            const prevY = mouseY;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            mouseActive = true;
+
+            const dist = Math.hypot(mouseX - prevX, mouseY - prevY);
+            if (dist > 4 && prevX > 0) {
+                const count = Math.min(Math.floor(dist / 6), 3);
+                for (let k = 0; k < count; k++) {
+                    const angle = Math.atan2(mouseY - prevY, mouseX - prevX) + (Math.random() - 0.5) * 1.2;
+                    stardustTrail.push({
+                        x: mouseX + (Math.random() - 0.5) * 8,
+                        y: mouseY + (Math.random() - 0.5) * 8,
+                        vx: -Math.cos(angle) * (Math.random() * 1.2 + 0.4) + (Math.random() - 0.5) * 0.8,
+                        vy: -Math.sin(angle) * (Math.random() * 1.2 + 0.4) + (Math.random() - 0.5) * 0.8,
+                        size: Math.random() * 2.2 + 1.0,
+                        alpha: 0.85,
+                        fade: Math.random() * 0.035 + 0.02,
+                        color: Math.random() > 0.4 ? '0, 240, 255' : '192, 132, 252'
+                    });
+                }
             }
-            aboutCtx.lineTo(aboutW, aboutH);
-            aboutCtx.closePath();
-            aboutCtx.fill();
+        });
 
-            aboutCtx.fillStyle = '#010705';
-            aboutCtx.beginPath();
-            aboutCtx.moveTo(0, aboutH);
-            for (let x = 0; x <= aboutW; x += 18) {
-                let treeHeight = 60 + Math.abs(Math.sin(x * 0.05)) * 90 + (x % 50 === 0 ? 30 : 0);
-                let baseY2 = aboutH * 0.85;
-                aboutCtx.lineTo(x, baseY2 - treeHeight);
-                aboutCtx.lineTo(x + 9, baseY2);
+        window.addEventListener('mouseleave', () => {
+            mouseActive = false;
+            mouseX = -9999;
+            mouseY = -9999;
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target.closest('a') || e.target.closest('button') || e.target.closest('input')) return;
+            const clickX = e.clientX;
+            const clickY = e.clientY;
+
+            clickRipples.push({
+                x: clickX,
+                y: clickY,
+                radius: 12,
+                speed: 4.5,
+                maxRadius: 280,
+                alpha: 0.75,
+                fade: 0.016,
+                width: 2.0,
+                color: '0, 240, 255'
+            });
+
+            const colors = ['255, 255, 255', '0, 240, 255', '192, 132, 252', '56, 189, 248'];
+            for (let i = 0; i < 14; i++) {
+                const angle = (Math.PI * 2 / 14) * i + (Math.random() - 0.5) * 0.5;
+                const speed = Math.random() * 3.4 + 1.5;
+                clickParticles.push({
+                    x: clickX,
+                    y: clickY,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    size: Math.random() * 2.2 + 0.8,
+                    alpha: 1.0,
+                    fade: Math.random() * 0.025 + 0.018,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
             }
-            aboutCtx.lineTo(aboutW, aboutH);
-            aboutCtx.closePath();
-            aboutCtx.fill();
-        }
+        });
 
-        function animateAbout() {
-            aboutCtx.clearRect(0, 0, aboutW, aboutH);
+        let lastFrameTime = 0;
+        function animateBgCanvas(currentTime) {
+            if (!currentTime) currentTime = performance.now();
+            if (!lastFrameTime) lastFrameTime = currentTime;
+            const deltaMs = currentTime - lastFrameTime;
+            lastFrameTime = currentTime;
+            const dt = Math.min(deltaMs, 100) / (1000 / 60);
 
-            aboutCtx.lineWidth = 0.5;
-            for (let i = 0; i < aboutStars.length; i++) {
-                for (let j = i + 1; j < aboutStars.length; j++) {
-                    const dx = aboutStars[i].x - aboutStars[j].x;
-                    const dy = aboutStars[i].y - aboutStars[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 120) {
-                        aboutCtx.strokeStyle = `rgba(45, 212, 191, ${0.06 * (1 - dist / 120)})`;
-                        aboutCtx.beginPath();
-                        aboutCtx.moveTo(aboutStars[i].x, aboutStars[i].y);
-                        aboutCtx.lineTo(aboutStars[j].x, aboutStars[j].y);
-                        aboutCtx.stroke();
+            bgCtx.clearRect(0, 0, canvasW, canvasH);
+
+            // Constellation links
+            bgCtx.lineWidth = 0.6;
+            const maxConnectDist = 120;
+            for (let i = 0; i < cosmicStars.length; i++) {
+                for (let j = i + 1; j < cosmicStars.length; j++) {
+                    const dx = cosmicStars[i].x - cosmicStars[j].x;
+                    const dy = cosmicStars[i].y - cosmicStars[j].y;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < maxConnectDist) {
+                        const alpha = 0.14 * (1 - dist / maxConnectDist);
+                        bgCtx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
+                        bgCtx.beginPath();
+                        bgCtx.moveTo(cosmicStars[i].x, cosmicStars[i].y);
+                        bgCtx.lineTo(cosmicStars[j].x, cosmicStars[j].y);
+                        bgCtx.stroke();
                     }
                 }
             }
 
-            aboutStars.forEach(star => {
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x < 0) star.x = aboutW;
-                if (star.x > aboutW) star.x = 0;
-                if (star.y < 0) star.y = aboutH * 0.6;
-                if (star.y > aboutH * 0.6) star.y = 0;
+            // Mouse magnetic pull & aura
+            if (mouseActive && mouseX > 0 && mouseY > 0) {
+                const cursorRadius = 150;
+                const aura = bgCtx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 100);
+                aura.addColorStop(0, 'rgba(0, 240, 255, 0.12)');
+                aura.addColorStop(0.5, 'rgba(192, 132, 252, 0.05)');
+                aura.addColorStop(1, 'rgba(2, 6, 18, 0)');
+                bgCtx.fillStyle = aura;
+                bgCtx.beginPath();
+                bgCtx.arc(mouseX, mouseY, 100, 0, Math.PI * 2);
+                bgCtx.fill();
 
-                aboutCtx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-                aboutCtx.beginPath();
-                aboutCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                aboutCtx.fill();
+                for (let i = 0; i < cosmicStars.length; i++) {
+                    const star = cosmicStars[i];
+                    const dx = star.x - mouseX;
+                    const dy = star.y - mouseY;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < cursorRadius) {
+                        const pullForce = 0.08 * (1 - dist / cursorRadius) * dt;
+                        star.vx -= (dx / dist) * pullForce;
+                        star.vy -= (dy / dist) * pullForce;
+                    }
+                }
+            }
+
+            // Draw cosmic stars
+            const friction = Math.pow(0.985, dt);
+            cosmicStars.forEach(star => {
+                star.x += star.vx * dt;
+                star.y += star.vy * dt;
+                star.vx *= friction;
+                star.vy *= friction;
+
+                if (star.x < 0) star.x = canvasW;
+                if (star.x > canvasW) star.x = 0;
+                if (star.y < 0) star.y = canvasH;
+                if (star.y > canvasH) star.y = 0;
+
+                star.twinkleAngle += star.twinkleSpeed * dt;
+                const twinkleAlpha = star.baseAlpha + Math.sin(star.twinkleAngle) * 0.25;
+
+                bgCtx.fillStyle = 'rgba(255, 255, 255, ' + Math.max(0.1, Math.min(1.0, twinkleAlpha)) + ')';
+                bgCtx.beginPath();
+                bgCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                bgCtx.fill();
             });
 
-            windStripes.forEach(stripe => {
-                stripe.x += Math.cos(stripe.angle) * stripe.speed;
-                stripe.y += Math.sin(stripe.angle) * stripe.speed;
-                stripe.phase += 0.03;
+            // Comets
+            cosmicComets.forEach(comet => {
+                comet.x += Math.cos(comet.angle) * comet.speed * dt;
+                comet.y += Math.sin(comet.angle) * comet.speed * dt;
+                const tailX = comet.x - Math.cos(comet.angle) * comet.length;
+                const tailY = comet.y - Math.sin(comet.angle) * comet.length;
 
-                aboutCtx.save();
-                aboutCtx.beginPath();
-                aboutCtx.lineWidth = stripe.width;
+                const grad = bgCtx.createLinearGradient(comet.x, comet.y, tailX, tailY);
+                grad.addColorStop(0, `rgba(${comet.color}, ${comet.opacity})`);
+                grad.addColorStop(1, `rgba(${comet.color}, 0)`);
 
-                const steps = 30;
-                const stepLength = stripe.length / steps;
+                bgCtx.strokeStyle = grad;
+                bgCtx.lineWidth = comet.width;
+                bgCtx.beginPath();
+                bgCtx.moveTo(comet.x, comet.y);
+                bgCtx.lineTo(tailX, tailY);
+                bgCtx.stroke();
 
-                for (let s = 0; s <= steps; s++) {
-                    const distAlong = s * stepLength;
-                    const baseX = stripe.x + Math.cos(stripe.angle) * distAlong;
-                    const baseY = stripe.y + Math.sin(stripe.angle) * distAlong;
-                    const perpAngle = stripe.angle + Math.PI / 2;
-                    const waveOffset = Math.sin(stripe.phase + distAlong * stripe.frequency) * stripe.amplitude;
-                    
-                    const px = baseX + Math.cos(perpAngle) * waveOffset;
-                    const py = baseY + Math.sin(perpAngle) * waveOffset;
-
-                    if (s === 0) aboutCtx.moveTo(px, py);
-                    else aboutCtx.lineTo(px, py);
-                }
-
-                const gradX = stripe.x + Math.cos(stripe.angle) * stripe.length;
-                const gradY = stripe.y + Math.sin(stripe.angle) * stripe.length;
-                const lineGrad = aboutCtx.createLinearGradient(stripe.x, stripe.y, gradX, gradY);
-                lineGrad.addColorStop(0, `rgba(255, 255, 255, ${stripe.opacity})`);
-                lineGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
-
-                aboutCtx.strokeStyle = lineGrad;
-                aboutCtx.stroke();
-                aboutCtx.restore();
-
-                if (stripe.x < -400) {
-                    Object.assign(stripe, createWindStripe());
-                    stripe.x = aboutW + 150;
-                    stripe.y = Math.random() * (aboutH * 0.7);
+                if (comet.x > canvasW + 350 || comet.y > canvasH + 350) {
+                    comet.x = Math.random() * canvasW * 1.2 - 200;
+                    comet.y = -80;
                 }
             });
 
-            drawForestSilhouettes();
+            // Stardust photon trail
+            const trailDamping = Math.pow(0.96, dt);
+            for (let i = stardustTrail.length - 1; i >= 0; i--) {
+                const p = stardustTrail[i];
+                p.x += p.vx * dt;
+                p.y += p.vy * dt;
+                p.vx *= trailDamping;
+                p.vy *= trailDamping;
+                p.alpha -= p.fade * dt;
 
-            requestAnimationFrame(animateAbout);
+                if (p.alpha <= 0) {
+                    stardustTrail.splice(i, 1);
+                    continue;
+                }
+
+                bgCtx.save();
+                bgCtx.beginPath();
+                bgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                bgCtx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
+                bgCtx.shadowBlur = 8;
+                bgCtx.shadowColor = `rgba(${p.color}, 0.8)`;
+                bgCtx.fill();
+                bgCtx.restore();
+            }
+
+            // Click ripples
+            for (let i = clickRipples.length - 1; i >= 0; i--) {
+                const r = clickRipples[i];
+                r.radius += r.speed * dt;
+                r.alpha -= r.fade * dt;
+
+                if (r.alpha <= 0 || r.radius >= r.maxRadius) {
+                    clickRipples.splice(i, 1);
+                    continue;
+                }
+
+                bgCtx.save();
+                bgCtx.beginPath();
+                bgCtx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+                bgCtx.strokeStyle = `rgba(${r.color}, ${r.alpha})`;
+                bgCtx.lineWidth = r.width;
+                bgCtx.stroke();
+                bgCtx.restore();
+            }
+
+            // Click sparks
+            const sparkDamping = Math.pow(0.95, dt);
+            for (let i = clickParticles.length - 1; i >= 0; i--) {
+                const p = clickParticles[i];
+                p.x += p.vx * dt;
+                p.y += p.vy * dt;
+                p.vx *= sparkDamping;
+                p.vy *= sparkDamping;
+                p.alpha -= p.fade * dt;
+
+                if (p.alpha <= 0) {
+                    clickParticles.splice(i, 1);
+                    continue;
+                }
+
+                bgCtx.save();
+                bgCtx.beginPath();
+                bgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                bgCtx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
+                bgCtx.shadowBlur = 12;
+                bgCtx.shadowColor = `rgba(${p.color}, 0.9)`;
+                bgCtx.fill();
+                bgCtx.restore();
+            }
+
+            requestAnimationFrame(animateBgCanvas);
         }
-        animateAbout();
+        requestAnimationFrame(animateBgCanvas);
+
+        // ==========================================================================
+        // 8. PROCEDURAL WEB AUDIO SYNTHESIZER
+        // ==========================================================================
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (AudioCtx) audioCtx = new AudioCtx();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playCrystalTick() {
+            const ctx = getAudioContext();
+            if (!ctx) return;
+            try {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(980, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1960, ctx.currentTime + 0.08);
+
+                gain.gain.setValueAtTime(0.045, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.08);
+            } catch (err) {}
+        }
+
+        function playWhooshSound() {
+            const ctx = getAudioContext();
+            if (!ctx) return;
+            try {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(340, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.25);
+
+                gain.gain.setValueAtTime(0.035, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.25);
+            } catch (err) {}
+        }
+
+        function playGachaRevealSound() {
+            const ctx = getAudioContext();
+            if (!ctx) return;
+            try {
+                const freqs = [523.25, 659.25, 783.99, 1046.50];
+                freqs.forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    const startTime = ctx.currentTime + idx * 0.07;
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, startTime);
+                    osc.frequency.exponentialRampToValueAtTime(freq * 1.01, startTime + 0.4);
+
+                    gain.gain.setValueAtTime(0.05, startTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.45);
+
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(startTime);
+                    osc.stop(startTime + 0.45);
+                });
+            } catch (err) {}
+        }
     </script>
     <script src="spotlight.js"></script>
 </body>
