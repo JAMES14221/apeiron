@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import HeroCanvas from '../components/HeroCanvas';
 
 export default function HomePage() {
   const metrics = [
@@ -62,9 +63,33 @@ export default function HomePage() {
 
   return (
     <div className="home-container">
-      {/* Clean, Spacious Editorial Hero (No heavy 3D centerpiece) */}
-      <header className="hero" id="hero" style={{ minHeight: '82vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '60px 24px 80px 24px' }}>
-        <div style={{ maxWidth: '980px', margin: '0 auto', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      {/* Authentic Lightweight Hero with scoped canvas */}
+      <header
+        className="hero"
+        id="hero"
+        style={{
+          position: 'relative',
+          overflow: 'hidden',
+          minHeight: '84vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '60px 24px 80px 24px',
+          background: 'radial-gradient(ellipse at 50% 30%, #0a1b38 0%, #030712 75%)'
+        }}
+      >
+        <HeroCanvas />
+
+        <div style={{
+          position: 'relative',
+          zIndex: 10,
+          maxWidth: '980px',
+          margin: '0 auto',
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}>
           
           {/* Badge */}
           <div style={{
@@ -122,7 +147,7 @@ export default function HomePage() {
                 gap: '10px',
                 padding: '14px 32px',
                 borderRadius: '999px',
-                background: 'rgba(6, 16, 38, 0.85)',
+                background: 'rgba(6, 16, 38, 0.88)',
                 border: '1px solid rgba(0, 240, 255, 0.5)',
                 boxShadow: '0 0 25px rgba(0, 240, 255, 0.35)',
                 color: '#ffffff',
@@ -171,9 +196,9 @@ export default function HomePage() {
             maxWidth: '840px',
             padding: '24px 32px',
             borderRadius: '20px',
-            background: 'rgba(15, 23, 42, 0.55)',
-            backdropFilter: 'blur(16px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)'
+            background: 'rgba(10, 18, 38, 0.92)',
+            border: '1px solid rgba(56, 189, 248, 0.2)',
+            boxShadow: '0 12px 36px rgba(0, 0, 0, 0.45)'
           }}>
             {metrics.map((m, idx) => (
               <div key={idx} style={{ textAlign: 'center' }}>
@@ -213,12 +238,11 @@ export default function HomePage() {
             <div
               key={i}
               style={{
-                background: 'rgba(15, 23, 42, 0.65)',
-                backdropFilter: 'blur(16px)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                background: 'rgba(10, 18, 38, 0.90)',
+                border: '1px solid rgba(56, 189, 248, 0.16)',
                 borderRadius: '16px',
                 padding: '32px 24px',
-                transition: 'transform 0.3s ease, border-color 0.3s ease',
+                transition: 'transform 0.25s ease, border-color 0.25s ease',
                 cursor: 'default'
               }}
             >
@@ -250,8 +274,8 @@ export default function HomePage() {
             <div
               key={idx}
               style={{
-                background: 'rgba(15, 23, 42, 0.5)',
-                border: '1px solid rgba(0, 240, 255, 0.12)',
+                background: 'rgba(10, 18, 38, 0.88)',
+                border: '1px solid rgba(0, 240, 255, 0.14)',
                 borderRadius: '14px',
                 padding: '28px 20px',
                 position: 'relative'

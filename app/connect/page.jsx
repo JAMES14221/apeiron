@@ -89,9 +89,8 @@ export default function ConnectPage() {
           <div
             key={idx}
             style={{
-              background: 'rgba(15, 23, 42, 0.65)',
-              backdropFilter: 'blur(16px)',
-              border: ch.primary ? '1px solid rgba(0, 240, 255, 0.45)' : '1px solid rgba(255, 255, 255, 0.08)',
+              background: 'rgba(10, 18, 38, 0.92)',
+              border: ch.primary ? '1px solid rgba(0, 240, 255, 0.45)' : '1px solid rgba(255, 255, 255, 0.1)',
               borderRadius: '20px',
               padding: '36px 28px',
               display: 'flex',

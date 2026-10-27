@@ -1,5 +1,4 @@
 import './globals.css';
-import CosmicBackground from '../components/CosmicBackground';
 import Navbar from '../components/Navbar';
 
 export const metadata = {
@@ -19,7 +18,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <CosmicBackground />
         <Navbar />
         <main className="main-content-wrap">{children}</main>
       </body>

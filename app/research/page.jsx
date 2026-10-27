@@ -174,9 +174,8 @@ export default function ResearchPage() {
               gap: '28px',
               padding: '32px',
               borderRadius: '20px',
-              background: 'rgba(15, 23, 42, 0.72)',
-              backdropFilter: 'blur(16px)',
-              border: '1px solid rgba(255, 255, 255, 0.09)',
+              background: 'rgba(10, 18, 38, 0.92)',
+              border: '1px solid rgba(56, 189, 248, 0.18)',
               transition: 'border-color 0.3s ease, transform 0.3s ease',
               alignItems: 'center'
             }}
@@ -315,8 +314,7 @@ export default function ResearchPage() {
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(2, 6, 18, 0.88)',
-            backdropFilter: 'blur(18px)',
+            background: 'rgba(2, 6, 18, 0.94)',
             zIndex: 9999,
             display: 'flex',
             alignItems: 'center',

@@ -98,12 +98,11 @@ export default function AboutPage() {
       {/* Core Mission & Story Dossier */}
       <section style={{ maxWidth: '1100px', margin: '0 auto 80px auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px' }}>
         <div style={{
-          background: 'rgba(15, 23, 42, 0.65)',
-          backdropFilter: 'blur(16px)',
+          background: 'rgba(10, 18, 38, 0.90)',
           border: '1px solid rgba(0, 240, 255, 0.25)',
           borderRadius: '24px',
           padding: '40px 32px',
-          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)'
+          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.45)'
         }}>
           <div style={{ color: '#00f0ff', fontSize: '0.85rem', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '12px' }}>
             — OUR STORY —
@@ -120,12 +119,11 @@ export default function AboutPage() {
         </div>
 
         <div style={{
-          background: 'rgba(15, 23, 42, 0.65)',
-          backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          background: 'rgba(10, 18, 38, 0.90)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
           borderRadius: '24px',
           padding: '40px 32px',
-          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)'
+          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.45)'
         }}>
           <div style={{ color: '#38bdf8', fontSize: '0.85rem', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '12px' }}>
             — OUR PURPOSE —
@@ -165,9 +163,8 @@ export default function AboutPage() {
             <div
               key={idx}
               style={{
-                background: 'rgba(15, 23, 42, 0.55)',
-                backdropFilter: 'blur(16px)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                background: 'rgba(10, 18, 38, 0.90)',
+                border: '1px solid rgba(56, 189, 248, 0.16)',
                 borderRadius: '18px',
                 padding: '32px 24px',
                 display: 'flex',
