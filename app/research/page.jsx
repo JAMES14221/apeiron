@@ -326,8 +326,9 @@ export default function ResearchPage() {
               )}
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-                <span style={{ color: '#64748b', fontSize: '0.82rem' }}>
-                  Tác giả: <strong style={{ color: '#cbd5e1' }}>{paper.author}</strong>
+                <span style={{ color: '#94a3b8', fontSize: '0.82rem', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: paper.themeColor }}></span>
+                  <span>Aperio Research • {paper.date}</span>
                 </span>
 
                 <button
@@ -450,7 +451,7 @@ export default function ResearchPage() {
                 </span>
                 <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedPaper.date}</span>
                 <span style={{ color: '#64748b' }}>•</span>
-                <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedPaper.author}</span>
+                <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Aperio Research</span>
               </div>
 
               {/* Language Switch */}

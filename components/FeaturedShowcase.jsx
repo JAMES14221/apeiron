@@ -5,13 +5,24 @@ import Link from 'next/link';
 import { APERIO_ARTICLES, APERIO_OFFICIAL_LINKS } from '../data/articles';
 
 export default function FeaturedShowcase() {
+  const [selectedCategory, setSelectedCategory] = useState('all'); // 'all', 'psychology', 'campaigns'
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [modalLang, setModalLang] = useState('vi'); // 'vi' or 'en'
 
-  const articles = APERIO_ARTICLES;
-  const total = articles.length;
+  // Only feature the 9 official publications/campaigns with real visual posters
+  const allVisualArticles = APERIO_ARTICLES.filter((a) => a.image);
+
+  const displayedArticles = selectedCategory === 'all'
+    ? allVisualArticles
+    : allVisualArticles.filter((a) => a.category === selectedCategory);
+
+  const total = displayedArticles.length;
+
+  // Make sure currentIdx is in bounds if category changes
+  const safeIdx = currentIdx < total ? currentIdx : 0;
+  const current = displayedArticles[safeIdx] || displayedArticles[0];
 
   const nextSlide = () => setCurrentIdx((prev) => (prev + 1) % total);
   const prevSlide = () => setCurrentIdx((prev) => (prev - 1 + total) % total);
@@ -22,11 +33,14 @@ export default function FeaturedShowcase() {
     return () => clearInterval(timer);
   }, [isHovered, selectedArticle, total]);
 
-  const current = articles[currentIdx];
-
   const openModal = (article) => {
     setSelectedArticle(article);
     setModalLang('vi');
+  };
+
+  const handleCategorySwitch = (catId) => {
+    setSelectedCategory(catId);
+    setCurrentIdx(0);
   };
 
   return (
@@ -47,7 +61,7 @@ export default function FeaturedShowcase() {
         alignItems: 'flex-end',
         flexWrap: 'wrap',
         gap: '16px',
-        marginBottom: '32px'
+        marginBottom: '28px'
       }}>
         <div>
           <div style={{
@@ -153,23 +167,23 @@ export default function FeaturedShowcase() {
           gap: '36px',
           alignItems: 'center'
         }}>
-          {/* Visual Display Banner */}
+          {/* Visual Display Banner with On-Stage Nav Arrows */}
           <div
-            onClick={() => openModal(current)}
             style={{
               borderRadius: '16px',
               overflow: 'hidden',
-              cursor: 'pointer',
               position: 'relative',
               aspectRatio: '16 / 9',
               background: '#01040a',
               border: '1px solid rgba(255, 255, 255, 0.12)',
-              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.6)',
-              transition: 'transform 0.3s ease, border-color 0.3s ease'
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.6)'
             }}
-            title="Nhấp để xem toàn văn chi tiết"
           >
-            {current.image ? (
+            <div
+              onClick={() => openModal(current)}
+              style={{ width: '100%', height: '100%', cursor: 'pointer' }}
+              title="Nhấp để đọc bài viết toàn văn"
+            >
               <img
                 src={current.image}
                 alt={current.title}
@@ -181,110 +195,101 @@ export default function FeaturedShowcase() {
                   transition: 'transform 0.4s ease'
                 }}
               />
-            ) : (
-              /* Sleek Cyber Monogram Card for articles without uploaded images */
+
+              {/* Hover overlay hint */}
               <div style={{
-                width: '100%',
-                height: '100%',
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to top, rgba(2, 6, 18, 0.75) 0%, transparent 60%)',
                 display: 'flex',
-                flexDirection: 'column',
+                alignItems: 'flex-end',
                 justifyContent: 'space-between',
-                padding: '24px',
-                background: `radial-gradient(ellipse at 80% 20%, ${current.themeColor}22 0%, rgba(3, 8, 22, 0.98) 75%)`,
-                position: 'relative',
-                overflow: 'hidden'
+                padding: '16px'
               }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{
-                    fontSize: '0.72rem',
-                    fontWeight: '700',
-                    padding: '4px 10px',
-                    borderRadius: '6px',
-                    background: `${current.themeColor}22`,
-                    color: current.themeColor,
-                    border: `1px solid ${current.themeColor}44`,
-                    letterSpacing: '1px'
-                  }}>
-                    {current.catBadge}
-                  </span>
-                  <span style={{ fontSize: '1.8rem', filter: `drop-shadow(0 0 12px ${current.themeColor})` }}>
-                    {current.symbol}
-                  </span>
-                </div>
-
-                <div>
-                  <div style={{
-                    fontSize: '0.75rem',
-                    color: '#94a3b8',
-                    letterSpacing: '1.5px',
-                    textTransform: 'uppercase',
-                    marginBottom: '6px'
-                  }}>
-                    APERIO RESEARCH MANUSCRIPT
-                  </div>
-                  <h4 style={{
-                    fontFamily: 'var(--font-serif, serif)',
-                    fontSize: '1.2rem',
-                    color: '#ffffff',
-                    margin: 0,
-                    lineHeight: '1.4'
-                  }}>
-                    {current.title}
-                  </h4>
-                </div>
-
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
+                <span style={{
                   fontSize: '0.75rem',
-                  color: '#64748b',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                  paddingTop: '10px'
+                  fontWeight: '700',
+                  padding: '4px 10px',
+                  borderRadius: '6px',
+                  background: 'rgba(0, 0, 0, 0.75)',
+                  color: current.themeColor,
+                  border: `1px solid ${current.themeColor}44`,
+                  letterSpacing: '1px'
                 }}>
-                  <span>{current.date}</span>
-                  <span style={{ color: current.themeColor, fontWeight: '600' }}>{current.readTime}</span>
-                </div>
+                  {current.seriesBadge || current.catBadge}
+                </span>
+                <span style={{
+                  fontSize: '0.78rem',
+                  color: '#ffffff',
+                  background: 'rgba(0, 240, 255, 0.25)',
+                  border: '1px solid rgba(0, 240, 255, 0.5)',
+                  padding: '4px 12px',
+                  borderRadius: '999px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px'
+                }}>
+                  <span>Đọc Bài Viết</span>
+                  <span>⤢</span>
+                </span>
               </div>
-            )}
-
-            {/* Hover overlay hint */}
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(to top, rgba(2, 6, 18, 0.75) 0%, transparent 60%)',
-              display: 'flex',
-              alignItems: 'flex-end',
-              justifyContent: 'space-between',
-              padding: '16px'
-            }}>
-              <span style={{
-                fontSize: '0.75rem',
-                fontWeight: '700',
-                padding: '4px 10px',
-                borderRadius: '6px',
-                background: 'rgba(0, 0, 0, 0.75)',
-                color: current.themeColor,
-                border: `1px solid ${current.themeColor}44`,
-                letterSpacing: '1px'
-              }}>
-                {current.seriesBadge || current.catBadge}
-              </span>
-              <span style={{
-                fontSize: '0.78rem',
-                color: '#ffffff',
-                background: 'rgba(0, 240, 255, 0.25)',
-                border: '1px solid rgba(0, 240, 255, 0.5)',
-                padding: '4px 12px',
-                borderRadius: '999px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '5px'
-              }}>
-                <span>Đọc Bài Viết</span>
-                <span>⤢</span>
-              </span>
             </div>
+
+            {/* Stage Left / Right Quick Buttons */}
+            <button
+              onClick={(e) => { e.stopPropagation(); prevSlide(); }}
+              aria-label="Previous"
+              style={{
+                position: 'absolute',
+                left: '12px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '38px',
+                height: '38px',
+                borderRadius: '50%',
+                background: 'rgba(6, 16, 38, 0.75)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                color: '#ffffff',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1rem',
+                zIndex: 5,
+                transition: 'all 0.2s ease'
+              }}
+            >
+              ❮
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); nextSlide(); }}
+              aria-label="Next"
+              style={{
+                position: 'absolute',
+                right: '12px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '38px',
+                height: '38px',
+                borderRadius: '50%',
+                background: 'rgba(6, 16, 38, 0.75)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                color: '#ffffff',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1rem',
+                zIndex: 5,
+                transition: 'all 0.2s ease'
+              }}
+            >
+              ❯
+            </button>
           </div>
 
           {/* Editorial Content */}
@@ -310,9 +315,9 @@ export default function FeaturedShowcase() {
 
             <h3 style={{
               fontFamily: 'var(--font-serif, serif)',
-              fontSize: 'clamp(1.4rem, 2.3vw, 2.1rem)',
+              fontSize: 'clamp(1.35rem, 2.2vw, 2rem)',
               color: '#ffffff',
-              lineHeight: '1.3',
+              lineHeight: '1.35',
               margin: '0 0 16px 0'
             }}>
               {current.title}
@@ -357,8 +362,11 @@ export default function FeaturedShowcase() {
               paddingTop: '16px',
               borderTop: '1px solid rgba(255, 255, 255, 0.08)'
             }}>
-              <div style={{ color: '#94a3b8', fontSize: '0.86rem' }}>
-                Tác giả: <strong style={{ color: '#ffffff' }}>{current.author}</strong>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#94a3b8', fontSize: '0.86rem' }}>
+                <span style={{ display: 'inline-block', width: '6px', height: '6px', borderRadius: '50%', background: current.themeColor }}></span>
+                <span style={{ color: '#ffffff', fontWeight: '600' }}>Aperio Research</span>
+                <span style={{ color: '#475569' }}>•</span>
+                <span>{current.date}</span>
               </div>
 
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
@@ -411,19 +419,63 @@ export default function FeaturedShowcase() {
           </div>
         </div>
 
-        {/* Thumbnail Preview Selector Bar: Scrollable Track */}
+        {/* Category Filter Pills (clean grouping) */}
         <div style={{
           display: 'flex',
-          gap: '10px',
-          overflowX: 'auto',
-          marginTop: '32px',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '12px',
+          marginTop: '36px',
           paddingTop: '20px',
-          paddingBottom: '8px',
-          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-          scrollbarWidth: 'thin'
+          borderTop: '1px solid rgba(255, 255, 255, 0.08)'
         }}>
-          {articles.map((p, idx) => {
-            const isActive = idx === currentIdx;
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            {[
+              { id: 'all', label: `Tất Cả (${allVisualArticles.length})` },
+              { id: 'psychology', label: `✦ Series Tâm Lý Học (4)` },
+              { id: 'campaigns', label: `📢 Chiến Dịch & Hoạt Động (5)` }
+            ].map((cat) => {
+              const isActive = selectedCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => handleCategorySwitch(cat.id)}
+                  style={{
+                    padding: '6px 14px',
+                    borderRadius: '999px',
+                    border: isActive ? `1px solid ${current.themeColor}` : '1px solid rgba(255, 255, 255, 0.12)',
+                    background: isActive ? `${current.themeColor}22` : 'rgba(255, 255, 255, 0.04)',
+                    color: isActive ? '#ffffff' : '#94a3b8',
+                    fontSize: '0.8rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
+          </div>
+
+          <div style={{ color: '#94a3b8', fontSize: '0.82rem' }}>
+            <span>{safeIdx + 1}</span> / <span>{total}</span> • <span style={{ color: current.themeColor }}>{current.seriesBadge || current.catBadge}</span>
+          </div>
+        </div>
+
+        {/* Thumbnail Selector Grid (NO SCROLLBAR, clean responsive cards) */}
+        <div
+          className="no-scrollbar"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: `repeat(auto-fit, minmax(${total <= 5 ? '140px' : '100px'}, 1fr))`,
+            gap: '10px',
+            marginTop: '16px'
+          }}
+        >
+          {displayedArticles.map((p, idx) => {
+            const isActive = idx === safeIdx;
             return (
               <div
                 key={p.id}
@@ -433,90 +485,57 @@ export default function FeaturedShowcase() {
                   borderRadius: '10px',
                   overflow: 'hidden',
                   position: 'relative',
-                  flex: '0 0 115px',
                   aspectRatio: '16 / 9',
                   border: isActive ? `2px solid ${p.themeColor}` : '1px solid rgba(255, 255, 255, 0.12)',
-                  boxShadow: isActive ? `0 0 15px ${p.themeColor}55` : 'none',
+                  boxShadow: isActive ? `0 0 16px ${p.themeColor}66` : 'none',
                   opacity: isActive ? 1 : 0.45,
-                  transform: isActive ? 'scale(1.04)' : 'scale(1)',
+                  transform: isActive ? 'scale(1.03)' : 'scale(1)',
                   transition: 'all 0.25s ease',
                   background: '#040b1e'
                 }}
                 title={p.title}
               >
-                {p.image ? (
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                ) : (
-                  <div style={{
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: `linear-gradient(135deg, ${p.themeColor}33, #020612)`,
-                    fontSize: '1.2rem'
-                  }}>
-                    {p.symbol}
-                  </div>
-                )}
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+
+                {/* Index Pill in Corner */}
+                <div style={{
+                  position: 'absolute',
+                  top: '5px',
+                  left: '6px',
+                  fontSize: '0.62rem',
+                  fontWeight: '700',
+                  padding: '1px 5px',
+                  borderRadius: '4px',
+                  background: isActive ? p.themeColor : 'rgba(0, 0, 0, 0.75)',
+                  color: isActive ? '#020612' : '#cbd5e1'
+                }}>
+                  {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+                </div>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom Navigation Row */}
+        {/* Cyber Glowing Progress Accent Bar */}
         <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginTop: '16px'
+          width: '100%',
+          height: '3px',
+          background: 'rgba(255, 255, 255, 0.08)',
+          borderRadius: '999px',
+          overflow: 'hidden',
+          marginTop: '18px'
         }}>
-          <div style={{ color: '#94a3b8', fontSize: '0.82rem' }}>
-            <span>{currentIdx + 1}</span> / <span>{total}</span> • <span style={{ color: current.themeColor }}>{current.catBadge}</span>
-          </div>
-
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <button
-              onClick={prevSlide}
-              aria-label="Previous slide"
-              style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.08)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                color: '#ffffff',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
-              ❮
-            </button>
-            <button
-              onClick={nextSlide}
-              aria-label="Next slide"
-              style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.08)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                color: '#ffffff',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
-              ❯
-            </button>
-          </div>
+          <div style={{
+            width: `${((safeIdx + 1) / total) * 100}%`,
+            height: '100%',
+            background: `linear-gradient(90deg, #00f0ff, ${current.themeColor})`,
+            boxShadow: `0 0 10px ${current.themeColor}`,
+            transition: 'width 0.35s ease'
+          }} />
         </div>
       </div>
 
@@ -575,7 +594,7 @@ export default function FeaturedShowcase() {
               ✕
             </button>
 
-            {/* Poster or Header Banner */}
+            {/* Poster Header Banner */}
             {selectedArticle.image && (
               <div style={{
                 borderRadius: '16px',
@@ -615,7 +634,7 @@ export default function FeaturedShowcase() {
                 </span>
                 <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedArticle.date}</span>
                 <span style={{ color: '#64748b' }}>•</span>
-                <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedArticle.author}</span>
+                <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Aperio Research</span>
               </div>
 
               {/* Language Switch */}
