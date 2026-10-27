@@ -7,17 +7,7 @@ export default function Navbar() {
     <nav className="site-nav">
       <div className="nav-brand-group">
         <Link href="/" className="nav-brand-logo" aria-label="Aperio Research Home">
-          <svg className="nav-logo-svg" viewBox="0 0 40 40" width="36" height="36">
-            <defs>
-              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00f0ff" />
-                <stop offset="100%" stopColor="#a855f7" />
-              </linearGradient>
-            </defs>
-            <polygon points="20,2 38,34 2,34" fill="none" stroke="url(#logoGrad)" strokeWidth="2.5" />
-            <circle cx="20" cy="22" r="5" fill="#00f0ff" opacity="0.85" />
-            <line x1="20" y1="2" x2="20" y2="34" stroke="rgba(255,255,255,0.4)" strokeWidth="1" strokeDasharray="2,2" />
-          </svg>
+          <img src="/logo.png" alt="Aperio Logo" className="nav-logo-img" width="40" height="40" />
           <span className="nav-brand-text">APERIO</span>
         </Link>
       </div>
