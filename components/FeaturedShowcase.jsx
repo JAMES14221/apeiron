@@ -18,7 +18,7 @@ export default function FeaturedShowcase() {
 
   useEffect(() => {
     if (isHovered || selectedArticle) return;
-    const timer = setInterval(nextSlide, 6500);
+    const timer = setInterval(nextSlide, 7000);
     return () => clearInterval(timer);
   }, [isHovered, selectedArticle, total]);
 
@@ -153,7 +153,7 @@ export default function FeaturedShowcase() {
           gap: '36px',
           alignItems: 'center'
         }}>
-          {/* Visual Display: Image Banner OR Sleek Cyber Card Placeholder */}
+          {/* Visual Display Banner */}
           <div
             onClick={() => openModal(current)}
             style={{
@@ -182,7 +182,7 @@ export default function FeaturedShowcase() {
                 }}
               />
             ) : (
-              /* Sleek Cyber Monogram Card for articles without uploaded images yet */
+              /* Sleek Cyber Monogram Card for articles without uploaded images */
               <div style={{
                 width: '100%',
                 height: '100%',
@@ -194,19 +194,6 @@ export default function FeaturedShowcase() {
                 position: 'relative',
                 overflow: 'hidden'
               }}>
-                {/* Decorative circuit corner */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  width: '120px',
-                  height: '120px',
-                  borderTop: `2px solid ${current.themeColor}44`,
-                  borderRight: `2px solid ${current.themeColor}44`,
-                  opacity: 0.4,
-                  pointerEvents: 'none'
-                }} />
-
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{
                     fontSize: '0.72rem',
@@ -281,7 +268,7 @@ export default function FeaturedShowcase() {
                 border: `1px solid ${current.themeColor}44`,
                 letterSpacing: '1px'
               }}>
-                {current.catBadge}
+                {current.seriesBadge || current.catBadge}
               </span>
               <span style={{
                 fontSize: '0.78rem',
@@ -313,7 +300,7 @@ export default function FeaturedShowcase() {
                 border: `1px solid ${current.themeColor}44`,
                 letterSpacing: '1.2px'
               }}>
-                {current.catBadge}
+                {current.seriesBadge ? `${current.seriesBadge} • ${current.catBadge}` : current.catBadge}
               </span>
               <span style={{ color: '#64748b' }}>•</span>
               <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{current.date}</span>
@@ -424,14 +411,16 @@ export default function FeaturedShowcase() {
           </div>
         </div>
 
-        {/* Thumbnail Preview Selector Bar */}
+        {/* Thumbnail Preview Selector Bar: Scrollable Track */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${total}, 1fr)`,
-          gap: '8px',
+          display: 'flex',
+          gap: '10px',
+          overflowX: 'auto',
           marginTop: '32px',
           paddingTop: '20px',
-          borderTop: '1px solid rgba(255, 255, 255, 0.08)'
+          paddingBottom: '8px',
+          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+          scrollbarWidth: 'thin'
         }}>
           {articles.map((p, idx) => {
             const isActive = idx === currentIdx;
@@ -441,14 +430,15 @@ export default function FeaturedShowcase() {
                 onClick={() => setCurrentIdx(idx)}
                 style={{
                   cursor: 'pointer',
-                  borderRadius: '8px',
+                  borderRadius: '10px',
                   overflow: 'hidden',
                   position: 'relative',
+                  flex: '0 0 115px',
                   aspectRatio: '16 / 9',
                   border: isActive ? `2px solid ${p.themeColor}` : '1px solid rgba(255, 255, 255, 0.12)',
                   boxShadow: isActive ? `0 0 15px ${p.themeColor}55` : 'none',
                   opacity: isActive ? 1 : 0.45,
-                  transform: isActive ? 'scale(1.03)' : 'scale(1)',
+                  transform: isActive ? 'scale(1.04)' : 'scale(1)',
                   transition: 'all 0.25s ease',
                   background: '#040b1e'
                 }}
@@ -621,7 +611,7 @@ export default function FeaturedShowcase() {
                   color: selectedArticle.themeColor,
                   border: `1px solid ${selectedArticle.themeColor}55`
                 }}>
-                  {selectedArticle.catBadge}
+                  {selectedArticle.seriesBadge ? `${selectedArticle.seriesBadge} • ${selectedArticle.catBadge}` : selectedArticle.catBadge}
                 </span>
                 <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedArticle.date}</span>
                 <span style={{ color: '#64748b' }}>•</span>

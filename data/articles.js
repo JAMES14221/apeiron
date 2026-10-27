@@ -1,23 +1,123 @@
 /**
  * APERIO RESEARCH - OFFICIAL PUBLICATIONS, RESEARCH ARTICLES & CAMPAIGNS
- * Grounded in authentic Aperio releases and peer-referenced scholarship.
+ * Grounded in authentic Aperio releases, visual banners, and peer-referenced scholarship.
  */
 
 export const APERIO_ARTICLES = [
   {
+    id: 'psychology-overview',
+    slug: 'tong-quan-chu-de-tam-ly-hoc',
+    category: 'psychology',
+    catBadge: 'CHỦ ĐỀ TRỌNG TÂM / GEN 0.1',
+    seriesBadge: 'PSYCHOLOGY',
+    title: 'Tổng Quan Chủ Đề Gen 0.1: Tâm Lý Học — Hiểu Để Kết Nối Với Chính Mình',
+    titleEn: 'Gen 0.1 Theme Overview: Psychology — Understanding to Connect With Ourselves',
+    date: '23/09/2026',
+    author: 'Hội Đồng Học Thuật Aperio Research',
+    image: '/images/psychology_overview.png',
+    symbol: '🦋',
+    themeColor: '#00f0ff',
+    summary: 'Tâm lý học không chỉ là câu chuyện về Mind, Emotion hay Self. Đó còn là câu chuyện về cách con người đặt câu hỏi để hiểu chính mình và cách khoa học giúp chúng ta tìm kiếm câu trả lời thông qua các bài báo khoa học và nghiên cứu thực nghiệm.',
+    highlights: ['Mind / Emotion / Self', 'Scientific Inquiry Framing', 'Research Design & Questioning', 'Phenomenon to Empirical Study'],
+    readTime: '6 min read',
+    contentVi: `Tâm lý học hiện diện trong rất nhiều khía cạnh quen thuộc của cuộc sống. Cách chúng ta hình thành một thói quen, phản ứng trước áp lực, nhìn nhận bản thân, trải nghiệm cảm xúc, xây dựng các mối quan hệ hay đưa ra một quyết định đều có thể trở thành đối tượng của nghiên cứu tâm lý học. Nhưng đằng sau những hiện tượng tưởng như rất quen thuộc ấy là cả một quá trình đặt câu hỏi, xây dựng giả thuyết, lựa chọn phương pháp, thu thập dữ liệu và kiểm chứng bằng bằng chứng khoa học.
+
+Trong Gen 0.1, Aperio Research lựa chọn Tâm lý học làm chủ đề trọng tâm để cùng các bạn khám phá sâu hơn về lĩnh vực này. Thay vì chỉ dừng lại ở việc giải thích một khái niệm tâm lý học hay đưa ra những nhận định phổ biến về hành vi con người, Aperio sẽ tiếp cận các chủ đề thông qua bài báo khoa học - Scientific Articles và nghiên cứu khoa học - Scientific Research.
+
+MỘT HIỆN TƯỢNG QUEN THUỘC ĐƯỢC BIẾN THÀNH CÂU HỎI NGHIÊN CỨU NHƯ THẾ NÀO?
+Thông qua từng bài viết, chúng ta sẽ cùng nhìn vào cách các nhà nghiên cứu tiếp cận một vấn đề trong tâm lý học: từ việc quan sát hiện tượng và xác định vấn đề, xây dựng câu hỏi nghiên cứu - Research Question, lựa chọn đối tượng nghiên cứu, thiết kế phương pháp, thu thập dữ liệu, phân tích kết quả cho đến cách diễn giải những phát hiện thu được.
+
+Một nghiên cứu về sự so sánh xã hội, cảm xúc, lòng tự trọng, nhận thức, hành vi hay các mối quan hệ không chỉ cho chúng ta biết một hiện tượng có thể diễn ra như thế nào. Quan trọng hơn, chúng ta có thể tìm hiểu vì sao nhà nghiên cứu lại đặt câu hỏi đó, họ đã kiểm chứng nó bằng cách nào, dữ liệu được thu thập ra sao và kết quả thực sự cho phép chúng ta kết luận đến đâu.
+
+ĐỌC MỘT NGHIÊN CỨU KHÔNG CHỈ ĐỂ BIẾT KẾT QUẢ
+Aperio mong muốn đưa người đọc đến gần hơn với cách tư duy phía sau một nghiên cứu khoa học. Khi đọc một bài báo, chúng ta sẽ không chỉ chú ý đến phần kết luận, mà còn học cách nhìn vào đối tượng nghiên cứu, thiết kế nghiên cứu, phương pháp thu thập dữ liệu, cách phân tích và những giới hạn của kết quả.
+
+Qua đó, những phương pháp vốn có thể trông khá xa lạ như khảo sát, thực nghiệm, phỏng vấn, quan sát, phân tích thống kê hay mã hóa dữ liệu sẽ trở nên dễ tiếp cận hơn. Người đọc cũng có thể nhận ra rằng nghiên cứu khoa học không nhất thiết bắt đầu từ những vấn đề quá lớn hay xa vời. Một hành vi, một trải nghiệm hoặc một hiện tượng rất gần gũi trong đời sống cũng có thể trở thành điểm khởi đầu cho một câu hỏi nghiên cứu nếu được tiếp cận một cách có hệ thống.
+
+TỪ MỘT CÂU HỎI VỀ CON NGƯỜI ĐẾN MỘT NGHIÊN CỨU VỀ CON NGƯỜI
+Trong nhiệm kỳ này, Aperio Research Gen 0.1 - Psychology Series sẽ lần lượt khai thác nhiều chủ đề khác nhau trong tâm lý học thông qua những nghiên cứu cụ thể. Mỗi bài viết sẽ không chỉ tập trung vào “nghiên cứu phát hiện ra điều gì?”, mà còn cố gắng trả lời những câu hỏi phía sau: “Tại sao họ nghiên cứu điều này?”, “Họ nghiên cứu như thế nào?”, “Dữ liệu nói lên điều gì?” và “Chúng ta có thể hiểu kết quả đó đến đâu?”
+
+Qua đó, Aperio hy vọng có thể tạo ra một cách tiếp cận gần gũi hơn với tâm lý học và nghiên cứu khoa học, đồng thời giúp các bạn học sinh, sinh viên từng bước làm quen với cách đọc, phân tích và đặt câu hỏi trước một nghiên cứu.
+
+Tâm lý học không chỉ là câu chuyện về Mind, Emotion hay Self. Đó còn là câu chuyện về cách con người đặt câu hỏi để hiểu chính mình và cách khoa học giúp chúng ta tìm kiếm câu trả lời.
+
+Hãy cùng Aperio Research bước vào Gen 0.1 - Psychology Series, nơi những điều tưởng như quen thuộc trong chính chúng ta trở thành những câu hỏi đáng để khám phá sâu hơn.`,
+    contentEn: `Psychology is present in many familiar aspects of everyday life. The way we develop habits, respond to pressure, experience emotions, perceive ourselves, build relationships, or make decisions can all become subjects of psychological research. Yet behind these seemingly familiar phenomena lies a systematic process of asking questions, developing hypotheses, choosing methods, collecting data, and examining evidence.
+
+For Gen 0.1, Aperio Research has chosen Psychology as its central theme, inviting readers to explore the field through a deeper research-oriented perspective. Rather than stopping at general explanations of psychological concepts or commonly circulated interpretations of human behavior, Aperio will approach these topics through scientific articles and research studies.
+
+HOW DOES A FAMILIAR PHENOMENON BECOME A RESEARCH QUESTION?
+Through each article, we will explore how researchers approach psychological questions: from observing a phenomenon and identifying a problem, developing a Research Question, selecting participants, designing a study, collecting data, and analyzing findings, to interpreting what the evidence can and cannot tell us.
+
+A study of social comparison, emotion, self-esteem, cognition, behavior, or relationships does not simply tell us what happens. Just as importantly, it allows us to ask why the researchers chose that question, how they investigated it, where the data came from, and what the findings actually allow us to conclude.
+
+READING RESEARCH IS NOT ONLY ABOUT LEARNING THE RESULTS
+Aperio hopes to bring readers closer to the reasoning behind scientific research. When approaching a paper, we will look beyond its conclusion and examine its participants, research design, data collection methods, analysis, and limitations.
+
+Through this process, methods that may initially seem unfamiliar - such as surveys, experiments, interviews, observations, statistical analysis, or qualitative coding - can become more accessible. Readers may also see that scientific research does not necessarily begin with distant or highly abstract problems. A familiar behavior, experience, or everyday phenomenon can become the starting point for a research question when approached systematically.
+
+FROM A QUESTION ABOUT PEOPLE TO RESEARCH ABOUT PEOPLE
+Throughout this term, the Aperio Research Gen 0.1 - Psychology Series will explore different topics in psychology through specific research studies. Each article will look beyond “What did the study find?” and explore the questions behind the findings: “Why was this studied?”, “How was it investigated?”, “What does the data show?”, and “How far can we interpret the results?”
+
+Through this approach, Aperio hopes to make psychology and scientific research more accessible while helping students become more comfortable with reading, analyzing, and questioning research.
+
+Psychology is not only about Mind, Emotion, or Self. It is also about how we ask questions to understand ourselves, and how science helps us search for answers.
+
+Join Aperio Research throughout Gen 0.1 - Psychology Series, where the things that seem most familiar within ourselves become questions worth exploring more deeply.`,
+    references: []
+  },
+  {
+    id: 'barnum-effect',
+    slug: 'hieu-ung-barnum',
+    category: 'psychology',
+    catBadge: 'PSYCHOLOGY #1',
+    seriesBadge: 'PROPHECY AND REALITY',
+    title: 'Hiệu Ứng Barnum: Khi Những Lời Tiên Đoán Trở Thành Hiện Thực',
+    titleEn: 'The Barnum Effect: When General Prophecies Feel Uniquely Yours',
+    date: '25/09/2026',
+    author: 'Aperio Cognitive Studies Lab',
+    image: '/images/barnum_effect.png',
+    symbol: '🔮',
+    themeColor: '#818cf8',
+    summary: '“Bạn thường tỏ ra mạnh mẽ, nhưng sâu bên trong lại khá nhạy cảm.” Vì sao những lời mô tả tính cách mơ hồ lại tạo ra cảm giác chính xác đến kỳ lạ trong Tarot và Chiêm tinh học?',
+    highlights: ['Bertram Forer (1949) Experiment', 'The Fallacy of Personal Validation', 'Scientific Question Framing', 'Cognitive Bias in Horoscopes'],
+    readTime: '7 min read',
+    contentVi: `“Bạn thường tỏ ra mạnh mẽ trước mọi người, nhưng sâu bên trong lại khá nhạy cảm. Bạn có những lúc tự tin, nhưng cũng thường nghi ngờ chính mình.”
+
+Nghe quen không? Những câu như vậy xuất hiện rất thường xuyên trong Tarot, cung hoàng đạo hay các nội dung “đọc vị tính cách” trên mạng xã hội. Trong tâm lý học, hiện tượng này được gọi là Hiệu ứng Barnum (Barnum Effect) hay Hiệu ứng Forer (Forer Effect).
+
+TỪ THÍ NGHIỆM CỦA FORER (1949)
+Năm 1949, nhà tâm lý học Bertram R. Forer đưa cho sinh viên bản “phân tích tính cách cá nhân hóa”. Thực tế, tất cả sinh viên đều nhận cùng một văn bản gồm các câu khái quát được cắt ghép từ sách chiêm tinh. Điểm đánh giá độ chính xác trung bình lên tới 4.26 / 5. Forer chỉ ra rằng việc một người cảm thấy lời diễn giải “rất đúng với mình” hoàn toàn không đồng nghĩa với việc nó có giá trị chẩn đoán thực tế.
+
+MỘT NGHIÊN CỨU TÂM LÝ HỌC ĐƯỢC XÂY DỰNG NHƯ THẾ NÀO?
+Từ một quan sát đời thường, khoa học xây dựng khung lý thuyết, xác định biến số (độ chung chung, tính tích cực, uy tín của nguồn), thiết kế thực nghiệm và phân tích dữ liệu. Đó chính là tinh thần Aperio Research muốn lan tỏa: đọc mọi hiện tượng đời sống bằng tư duy phản biện khoa học.`,
+    contentEn: `“You often appear strong to others, but deep down, you can be quite sensitive. At times you feel confident, yet you also tend to doubt yourself.”
+
+Statements like these are common in Tarot readings, horoscopes, and personality quizzes online. In psychology, this phenomenon is known as the Barnum Effect, or Forer Effect: the tendency to accept vague, general descriptions as accurate descriptions of oneself.
+
+The research history shows us how psychological science works: a familiar observation becomes a Research Question, which leads to a Theoretical Framework, variables, a research design, measurement, data collection, analysis, and interpretation.`,
+    references: [
+      { text: 'Forer, B. R. (1949). The Fallacy of Personal Validation: A Classroom Demonstration of Gullibility. Journal of Abnormal and Social Psychology, 44(1), 118–123.', doi: 'https://doi.org/10.1037/h0059240' },
+      { text: 'Snyder, C. R., Shenkel, R. J., & Lowery, C. R. (1977). Acceptance of personality interpretations: The “Barnum effect” and beyond. Journal of Consulting and Clinical Psychology, 45(1), 104–114.', doi: 'https://doi.org/10.1037/0022-006X.45.1.104' },
+      { text: 'Dickson, D. H., & Kelly, I. W. (1985). The “Barnum Effect” in Personality Assessment: A Review of the Literature. Perceptual and Motor Skills, 57(2), 367–382.', doi: 'https://doi.org/10.2466/pr0.1985.57.2.367' },
+      { text: 'Fichten, C. S., & Sunerton, B. (1983). Popular Horoscopes and the “Barnum Effect”. The Journal of Psychology, 114(1), 123–134.', doi: 'https://doi.org/10.1080/00223980.1983.9915405' }
+    ]
+  },
+  {
     id: 'toxic-positivity',
     slug: 'tich-cuc-doc-hai',
     category: 'psychology',
-    catBadge: 'TÂM LÝ HỌC XÃ HỘI',
-    title: 'Tích Cực Độc Hại: Khi “Hãy Cứ Tích Cực” Không Còn Là Một Lời Động Viên',
-    titleEn: 'Toxic Positivity: When “Just Stay Positive” Stops Being Supportive',
+    catBadge: 'PSYCHOLOGY #2',
+    seriesBadge: 'OPTIMISM AND DENIAL',
+    title: 'Tích Cực Độc Hại: Khi Sự Lạc Quan Bóp Nghẹt Nỗi Đau',
+    titleEn: 'Toxic Positivity: When Optimism Suffocates Genuine Pain',
     date: '03/10/2026',
     author: 'Aperio Behavioral Science Cohort',
-    image: null, // User will update image later
+    image: '/images/toxic_positivity.png',
     symbol: '🎭',
-    themeColor: '#a78bfa',
+    themeColor: '#eab308',
     summary: 'Khi sự tích cực bị đẩy đến mức phủ nhận, xem nhẹ hoặc kìm nén cảm xúc tiêu cực, nó trở thành một dạng áp lực vô hình. Làm thế nào một hiện tượng đời sống quen thuộc trở thành đối tượng nghiên cứu khoa học?',
-    highlights: ['Emotional Invalidation', 'Operationalization in Psychology', 'Social Expectancies & Well-being'],
+    highlights: ['Emotional Invalidation', 'Operationalization in Psychology', 'Social Expectancies & Well-being', 'False Self-Presentation'],
     readTime: '9 min read',
     contentVi: `“Mọi chuyện rồi sẽ ổn thôi.”
 “Hãy nhìn vào mặt tích cực đi.”
@@ -58,16 +158,17 @@ A mask may take only seconds to put on. Understanding why people wear it, when t
     id: 'positive-psychology',
     slug: 'cong-thuc-hanh-phuc',
     category: 'psychology',
-    catBadge: 'TÂM LÝ HỌC TÍCH CỰC',
-    title: 'Phải Chăng Hạnh Phúc Có Một Công Thức Chung? Khi Tính Cách Ảnh Hưởng Đến Cách Chúng Ta Tìm Kiếm Niềm Vui',
-    titleEn: 'Does Happiness Have a Common Formula? How Personality Shapes the Way We Seek Joy',
+    catBadge: 'PSYCHOLOGY #3',
+    seriesBadge: 'WELL-BEING AND GROWTH',
+    title: 'Tâm Lí Học Tích Cực: Khi Sự Tự Tin Khẳng Định Giá Trị',
+    titleEn: 'Positive Psychology: Does Happiness Have a Common Formula?',
     date: '10/10/2026',
     author: 'Aperio Positive Psychology Guild',
-    image: null, // User will update image later
-    symbol: '☀️',
-    themeColor: '#fbbf24',
+    image: '/images/positive_psychology.png',
+    symbol: '🌻',
+    themeColor: '#f59e0b',
     summary: 'Nếu cùng thực hiện một bài tập tâm lý nhằm cải thiện hạnh phúc, liệu tất cả chúng ta có nhận được hiệu quả như nhau? Nghiên cứu thực nghiệm về Positive Psychotherapy và tính cách cá nhân.',
-    highlights: ['Gratitude Visit', 'Three Good Things', 'Signature Strengths & Personality Fit'],
+    highlights: ['Gratitude Visit', 'Three Good Things', 'Signature Strengths & Personality Fit', 'Self-Acceptance & Growth'],
     readTime: '8 min read',
     contentVi: `Có người cảm thấy vui vẻ sau một buổi trò chuyện kéo dài hàng giờ. Nhưng cũng có người tìm thấy sự bình yên trong khoảng thời gian yên tĩnh để đọc sách, viết nhật ký hay nhìn lại những điều đã xảy ra trong ngày.
 
@@ -91,46 +192,11 @@ If we all took part in the same psychological exercise designed to improve happi
     ]
   },
   {
-    id: 'barnum-effect',
-    slug: 'hieu-ung-barnum',
-    category: 'psychology',
-    catBadge: 'TÂM LÝ HỌC NHẬN THỨC',
-    title: 'Hiệu Ứng Barnum: Khi Một Lời Mô Tả Chung Chung Lại Nghe Như Đang Nói Về Bạn',
-    titleEn: 'The Barnum Effect: When a General Description Feels Uniquely Yours',
-    date: '25/09/2026',
-    author: 'Aperio Cognitive Studies Lab',
-    image: null, // User will update image later
-    symbol: '🔮',
-    themeColor: '#38bdf8',
-    summary: '“Bạn thường tỏ ra mạnh mẽ, nhưng sâu bên trong lại khá nhạy cảm.” Vì sao những lời mô tả tính cách mơ hồ lại tạo ra cảm giác chính xác đến kỳ lạ trong Tarot và Chiêm tinh học?',
-    highlights: ['Bertram Forer (1949) Experiment', 'The Fallacy of Personal Validation', 'Scientific Question Framing'],
-    readTime: '7 min read',
-    contentVi: `“Bạn thường tỏ ra mạnh mẽ trước mọi người, nhưng sâu bên trong lại khá nhạy cảm. Bạn có những lúc tự tin, nhưng cũng thường nghi ngờ chính mình.”
-
-Nghe quen không? Những câu như vậy xuất hiện rất thường xuyên trong Tarot, cung hoàng đạo hay các nội dung “đọc vị tính cách” trên mạng xã hội. Trong tâm lý học, hiện tượng này được gọi là Hiệu ứng Barnum (Barnum Effect) hay Hiệu ứng Forer (Forer Effect).
-
-TỪ THÍ NGHIỆM CỦA FORER (1949)
-Năm 1949, nhà tâm lý học Bertram R. Forer đưa cho sinh viên bản “phân tích tính cách cá nhân hóa”. Thực tế, tất cả sinh viên đều nhận cùng một văn bản gồm các câu khái quát được cắt ghép từ sách chiêm tinh. Điểm đánh giá độ chính xác trung bình lên tới 4.26 / 5. Forer chỉ ra rằng việc một người cảm thấy lời diễn giải “rất đúng với mình” hoàn toàn không đồng nghĩa với việc nó có giá trị chẩn đoán thực tế.
-
-MỘT NGHIÊN CỨU TÂM LÝ HỌC ĐƯỢC XÂY DỰNG NHƯ THẾ NÀO?
-Từ một quan sát đời thường, khoa học xây dựng khung lý thuyết, xác định biến số (độ chung chung, tính tích cực, uy tín của nguồn), thiết kế thực nghiệm và phân tích dữ liệu. Đó chính là tinh thần Aperio Research muốn lan tỏa: đọc mọi hiện tượng đời sống bằng tư duy phản biện khoa học.`,
-    contentEn: `“You often appear strong to others, but deep down, you can be quite sensitive. At times you feel confident, yet you also tend to doubt yourself.”
-
-Statements like these are common in Tarot readings, horoscopes, and personality quizzes online. In psychology, this phenomenon is known as the Barnum Effect, or Forer Effect: the tendency to accept vague, general descriptions as accurate descriptions of oneself.
-
-The research history shows us how psychological science works: a familiar observation becomes a Research Question, which leads to a Theoretical Framework, variables, a research design, measurement, data collection, analysis, and interpretation.`,
-    references: [
-      { text: 'Forer, B. R. (1949). The Fallacy of Personal Validation: A Classroom Demonstration of Gullibility. Journal of Abnormal and Social Psychology, 44(1), 118–123.', doi: 'https://doi.org/10.1037/h0059240' },
-      { text: 'Snyder, C. R., Shenkel, R. J., & Lowery, C. R. (1977). Acceptance of personality interpretations: The “Barnum effect” and beyond. Journal of Consulting and Clinical Psychology, 45(1), 104–114.', doi: 'https://doi.org/10.1037/0022-006X.45.1.104' },
-      { text: 'Dickson, D. H., & Kelly, I. W. (1985). The “Barnum Effect” in Personality Assessment: A Review of the Literature. Perceptual and Motor Skills, 57(2), 367–382.', doi: 'https://doi.org/10.2466/pr0.1985.57.2.367' },
-      { text: 'Fichten, C. S., & Sunerton, B. (1983). Popular Horoscopes and the “Barnum Effect”. The Journal of Psychology, 114(1), 123–134.', doi: 'https://doi.org/10.1080/00223980.1983.9915405' }
-    ]
-  },
-  {
     id: 'student-psychological-counseling',
     slug: 'vi-sao-hoc-sinh-ngai-tu-van-tam-ly',
     category: 'psychology',
     catBadge: 'RESEARCH INITIATIVE / VOL. 01',
+    seriesBadge: 'SCHOOL PSYCHOLOGY',
     title: 'Vì Sao Học Sinh Ngại Đến Phòng Tư Vấn Tâm Lý?',
     titleEn: 'Why Do Students Hesitate to Seek School Psychological Counseling?',
     date: '11/10/2026',
@@ -139,7 +205,7 @@ The research history shows us how psychological science works: a familiar observ
     symbol: '🌱',
     themeColor: '#00f0ff',
     summary: 'Bạn đã bao giờ tự hỏi vì sao một dịch vụ hỗ trợ sức khỏe tinh thần học đường lại chưa được học sinh tìm đến như kỳ vọng? Tìm hiểu những rào cản tâm lý, xã hội và cấu trúc hệ thống.',
-    highlights: ['Fear of Being Judged', 'Stigma & Trust Issues', 'Privacy & Protocol Design'],
+    highlights: ['Fear of Being Judged', 'Stigma & Trust Issues', 'Privacy & Protocol Design', 'School Well-being Matrix'],
     readTime: '6 min read',
     contentVi: `Bạn đã bao giờ tự hỏi vì sao một dịch vụ được tạo ra để hỗ trợ sức khỏe tinh thần học đường lại chưa được học sinh tìm đến như kỳ vọng?
 
@@ -158,10 +224,38 @@ Aperio Research Initiative Vol. 01 investigates the core psychological, structur
     references: []
   },
   {
+    id: 'certificate-reveal',
+    slug: 'certificate-reveal-gen01',
+    category: 'campaigns',
+    catBadge: 'VINH DANH / RECOGNITION',
+    seriesBadge: 'HONORS & MERIT',
+    title: 'Certificate Reveal | Đại Sứ Truyền Thông Đợt 1 - Gen 0.1',
+    titleEn: 'Certificate Reveal: Honoring Media Ambassadors Gen 0.1',
+    date: '13/10/2026',
+    author: 'Founder of Aperio Research',
+    image: '/images/certificate_reveal.png',
+    symbol: '🦋',
+    themeColor: '#38bdf8',
+    summary: 'Công bố thiết kế Chứng nhận Đại sứ Truyền thông Gen 0.1 với biểu tượng cánh bướm pha lê lam ngọc (Sapphire Crystal Butterfly), ghi nhận những đóng góp cho cộng đồng khoa học mở.',
+    highlights: ['Official Founder Signature', 'Sapphire Crystal Butterfly Seal', 'Permanent Guild Registry'],
+    readTime: '3 min read',
+    contentVi: `Một hành trình được ghi dấu không chỉ bằng những gì chúng ta tạo ra, mà còn bằng những người đã góp sức để hành trình ấy tiếp tục tiến về phía trước.
+
+Aperio Research chính thức công bố Chứng nhận Đại sứ Truyền thông Đợt 1 - Gen 0.1, như một lời ghi nhận dành cho những thành viên đã đồng hành cùng dự án trong giai đoạn đầu xây dựng và phát triển cộng đồng.
+
+MỘT CHỨNG NHẬN, MỘT DẤU MỐC
+Chứng nhận lần này không chỉ đánh dấu một chặng đường đã qua, mà còn là lời cảm ơn chân thành của Aperio Research dành cho các Đại sứ Truyền thông Đợt 1 đã dành thời gian, sự quan tâm và tinh thần đồng hành cho Gen 0.1.
+
+Thank you for being part of Aperio's first chapter.`,
+    contentEn: `In recognition of valuable contribution, dedication, and active participation in the Aperio Research community. The Sapphire Crystal Butterfly symbol marks our enduring gratitude to our pioneering media ambassadors.`,
+    references: []
+  },
+  {
     id: 'ambassador-recruitment-gen01',
     slug: 'tuyen-dai-su-truyen-thong-gen01',
     category: 'campaigns',
     catBadge: 'CHIẾN DỊCH / GEN 0.1',
+    seriesBadge: 'OUTREACH GUILD',
     title: 'Tuyển Đại Sứ Truyền Thông Gen 0.1 - Đợt 2',
     titleEn: 'Aperio Media Ambassador Gen 0.1 - Cohort 2',
     date: '14/10/2026',
@@ -170,7 +264,7 @@ Aperio Research Initiative Vol. 01 investigates the core psychological, structur
     symbol: '📢',
     themeColor: '#00f0ff',
     summary: 'Chiến dịch tuyển đại sứ truyền thông đồng hành cùng Aperio lan tỏa nghiên cứu khoa học đến học sinh, sinh viên toàn quốc. 1 vòng đơn, không phỏng vấn.',
-    highlights: ['Nhiệm kỳ 1.5 tháng (6 tuần)', 'Không giới hạn đối tượng', 'Nhận Chứng nhận & Thư giới thiệu'],
+    highlights: ['Nhiệm kỳ 1.5 tháng (6 tuần)', 'Không giới hạn đối tượng', 'Nhận Chứng nhận & Thư giới thiệu (LoR)'],
     readTime: '4 min read',
     contentVi: `[TUYỂN ĐẠI SỨ TRUYỀN THÔNG GEN 0.1 - ĐỢT 2]
 Thời gian mở đơn: 14/10/2026 - 21/10/2026
@@ -195,36 +289,11 @@ QUYỀN LỢI:
     references: []
   },
   {
-    id: 'certificate-reveal',
-    slug: 'certificate-reveal-gen01',
-    category: 'campaigns',
-    catBadge: 'VINH DANH / RECOGNITION',
-    title: 'Certificate Reveal | Đại Sứ Truyền Thông Đợt 1 - Gen 0.1',
-    titleEn: 'Certificate Reveal: Honoring Media Ambassadors Gen 0.1',
-    date: '13/10/2026',
-    author: 'Founder of Aperio Research',
-    image: '/images/certificate_reveal.png',
-    symbol: '🦋',
-    themeColor: '#38bdf8',
-    summary: 'Công bố thiết kế Chứng nhận Đại sứ Truyền thông Gen 0.1 với biểu tượng cánh bướm pha lê lam ngọc (Sapphire Crystal Butterfly), ghi nhận những đóng góp cho cộng đồng khoa học mở.',
-    highlights: ['Official Founder Signature', 'Sapphire Crystal Butterfly Seal', 'Permanent Guild Registry'],
-    readTime: '3 min read',
-    contentVi: `Một hành trình được ghi dấu không chỉ bằng những gì chúng ta tạo ra, mà còn bằng những người đã góp sức để hành trình ấy tiếp tục tiến về phía trước.
-
-Aperio Research chính thức công bố Chứng nhận Đại sứ Truyền thông Đợt 1 - Gen 0.1, như một lời ghi nhận dành cho những thành viên đã đồng hành cùng dự án trong giai đoạn đầu xây dựng và phát triển cộng đồng.
-
-MỘT CHỨNG NHẬN, MỘT DẤU MỐC
-Chứng nhận lần này không chỉ đánh dấu một chặng đường đã qua, mà còn là lời cảm ơn chân thành của Aperio Research dành cho các Đại sứ Truyền thông Đợt 1 đã dành thời gian, sự quan tâm và tinh thần đồng hành cho Gen 0.1.
-
-Thank you for being part of Aperio's first chapter.`,
-    contentEn: `In recognition of valuable contribution, dedication, and active participation in the Aperio Research community. The Sapphire Crystal Butterfly symbol marks our enduring gratitude to our pioneering media ambassadors.`,
-    references: []
-  },
-  {
     id: 'research-division-closed',
     slug: 'dong-don-ban-nghien-cuu',
     category: 'campaigns',
     catBadge: 'THÔNG BÁO / ANNOUNCEMENT',
+    seriesBadge: 'ACADEMIC COHORT',
     title: 'Chính Thức Đóng Đơn Tuyển Chọn Ban Nghiên Cứu Gen 0.1',
     titleEn: 'The Call for Researchers is Now Closed',
     date: '19/10/2026',
@@ -251,6 +320,7 @@ Các đơn ứng tuyển sẽ được xem xét trong giai đoạn tiếp theo. 
     slug: 'dong-don-dai-su-truyen-thong',
     category: 'campaigns',
     catBadge: 'THÔNG BÁO / ANNOUNCEMENT',
+    seriesBadge: 'OUTREACH COHORT',
     title: 'Chính Thức Đóng Đơn Tuyển Đại Sứ Truyền Thông Gen 0.1 - Đợt 2',
     titleEn: 'Media Ambassador Recruitment Officially Closed - Check Your Mail',
     date: '24/10/2026',
@@ -276,6 +346,7 @@ Sau một khoảng thời gian tương đối im ắng trên các kênh truyền
     slug: 'tu-khoang-trong-den-de-tai',
     category: 'methodology',
     catBadge: 'PHƯƠNG PHÁP LUẬN',
+    seriesBadge: 'RESEARCH FOUNDATIONS',
     title: 'Từ Những Khoảng Trống Đến Đề Tài Nghiên Cứu',
     titleEn: 'From Research Gaps to Scientific Inquiry: A Methodological Compass',
     date: '15/10/2026',
@@ -314,6 +385,7 @@ How to identify research gaps:
     slug: 'tim-doc-chon-loc-tai-lieu',
     category: 'methodology',
     catBadge: 'KỸ NĂNG HỌC THUẬT',
+    seriesBadge: 'ACADEMIC SKILLS',
     title: 'Tìm, Đọc Và Chọn Lọc Tài Liệu Nghiên Cứu',
     titleEn: 'Searching, Reading, and Curating Scientific Literature',
     date: '08/10/2026',

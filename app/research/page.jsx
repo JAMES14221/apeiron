@@ -228,7 +228,7 @@ export default function ResearchPage() {
                       borderRadius: '6px',
                       border: `1px solid ${paper.themeColor}44`
                     }}>
-                      {paper.catBadge}
+                      {paper.seriesBadge ? `${paper.seriesBadge} • ${paper.catBadge}` : paper.catBadge}
                     </span>
                   </div>
                 </>
@@ -273,7 +273,7 @@ export default function ResearchPage() {
                   color: paper.themeColor,
                   textTransform: 'uppercase'
                 }}>
-                  {paper.catBadge}
+                  {paper.seriesBadge ? `${paper.seriesBadge} • ${paper.catBadge}` : paper.catBadge}
                 </span>
                 <span style={{ color: '#475569' }}>•</span>
                 <span style={{ color: '#94a3b8', fontSize: '0.8rem' }}>{paper.date}</span>
@@ -446,7 +446,7 @@ export default function ResearchPage() {
                   color: selectedPaper.themeColor,
                   border: `1px solid ${selectedPaper.themeColor}55`
                 }}>
-                  {selectedPaper.catBadge}
+                  {selectedPaper.seriesBadge ? `${selectedPaper.seriesBadge} • ${selectedPaper.catBadge}` : selectedPaper.catBadge}
                 </span>
                 <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedPaper.date}</span>
                 <span style={{ color: '#64748b' }}>•</span>
