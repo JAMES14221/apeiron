@@ -6,98 +6,98 @@ import Link from 'next/link';
 export default function FeaturedShowcase() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [activeModalPaper, setActiveModalPaper] = useState(null);
+  const [selectedPoster, setSelectedPoster] = useState(null);
 
-  const featured = [
+  const posters = [
     {
       id: 1,
-      badge: 'MATERIALS SCIENCE',
-      title: 'Biodegradable Cement from Agricultural Waste',
-      author: 'Nguyen Minh Triet & Aperio Guild',
-      time: '6 min read',
-      date: 'April 2026',
-      icon: '🌿',
-      color: '#34d399',
-      summary: 'Investigating high-silica rice husk ash and sugarcane bagasse fibers to replace 30% of Portland clinker, cutting embodied CO2 while improving compression strength.'
+      image: '/images/research_initiative_psychology.png',
+      badge: 'RESEARCH INITIATIVE / VOL. 01',
+      title: 'Vì Sao Học Sinh Ngại Đến Phòng Tư Vấn Tâm Lý?',
+      author: 'Ban Nghiên Cứu Đợt 1',
+      date: 'Tháng 10, 2026',
+      tag: 'TÂM LÝ HỌC HÀNH VI',
+      color: '#a78bfa',
+      summary: 'Khảo sát những rào cản vô hình đằng sau quyết định không tìm đến phòng tư vấn tâm lý học đường: nỗi sợ bị phán xét (fear of being judged), định kiến xã hội (stigma), lo ngại quyền riêng tư và khủng hoảng niềm tin.'
     },
     {
       id: 2,
-      badge: 'NEUROSCIENCE & AI',
-      title: 'AI-Assisted Early Detection of Neurological Disorders',
-      author: 'Le Hoang Nam & Mentorship Cohort',
-      time: '8 min read',
-      date: 'March 2026',
-      icon: '🧠',
+      image: '/images/ambassador_gen01.png',
+      badge: 'AMBASSADOR GUILD / GEN 0.1',
+      title: 'Tuyển Đại Sứ Truyền Thông — Gen 0.1 Đợt 2',
+      author: 'Aperio Outreach Division',
+      date: 'Nhiệm kỳ 6 tuần',
+      tag: 'LAN TỎA TRI THỨC',
       color: '#00f0ff',
-      summary: 'Employing deep convolutional neural networks to detect micro-tremors and acoustic biomarkers in early-stage Parkinsons patients via commodity smartphones.'
+      summary: 'Chiến dịch tuyển đại sứ đồng hành lan tỏa văn hóa nghiên cứu khoa học mở đến học sinh toàn quốc. Cơ hội tham gia trực tiếp vào việc sản xuất nội dung học thuật, kết nối diễn giả và xây dựng cộng đồng nghiên cứu.'
     },
     {
       id: 3,
-      badge: 'CHRONOBIOLOGY',
-      title: 'The Impact of Sleep Quality on Academic Performance',
-      author: 'Tran Thu Ha & Psychology Circle',
-      time: '5 min read',
-      date: 'February 2026',
-      icon: '⏳',
-      color: '#c084fc',
-      summary: 'Evaluating circadian disruption in high school and undergraduate students: why sleep architecture predicts executive reasoning better than raw study hours.'
+      image: '/images/certificate_reveal.png',
+      badge: 'MEMBER RECOGNITION',
+      title: 'Certificate of Appreciation Reveal',
+      author: 'Founder of Aperio Research',
+      date: 'Vinh Danh Cống Hiến',
+      tag: 'CHỨNG NHẬN ĐẠI SỨ',
+      color: '#38bdf8',
+      summary: 'Thiết kế chứng nhận vinh danh độc quyền với biểu tượng bướm pha lê lam ngọc (sapphire crystal butterfly). Ghi nhận những đóng góp ý nghĩa của các thành viên và đại sứ truyền thông trên hành trình khai mở tri thức trẻ.'
     },
     {
       id: 4,
-      badge: 'PSYCHOLOGY & COGNITION',
-      title: 'Tâm Lý Học: Hiểu Để Kết Nối Với Chính Mình',
-      author: 'Pham Quoc Bao & Aperio Fellows',
-      time: '7 min read',
-      date: 'January 2026',
-      icon: '💡',
-      color: '#fbbf24',
-      summary: 'Khảo sát hành vi và các cơ chế phòng vệ tâm lý học của thế hệ trẻ trong kỷ nguyên số hóa, cung cấp khung tự soi chiếu nhận thức để xây dựng nội lực.'
+      image: '/images/research_closed.jpg',
+      badge: 'RESEARCH COHORT / UPDATE',
+      title: 'Chính Thức Đóng Đơn — Tuyển Thành Viên Ban Nghiên Cứu',
+      author: 'Ban Học Thuật Aperio',
+      date: 'Đợt 1 Hoàn Tất',
+      tag: 'CHECK YOUR INBOX',
+      color: '#c084fc',
+      summary: 'Kỳ tuyển sinh Ban Nghiên cứu Đợt 1 đã chính thức khép lại với hàng trăm hồ sơ chất lượng. Thư thông báo kết quả và hướng dẫn giai đoạn phỏng vấn đang trên đường gửi đến hộp thư ứng viên.'
     },
     {
       id: 5,
-      badge: 'METHODOLOGY FOUNDATION',
-      title: 'Từ Những Khoảng Trống Đến Đề Tài Nghiên Cứu',
-      author: 'Scientific Advisory Board',
-      time: '10 min read',
-      date: 'December 2025',
-      icon: '🔍',
-      color: '#38bdf8',
-      summary: 'Cẩm nang phương pháp luận dành cho học sinh: cách phát hiện Research Gap, đặt câu hỏi nghiên cứu có giá trị thực tiễn và thiết kế khung thử nghiệm chuẩn mực.'
+      image: '/images/ambassador_closed.png',
+      badge: 'OUTREACH COHORT / UPDATE',
+      title: 'Đại Sứ Truyền Thông — Chính Thức Đóng Đơn',
+      author: 'Aperio Community Guild',
+      date: 'Check Your Mail',
+      tag: 'GEN 0.1 COMPLETED',
+      color: '#2dd4bf',
+      summary: 'Khép lại cổng đơn ứng tuyển Đại sứ Truyền thông. Cảm ơn sự đồng hành và hưởng ứng nồng nhiệt từ các bạn học sinh khắp các tỉnh thành. Vui lòng kiểm tra kỹ cả mục Spam/Promotion để không bỏ lỡ thư kết quả.'
     }
   ];
 
-  const total = featured.length;
+  const total = posters.length;
 
   const nextSlide = () => setCurrentIdx((prev) => (prev + 1) % total);
   const prevSlide = () => setCurrentIdx((prev) => (prev - 1 + total) % total);
 
   useEffect(() => {
-    if (isHovered) return;
-    const timer = setInterval(nextSlide, 5500);
+    if (isHovered || selectedPoster) return;
+    const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
-  }, [isHovered, total]);
+  }, [isHovered, selectedPoster, total]);
 
-  const current = featured[currentIdx];
+  const current = posters[currentIdx];
 
   return (
     <section
       style={{
         maxWidth: '1240px',
         margin: '0 auto',
-        padding: '60px 24px 80px 24px',
+        padding: '50px 24px 80px 24px',
         position: 'relative'
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Header Row */}
+      {/* Section Header */}
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
         flexWrap: 'wrap',
         gap: '16px',
-        marginBottom: '36px'
+        marginBottom: '32px'
       }}>
         <div>
           <div style={{
@@ -111,17 +111,17 @@ export default function FeaturedShowcase() {
             textTransform: 'uppercase',
             marginBottom: '8px'
           }}>
-            <span style={{ display: 'inline-block', width: '6px', height: '6px', borderRadius: '50%', background: '#00f0ff', boxShadow: '0 0 10px #00f0ff' }}></span>
-            FEATURED EXPLORATIONS
+            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: '#00f0ff', boxShadow: '0 0 12px #00f0ff' }}></span>
+            FEATURED EXPLORATIONS & CAMPAIGNS
           </div>
           <h2 style={{
             fontFamily: 'var(--font-serif, serif)',
-            fontSize: 'clamp(2rem, 4vw, 2.6rem)',
+            fontSize: 'clamp(2rem, 4vw, 2.7rem)',
             color: '#ffffff',
             margin: 0,
             letterSpacing: '1px'
           }}>
-            Student Publications & Guides
+            Các Dự Án & Chiến Dịch Nổi Bật
           </h2>
         </div>
 
@@ -135,92 +135,137 @@ export default function FeaturedShowcase() {
             textDecoration: 'none',
             fontSize: '0.9rem',
             fontWeight: '600',
-            padding: '8px 18px',
+            padding: '8px 20px',
             borderRadius: '999px',
             background: 'rgba(56, 189, 248, 0.08)',
-            border: '1px solid rgba(56, 189, 248, 0.25)',
+            border: '1px solid rgba(56, 189, 248, 0.3)',
             transition: 'all 0.2s ease'
           }}
         >
-          <span>View All 6 Publications</span>
+          <span>Khám Phá Toàn Bộ Đề Tài</span>
           <span>→</span>
         </Link>
       </div>
 
-      {/* Featured Card Stage */}
+      {/* Main Showcase Stage */}
       <div style={{
         position: 'relative',
         borderRadius: '24px',
-        background: 'radial-gradient(ellipse at 80% 20%, rgba(0, 240, 255, 0.08) 0%, rgba(10, 18, 38, 0.94) 70%)',
-        border: `1px solid ${current.color}44`,
-        boxShadow: `0 20px 60px rgba(0, 0, 0, 0.6), 0 0 30px ${current.color}18`,
-        padding: '48px 40px',
+        background: 'rgba(6, 14, 32, 0.95)',
+        border: `1px solid ${current.color}55`,
+        boxShadow: `0 25px 80px rgba(0, 0, 0, 0.75), 0 0 40px ${current.color}22`,
+        padding: '36px',
+        overflow: 'hidden',
         transition: 'border-color 0.4s ease, box-shadow 0.4s ease'
       }}>
+        {/* Subtle Ambient Radial Backlight */}
         <div style={{
+          position: 'absolute',
+          top: '-20%',
+          right: '-10%',
+          width: '500px',
+          height: '500px',
+          background: `radial-gradient(circle, ${current.color}1a 0%, transparent 70%)`,
+          pointerEvents: 'none',
+          zIndex: 0
+        }} />
+
+        <div style={{
+          position: 'relative',
+          zIndex: 1,
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '36px',
           alignItems: 'center'
         }}>
-          {/* Left Column: Monogram & Visual Icon */}
-          <div style={{
-            height: '240px',
-            borderRadius: '18px',
-            background: `radial-gradient(circle at 50% 50%, ${current.color}22 0%, rgba(2, 6, 18, 0.9) 80%)`,
-            border: `1px solid ${current.color}33`,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative',
-            overflow: 'hidden'
-          }}>
-            <div style={{
-              fontSize: '4.5rem',
-              filter: `drop-shadow(0 0 25px ${current.color})`,
-              transform: 'scale(1)',
-              transition: 'transform 0.3s ease'
-            }}>
-              {current.icon}
-            </div>
+          {/* Banner Graphic Frame with Interactive Zoom Trigger */}
+          <div
+            onClick={() => setSelectedPoster(current)}
+            style={{
+              borderRadius: '16px',
+              overflow: 'hidden',
+              cursor: 'pointer',
+              position: 'relative',
+              aspectRatio: '16 / 9',
+              background: '#01040a',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.6)',
+              transition: 'transform 0.3s ease, border-color 0.3s ease'
+            }}
+            title="Nhấp để xem ảnh phóng to chi tiết"
+          >
+            <img
+              src={current.image}
+              alt={current.title}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+                transition: 'transform 0.4s ease'
+              }}
+            />
+            {/* Hover overlay hint */}
             <div style={{
               position: 'absolute',
-              bottom: '16px',
-              fontSize: '0.72rem',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              color: current.color,
-              fontWeight: '700'
+              inset: 0,
+              background: 'linear-gradient(to top, rgba(2, 6, 18, 0.75) 0%, transparent 60%)',
+              display: 'flex',
+              alignItems: 'flex-end',
+              justifyContent: 'space-between',
+              padding: '16px'
             }}>
-              PAPER #{current.id.toString().padStart(2, '0')}
-            </div>
-          </div>
-
-          {/* Right Column: Paper Metadata & Action */}
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px', flexWrap: 'wrap' }}>
               <span style={{
                 fontSize: '0.75rem',
                 fontWeight: '700',
-                padding: '4px 12px',
-                borderRadius: '999px',
-                background: `${current.color}1a`,
+                padding: '4px 10px',
+                borderRadius: '6px',
+                background: 'rgba(0, 0, 0, 0.7)',
                 color: current.color,
                 border: `1px solid ${current.color}44`,
                 letterSpacing: '1px'
               }}>
+                {current.tag}
+              </span>
+              <span style={{
+                fontSize: '0.78rem',
+                color: '#ffffff',
+                background: 'rgba(0, 240, 255, 0.25)',
+                border: '1px solid rgba(0, 240, 255, 0.5)',
+                padding: '4px 12px',
+                borderRadius: '999px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '5px'
+              }}>
+                <span>Phóng To</span>
+                <span>⤢</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Editorial Content */}
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px', flexWrap: 'wrap' }}>
+              <span style={{
+                fontSize: '0.72rem',
+                fontWeight: '700',
+                padding: '4px 12px',
+                borderRadius: '999px',
+                background: `${current.color}1f`,
+                color: current.color,
+                border: `1px solid ${current.color}44`,
+                letterSpacing: '1.2px'
+              }}>
                 {current.badge}
               </span>
-              <span style={{ color: '#64748b', fontSize: '0.82rem' }}>•</span>
+              <span style={{ color: '#64748b' }}>•</span>
               <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{current.date}</span>
-              <span style={{ color: '#64748b', fontSize: '0.82rem' }}>•</span>
-              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{current.time}</span>
             </div>
 
             <h3 style={{
               fontFamily: 'var(--font-serif, serif)',
-              fontSize: 'clamp(1.5rem, 2.5vw, 2.1rem)',
+              fontSize: 'clamp(1.5rem, 2.4vw, 2.2rem)',
               color: '#ffffff',
               lineHeight: '1.25',
               margin: '0 0 16px 0'
@@ -230,111 +275,157 @@ export default function FeaturedShowcase() {
 
             <p style={{
               color: '#cbd5e1',
-              fontSize: '0.98rem',
-              lineHeight: '1.75',
+              fontSize: '0.96rem',
+              lineHeight: '1.8',
               margin: '0 0 24px 0'
             }}>
               {current.summary}
             </p>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
-              <div style={{ color: '#94a3b8', fontSize: '0.85rem' }}>
-                Lead: <strong style={{ color: '#ffffff' }}>{current.author}</strong>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '16px',
+              paddingTop: '16px',
+              borderTop: '1px solid rgba(255, 255, 255, 0.08)'
+            }}>
+              <div style={{ color: '#94a3b8', fontSize: '0.86rem' }}>
+                Đơn vị: <strong style={{ color: '#ffffff' }}>{current.author}</strong>
               </div>
 
-              <button
-                onClick={() => setActiveModalPaper(current)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '10px 24px',
-                  borderRadius: '999px',
-                  background: current.color,
-                  color: '#020612',
-                  border: 'none',
-                  fontSize: '0.88rem',
-                  fontWeight: '700',
-                  cursor: 'pointer',
-                  boxShadow: `0 0 20px ${current.color}66`,
-                  transition: 'transform 0.2s ease'
-                }}
-              >
-                <span>Read Overview</span>
-                <span>→</span>
-              </button>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <button
+                  onClick={() => setSelectedPoster(current)}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '10px 22px',
+                    borderRadius: '999px',
+                    background: current.color,
+                    color: '#020612',
+                    border: 'none',
+                    fontSize: '0.88rem',
+                    fontWeight: '700',
+                    cursor: 'pointer',
+                    boxShadow: `0 0 20px ${current.color}55`,
+                    transition: 'transform 0.2s ease'
+                  }}
+                >
+                  <span>Xem Chi Tiết</span>
+                  <span>↗</span>
+                </button>
+
+                <a
+                  href="https://forms.gle/F9evDGJCJm1P4XRz5"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '10px 20px',
+                    borderRadius: '999px',
+                    background: 'rgba(255, 255, 255, 0.06)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    color: '#ffffff',
+                    fontSize: '0.88rem',
+                    fontWeight: '600',
+                    textDecoration: 'none'
+                  }}
+                >
+                  <span>Nộp Đơn</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Carousel Navigation Footer */}
+        {/* Thumbnail Preview Selector Bar */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${total}, 1fr)`,
+          gap: '12px',
+          marginTop: '32px',
+          paddingTop: '20px',
+          borderTop: '1px solid rgba(255, 255, 255, 0.08)'
+        }}>
+          {posters.map((p, idx) => {
+            const isActive = idx === currentIdx;
+            return (
+              <div
+                key={p.id}
+                onClick={() => setCurrentIdx(idx)}
+                style={{
+                  cursor: 'pointer',
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  aspectRatio: '16 / 9',
+                  border: isActive ? `2px solid ${p.color}` : '1px solid rgba(255, 255, 255, 0.12)',
+                  boxShadow: isActive ? `0 0 15px ${p.color}55` : 'none',
+                  opacity: isActive ? 1 : 0.45,
+                  transform: isActive ? 'scale(1.03)' : 'scale(1)',
+                  transition: 'all 0.25s ease'
+                }}
+                title={p.title}
+              >
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom Navigation Row */}
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          marginTop: '36px',
-          paddingTop: '20px',
-          borderTop: '1px solid rgba(255, 255, 255, 0.08)'
+          marginTop: '16px'
         }}>
-          {/* Slide Dots */}
-          <div style={{ display: 'flex', gap: '8px' }}>
-            {featured.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentIdx(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-                style={{
-                  width: idx === currentIdx ? '28px' : '8px',
-                  height: '8px',
-                  borderRadius: '4px',
-                  background: idx === currentIdx ? current.color : 'rgba(255, 255, 255, 0.2)',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  padding: 0
-                }}
-              />
-            ))}
+          <div style={{ color: '#94a3b8', fontSize: '0.82rem' }}>
+            <span>{currentIdx + 1}</span> / <span>{total}</span> • <span style={{ color: current.color }}>{current.tag}</span>
           </div>
 
-          {/* Arrow Buttons */}
-          <div style={{ display: 'flex', gap: '10px' }}>
+          <div style={{ display: 'flex', gap: '8px' }}>
             <button
               onClick={prevSlide}
-              aria-label="Previous Exploration"
+              aria-label="Previous"
               style={{
-                width: '38px',
-                height: '38px',
+                width: '36px',
+                height: '36px',
                 borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.06)',
+                background: 'rgba(255, 255, 255, 0.08)',
                 border: '1px solid rgba(255, 255, 255, 0.15)',
                 color: '#ffffff',
+                cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                fontSize: '1rem',
-                transition: 'all 0.2s'
+                justifyContent: 'center'
               }}
             >
               ❮
             </button>
             <button
               onClick={nextSlide}
-              aria-label="Next Exploration"
+              aria-label="Next"
               style={{
-                width: '38px',
-                height: '38px',
+                width: '36px',
+                height: '36px',
                 borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.06)',
+                background: 'rgba(255, 255, 255, 0.08)',
                 border: '1px solid rgba(255, 255, 255, 0.15)',
                 color: '#ffffff',
+                cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                fontSize: '1rem',
-                transition: 'all 0.2s'
+                justifyContent: 'center'
               }}
             >
               ❯
@@ -343,15 +434,15 @@ export default function FeaturedShowcase() {
         </div>
       </div>
 
-      {/* Reader Modal */}
-      {activeModalPaper && (
+      {/* Full-Screen Poster Zoom / Reader Modal */}
+      {selectedPoster && (
         <div
-          onClick={() => setActiveModalPaper(null)}
+          onClick={() => setSelectedPoster(null)}
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(2, 6, 18, 0.92)',
-            zIndex: 9999,
+            background: 'rgba(2, 6, 18, 0.94)',
+            zIndex: 10000,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -362,106 +453,125 @@ export default function FeaturedShowcase() {
             onClick={(e) => e.stopPropagation()}
             style={{
               width: '100%',
-              maxWidth: '680px',
-              maxHeight: '85vh',
+              maxWidth: '920px',
+              maxHeight: '90vh',
               overflowY: 'auto',
               background: 'rgba(10, 18, 38, 0.98)',
-              border: `1px solid ${activeModalPaper.color}66`,
+              border: `1px solid ${selectedPoster.color}66`,
               borderRadius: '24px',
-              padding: '40px',
-              boxShadow: `0 25px 80px rgba(0, 0, 0, 0.8), 0 0 40px ${activeModalPaper.color}22`,
+              padding: '32px',
+              boxShadow: `0 30px 90px rgba(0, 0, 0, 0.85), 0 0 50px ${selectedPoster.color}22`,
               position: 'relative'
             }}
           >
+            {/* Close Button */}
             <button
-              onClick={() => setActiveModalPaper(null)}
-              aria-label="Close modal"
+              onClick={() => setSelectedPoster(null)}
               style={{
                 position: 'absolute',
                 top: '20px',
                 right: '20px',
-                width: '36px',
-                height: '36px',
+                width: '38px',
+                height: '38px',
                 borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.08)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                color: '#94a3b8',
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                color: '#ffffff',
+                fontSize: '1.2rem',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: '1.1rem'
+                zIndex: 10
               }}
             >
               ✕
             </button>
 
+            {/* Poster Full Display */}
             <div style={{
-              display: 'inline-block',
-              fontSize: '0.75rem',
-              fontWeight: '700',
-              padding: '4px 12px',
-              borderRadius: '999px',
-              background: `${activeModalPaper.color}22`,
-              color: activeModalPaper.color,
-              border: `1px solid ${activeModalPaper.color}55`,
-              marginBottom: '16px'
+              borderRadius: '16px',
+              overflow: 'hidden',
+              marginBottom: '24px',
+              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.7)',
+              border: '1px solid rgba(255, 255, 255, 0.15)'
             }}>
-              {activeModalPaper.badge}
+              <img
+                src={selectedPoster.image}
+                alt={selectedPoster.title}
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+              <span style={{
+                fontSize: '0.75rem',
+                fontWeight: '700',
+                padding: '4px 12px',
+                borderRadius: '999px',
+                background: `${selectedPoster.color}22`,
+                color: selectedPoster.color,
+                border: `1px solid ${selectedPoster.color}55`
+              }}>
+                {selectedPoster.badge}
+              </span>
+              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedPoster.date}</span>
             </div>
 
             <h3 style={{
               fontFamily: 'var(--font-serif, serif)',
               fontSize: '1.8rem',
               color: '#ffffff',
-              margin: '0 0 12px 0'
+              margin: '0 0 14px 0'
             }}>
-              {activeModalPaper.title}
+              {selectedPoster.title}
             </h3>
 
-            <div style={{ color: '#94a3b8', fontSize: '0.88rem', marginBottom: '24px' }}>
-              Author: <strong style={{ color: '#ffffff' }}>{activeModalPaper.author}</strong> | {activeModalPaper.date}
-            </div>
-
-            <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.8', marginBottom: '32px' }}>
-              {activeModalPaper.summary}
+            <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.8', margin: '0 0 28px 0' }}>
+              {selectedPoster.summary}
             </p>
 
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
-              <Link
-                href="/research"
-                onClick={() => setActiveModalPaper(null)}
+              <a
+                href="https://forms.gle/F9evDGJCJm1P4XRz5"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
                   padding: '12px 28px',
                   borderRadius: '999px',
-                  background: activeModalPaper.color,
+                  background: selectedPoster.color,
                   color: '#020612',
                   textDecoration: 'none',
                   fontWeight: '700',
-                  fontSize: '0.9rem'
+                  fontSize: '0.92rem'
                 }}
               >
-                <span>Go to Full Research Page</span>
-                <span>→</span>
-              </Link>
+                <span>Nộp Hồ Sơ / Đăng Ký Nghiên Cứu</span>
+                <span>↗</span>
+              </a>
 
-              <button
-                onClick={() => setActiveModalPaper(null)}
+              <Link
+                href="/research"
+                onClick={() => setSelectedPoster(null)}
                 style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
                   padding: '12px 24px',
                   borderRadius: '999px',
-                  background: 'rgba(255, 255, 255, 0.05)',
+                  background: 'rgba(255, 255, 255, 0.08)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
                   color: '#ffffff',
-                  cursor: 'pointer',
-                  fontSize: '0.9rem'
+                  textDecoration: 'none',
+                  fontSize: '0.92rem',
+                  fontWeight: '600'
                 }}
               >
-                Close Overview
-              </button>
+                <span>Xem Kho Lưu Trữ Đề Tài</span>
+              </Link>
             </div>
           </div>
         </div>
