@@ -89,12 +89,13 @@ nav {
     transform: scale(1.03);
 }
 
-.nav-logo-img {
-    height: 48px;
+.nav-logo-img,
+.nav-logo-svg {
+    height: 40px;
     width: auto;
     object-fit: contain;
     display: block;
-    filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.5));
+    filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.65));
     transition: filter 0.3s ease, transform 0.25s ease;
 }
 
@@ -1492,60 +1493,85 @@ nav {
     z-index: 10;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 70px;
     max-width: 1200px;
     width: 100%;
-    margin-top: 80px;
+    margin-top: 100px;
+    margin-bottom: 70px;
+    padding: 0 24px;
 }
 
 .about-dossier-card {
-    background: rgba(6, 16, 38, 0.82);
-    border: 1px solid rgba(0, 240, 255, 0.2);
-    border-radius: 20px;
-    padding: 40px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 240, 255, 0.05);
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    position: relative;
 }
 
 .about-dossier-card h2 {
     font-family: var(--font-serif);
-    font-size: 1.8rem;
+    font-size: 2.15rem;
     font-weight: 700;
+    letter-spacing: 2px;
     color: #ffffff;
-    margin-bottom: 16px;
-    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-    padding-bottom: 12px;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    position: relative;
+    text-shadow: 0 2px 20px rgba(0, 240, 255, 0.4), 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.about-dossier-card h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.8) 0%, rgba(160, 140, 255, 0.4) 40%, rgba(0, 240, 255, 0.05) 80%, transparent 100%);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
 }
 
 .about-dossier-card p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #94a3b8;
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: #cbd5e1;
+    letter-spacing: 0.25px;
+    margin: 0;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .mission-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
 }
 
 .mission-list li {
     position: relative;
-    padding-left: 20px;
-    font-size: 1.02rem;
-    line-height: 1.5;
-    color: #94a3b8;
+    padding-left: 28px;
+    font-size: 1.06rem;
+    line-height: 1.7;
+    color: #cbd5e1;
+    letter-spacing: 0.2px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .mission-list li::before {
     content: '✦';
     position: absolute;
     left: 0;
+    top: 2px;
     color: var(--cyan-electric);
-    font-size: 0.85rem;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
 }
 
 /* ==========================================================================
@@ -1555,46 +1581,34 @@ nav {
     position: relative;
     width: 100%;
     min-height: 840px;
-    background: transparent;
+    background: transparent !important;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     user-select: none;
     touch-action: pan-y;
-    overflow: hidden;
+    overflow: visible;
 }
 
-/* 400 DPI Celestial Gyroscope Background Plate */
+/* Pure Mathematical Cosmic Canvas Stage (No stock images) */
 .gacha-backdrop {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 1;
-    mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, black 40%, rgba(0,0,0,0.85) 60%, transparent 95%);
-    -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, black 40%, rgba(0,0,0,0.85) 60%, transparent 95%);
+    background: transparent !important;
+    overflow: visible;
 }
 
-.gacha-backdrop-img {
-    width: 100%;
-    max-width: 1700px;
-    height: 100%;
-    object-fit: contain;
-    object-position: center 48%;
-    filter: contrast(1.05) brightness(1.0) drop-shadow(0 0 30px rgba(90, 70, 210, 0.2));
-}
-
-/* Live Floating Stardust Twinkle Canvas */
-.gacha-twinkle-canvas {
+.cosmic-stage-canvas {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
+    display: block;
     pointer-events: none;
     z-index: 2;
 }
@@ -1688,12 +1702,15 @@ nav {
     will-change: transform;
 }
 
-.core-crystal-img {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.95)) drop-shadow(0 0 50px rgba(168, 85, 247, 0.8));
+.core-crystal-prism {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     animation: corePulse 4.5s ease-in-out infinite alternate;
+}
+
+.core-prism-svg {
+    filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.95)) drop-shadow(0 0 40px rgba(168, 85, 247, 0.7));
 }
 
 .core-aura-pulse {
@@ -1733,15 +1750,15 @@ nav {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 250px;
-    height: 387px;
-    margin-top: -193px;
-    margin-left: -125px;
+    width: 256px;
+    height: 396px;
+    margin-top: -198px;
+    margin-left: -128px;
     transform-style: preserve-3d;
     cursor: pointer;
     pointer-events: auto;
-    transition: filter 0.28s ease, opacity 0.28s ease;
-    will-change: transform, opacity, filter;
+    transition: opacity 0.28s ease;
+    will-change: transform, opacity;
     outline: none;
 }
 
@@ -1752,15 +1769,15 @@ nav {
     z-index: -1;
     border-radius: 18px;
     background: linear-gradient(145deg, rgba(210, 200, 255, 0.35), rgba(130, 105, 240, 0.2) 50%, rgba(100, 140, 255, 0.2));
-    filter: blur(4px);
+    box-shadow: 0 0 14px rgba(130, 105, 240, 0.2);
     opacity: 0.15;
-    transition: opacity 260ms ease, filter 260ms ease;
+    transition: opacity 260ms ease;
 }
 
 .gacha-card:hover::after,
 .gacha-card:focus-visible::after {
     opacity: 0.45;
-    filter: blur(7px);
+    box-shadow: 0 0 24px rgba(130, 105, 240, 0.4);
 }
 
 .gacha-card:focus-visible .gacha-card-flipper {
@@ -1803,10 +1820,8 @@ nav {
 /* Back Face: Translucent Crystal Astral Tarot Card (Default View) */
 .gacha-card-back {
     transform: rotateY(0deg) translateZ(1px);
-    background: rgba(8, 8, 22, 0.45);
-    backdrop-filter: blur(8px) brightness(1.05);
-    -webkit-backdrop-filter: blur(8px) brightness(1.05);
-    border: 1px solid rgba(160, 150, 255, 0.22);
+    background: rgba(10, 10, 26, 0.90);
+    border: 1px solid rgba(160, 150, 255, 0.25);
     box-shadow: 
         0 15px 35px -5px rgba(0, 0, 0, 0.75),
         0 0 12px rgba(120, 100, 240, 0.15),
@@ -1816,14 +1831,74 @@ nav {
     justify-content: flex-end;
 }
 
-.gacha-crystal-img {
+/* Sacred Geometry Astrolabe Seal on Card Back (Pure Vector SVG) */
+.gacha-card-sacred-seal {
     position: absolute;
     inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #00f0ff;
+    opacity: 0.85;
+}
+
+.card-seal-svg {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    display: block;
+}
+
+.card-back-top-badge {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    padding: 3px 12px;
+    border-radius: 999px;
+    background: rgba(10, 15, 30, 0.7);
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    backdrop-filter: blur(4px);
+}
+
+.card-back-badge-text {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #00f0ff;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
+}
+
+.card-back-bottom-crest {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
     pointer-events: none;
-    border-radius: 18px;
+}
+
+.card-crest-roman {
+    font-family: var(--font-serif, serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.9);
+}
+
+.card-crest-label {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    color: rgba(226, 232, 240, 0.75);
 }
 
 .gacha-card-crystal-overlay {
@@ -1845,6 +1920,72 @@ nav {
 @keyframes crystalSheen {
     0%, 100% { opacity: 0.25; transform: translateX(-2%); }
     50% { opacity: 0.55; transform: translateX(2%); }
+}
+
+/* Center 8-pointed star in tarot card back (Pillar 1) */
+.gacha-card-center-star {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 76px;
+    height: 76px;
+    margin-top: -38px;
+    margin-left: -38px;
+    pointer-events: none;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: starRotateCCW 18s linear infinite, starBreathingGlow 3.6s ease-in-out infinite;
+}
+
+.star-8-svg {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes starRotateCCW {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes starBreathingGlow {
+    0%, 100% {
+        opacity: 0.65;
+        transform: scale(0.92);
+        filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.6));
+    }
+    50% {
+        opacity: 1.0;
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 16px rgba(0, 240, 255, 1)) drop-shadow(0 0 26px rgba(168, 85, 247, 0.85));
+    }
+}
+
+/* Diagonal Specular Sheen Sweep Across Card Surface (Pillar 1) */
+.gacha-card-sheen {
+    position: absolute;
+    inset: -60%;
+    background: linear-gradient(
+        125deg,
+        transparent 35%,
+        rgba(0, 240, 255, 0.0) 42%,
+        rgba(0, 240, 255, 0.16) 47%,
+        rgba(255, 255, 255, 0.42) 50%,
+        rgba(168, 85, 247, 0.20) 53%,
+        transparent 60%
+    );
+    transform: rotate(25deg);
+    pointer-events: none;
+    z-index: 6;
+    animation: specularSweep 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes specularSweep {
+    0% { transform: translateY(-80%) translateX(-80%) rotate(25deg); opacity: 0; }
+    12% { opacity: 0.85; }
+    38% { transform: translateY(80%) translateX(80%) rotate(25deg); opacity: 0.85; }
+    46%, 100% { opacity: 0; }
 }
 
 .gacha-card-bottom-seal {
@@ -1882,15 +2023,15 @@ nav {
 /* Front Face: Translucent Crystal Scholar Codex Dossier (Revealed state) */
 .gacha-card-front {
     transform: rotateY(180deg) translateZ(1px);
-    background: rgba(8, 8, 24, 0.95);
-    border: 1.5px solid rgba(160, 150, 255, 0.35);
+    background: rgba(6, 9, 24, 0.94);
+    border: 1.5px solid rgba(160, 150, 255, 0.45);
     box-shadow: 
-        0 20px 45px -8px rgba(0, 0, 0, 0.9),
-        0 0 24px rgba(120, 100, 245, 0.3),
-        inset 0 0 16px rgba(140, 120, 255, 0.16);
+        0 25px 60px -10px rgba(0, 0, 0, 0.95),
+        0 0 30px rgba(120, 100, 245, 0.35),
+        inset 0 0 20px rgba(0, 240, 255, 0.15);
     display: flex;
     flex-direction: column;
-    padding: 15px 14px 12px;
+    padding: 12px 12px 10px;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -1906,7 +2047,7 @@ nav {
     pointer-events: none;
     border-radius: 18px;
     z-index: 1;
-    opacity: 0.65;
+    opacity: 0.95;
 }
 
 .gacha-front-content {
@@ -1917,57 +2058,305 @@ nav {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .gacha-card-close-btn {
     position: absolute;
     top: 9px;
     right: 9px;
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    color: #e2e8f0;
+    background: rgba(10, 16, 36, 0.88);
+    border: 1px solid rgba(0, 240, 255, 0.45);
+    color: #38bdf8;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 12px;
     z-index: 15;
-    transition: background 0.2s, transform 0.2s, border-color 0.2s;
+    transition: all 0.22s ease;
     line-height: 1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 240, 255, 0.2);
 }
 
 .gacha-card-close-btn:hover {
-    background: rgba(168, 140, 255, 0.35);
-    border-color: rgba(168, 140, 255, 0.7);
-    transform: scale(1.15);
+    background: rgba(0, 240, 255, 0.3);
+    border-color: #00f0ff;
+    color: #ffffff;
+    transform: scale(1.15) rotate(90deg);
+    box-shadow: 0 0 18px rgba(0, 240, 255, 0.65);
 }
 
-.gacha-avatar-frame {
-    width: 66px;
-    height: 66px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(160, 130, 255, 0.25) 0%, rgba(18, 14, 46, 0.92) 100%);
-    border: 1.8px solid rgba(190, 175, 255, 0.5);
-    box-shadow: 0 0 16px rgba(140, 110, 255, 0.4), inset 0 0 12px rgba(190, 175, 255, 0.22);
+.gacha-card-badge-wrap {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 2px 0;
+    gap: 5px;
+    margin-top: 1px;
+    padding: 0 20px;
+}
+
+.badge-star {
+    font-size: 0.5rem;
+    color: #00f0ff;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
+}
+
+.badge-sep {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.badge-org {
+    font-family: 'Cinzel', serif;
+    font-size: 0.60rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #cbd5e1;
+}
+
+.gacha-card-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.60rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #00f0ff;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+}
+
+.gacha-avatar-frame {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(30, 41, 75, 0.95) 0%, rgba(8, 12, 30, 0.98) 100%);
+    border: 1.8px solid rgba(0, 240, 255, 0.65);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.45), inset 0 0 12px rgba(168, 85, 247, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px auto 3px;
     position: relative;
-    overflow: hidden;
+}
+
+.avatar-orbit-ring {
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 1px dashed rgba(0, 240, 255, 0.4);
+    pointer-events: none;
+    animation: spinOrbitRing 25s linear infinite;
+}
+
+@keyframes spinOrbitRing {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.gacha-monogram-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .gacha-avatar-monogram {
-    font-family: var(--font-serif);
-    font-size: 1.42rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
     font-weight: 700;
-    color: #ffffff;
     letter-spacing: 1.5px;
-    text-shadow: 0 0 12px rgba(180, 160, 255, 0.85);
+    background: linear-gradient(180deg, #ffffff 0%, #cffafe 60%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.8));
+}
+
+.gacha-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    display: block;
+}
+
+.gacha-nickname {
+    color: #38bdf8;
+    font-size: 0.68rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+/* Department Astrolabe Navigator (Multidirectional / Tiers) */
+.orbit-selector {
+    position: relative;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: 1100px;
+    margin: 8px auto 18px;
+    padding: 0 16px;
+}
+
+.orbit-pill {
+    background: rgba(8, 14, 38, 0.65);
+    border: 1px solid rgba(0, 240, 255, 0.22);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.25s ease;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.orbit-pill:hover {
+    color: #ffffff;
+    border-color: rgba(0, 240, 255, 0.55);
+    background: rgba(0, 240, 255, 0.12);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.orbit-pill.is-active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.25) 0%, rgba(147, 51, 234, 0.3) 100%);
+    border-color: #00f0ff;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.2);
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
+    transform: translateY(-1px) scale(1.03);
+}
+
+.orbit-badge-count {
+    display: inline-block;
+    padding: 1px 5px;
+    margin-left: 5px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 0.65rem;
+}
+
+/* Easter Egg Music Player HUD */
+.easter-egg-player {
+    position: fixed;
+    bottom: 28px;
+    right: 32px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 22px;
+    background: rgba(6, 12, 32, 0.92);
+    border: 1px solid rgba(0, 240, 255, 0.45);
+    border-radius: 40px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 240, 255, 0.35);
+    animation: easterPlayerSlideIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes easterPlayerSlideIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.player-vibes-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 18px;
+}
+
+.player-vibes-bars span {
+    width: 3px;
+    height: 100%;
+    background: var(--cyan-electric);
+    border-radius: 2px;
+    animation: barVibe 0.8s ease-in-out infinite alternate;
+}
+.player-vibes-bars span:nth-child(2) { animation-delay: 0.15s; height: 60%; }
+.player-vibes-bars span:nth-child(3) { animation-delay: 0.3s; height: 90%; }
+.player-vibes-bars span:nth-child(4) { animation-delay: 0.45s; height: 40%; }
+.player-vibes-bars span:nth-child(5) { animation-delay: 0.6s; height: 75%; }
+
+.player-vibes-bars.is-paused span {
+    animation-play-state: paused;
+    height: 25% !important;
+}
+
+@keyframes barVibe {
+    0% { height: 25%; }
+    100% { height: 100%; }
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.player-tag {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--cyan-electric);
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.player-track {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+}
+
+.player-toggle-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(0, 240, 255, 0.18);
+    border: 1px solid rgba(0, 240, 255, 0.6);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.player-toggle-btn:hover {
+    background: rgba(0, 240, 255, 0.35);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+}
+
+.player-close-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px;
+    transition: color 0.2s;
+}
+
+.player-close-btn:hover {
+    color: #ffffff;
 }
 
 .gacha-card-badge {
@@ -1981,74 +2370,215 @@ nav {
 }
 
 .gacha-card-name {
-    font-family: var(--font-serif);
-    font-size: 1.22rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.90rem;
     font-weight: 700;
-    color: #ffffff;
-    margin: 2px 0 1px;
+    text-transform: uppercase;
     letter-spacing: 0.5px;
-    text-shadow: 0 0 14px rgba(255, 255, 255, 0.7);
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 1px 0 2px;
+    max-width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: linear-gradient(180deg, #ffffff 15%, #e0f2fe 65%, #bae6fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 14px rgba(0, 240, 255, 0.5));
 }
 
 .gacha-card-role {
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: #93c5fd;
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #38bdf8;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
     margin-bottom: 2px;
-    letter-spacing: 0.4px;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.role-symbol {
+    font-size: 0.5rem;
+    color: rgba(0, 240, 255, 0.6);
 }
 
 .gacha-card-quote-box {
-    margin: 2px 0 4px;
-    padding: 6px 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    border-left: 2.5px solid rgba(168, 140, 255, 0.75);
+    margin: 1px 0 3px;
+    padding: 0 6px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
     max-width: 95%;
+    position: relative;
 }
 
 .gacha-card-quote {
-    font-family: var(--font-quote, serif);
+    font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: 0.7rem;
-    line-height: 1.32;
-    color: #e2e8f0;
+    font-size: 0.69rem;
+    line-height: 1.38;
+    color: rgba(226, 232, 240, 0.95);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
     margin: 0;
 }
 
 .gacha-card-tags-row {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    width: 100%;
+    max-width: 95%;
     margin-top: 1px;
+    margin-bottom: 1px;
 }
 
 .gacha-card-tag {
-    font-family: var(--font-mono, monospace);
-    font-size: 0.55rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.54rem;
     font-weight: 600;
-    color: #c084fc;
-    background: rgba(168, 85, 247, 0.14);
-    border: 1px solid rgba(168, 85, 247, 0.35);
-    padding: 2px 7px;
+    letter-spacing: 0.35px;
+    padding: 2.8px 10px;
     border-radius: 999px;
-    letter-spacing: 0.3px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.2s ease;
 }
 
-.gacha-card-tag.tag-dept {
-    color: #93c5fd;
-    background: rgba(59, 130, 246, 0.14);
-    border-color: rgba(59, 130, 246, 0.35);
+.tag-spark {
+    font-size: 0.52rem;
+    line-height: 1;
 }
 
-/* Active Center Card Highlight */
+.tag-focus {
+    color: #f3e8ff;
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.22) 0%, rgba(79, 70, 229, 0.22) 100%);
+    border: 1px solid rgba(192, 132, 252, 0.4);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+}
+
+.tag-dept {
+    color: #e0f2fe;
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.16) 0%, rgba(30, 64, 175, 0.24) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.42);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+/* Active Center Card Highlight (Astral Crystal Radiance) */
 .gacha-card.is-active-card .gacha-card-flipper {
-    box-shadow: 0 25px 55px -10px rgba(0, 0, 0, 0.95), 0 0 22px rgba(0, 240, 255, 0.32), 0 0 10px rgba(160, 140, 255, 0.25);
+    box-shadow: 0 30px 65px -10px rgba(0, 0, 0, 0.95), 0 0 32px rgba(0, 240, 255, 0.58), 0 0 16px rgba(255, 255, 255, 0.38), inset 0 0 18px rgba(0, 240, 255, 0.28);
 }
 
 .gacha-card.is-active-card .gacha-card-back {
-    border-color: rgba(0, 240, 255, 0.45);
+    border-color: rgba(0, 240, 255, 0.75);
+}
+
+/* Department Hierarchy Specific Glowing Auras (Council is most radiant/sặc sỡ) */
+.gacha-stage[data-dept="council"] .gacha-card.is-active-card .gacha-card-flipper {
+    box-shadow: 0 32px 75px -10px rgba(0, 0, 0, 0.95), 0 0 42px rgba(251, 191, 36, 0.75), 0 0 65px rgba(0, 240, 255, 0.6), inset 0 0 22px rgba(251, 191, 36, 0.4);
+}
+.gacha-stage[data-dept="council"] .gacha-card.is-active-card .gacha-card-back {
+    border-color: rgba(251, 191, 36, 0.85);
+}
+
+.gacha-stage[data-dept="program"] .gacha-card.is-active-card .gacha-card-flipper {
+    box-shadow: 0 30px 65px -10px rgba(0, 0, 0, 0.95), 0 0 35px rgba(56, 189, 248, 0.7), 0 0 50px rgba(37, 99, 235, 0.5), inset 0 0 18px rgba(56, 189, 248, 0.3);
+}
+.gacha-stage[data-dept="program"] .gacha-card.is-active-card .gacha-card-back {
+    border-color: rgba(56, 189, 248, 0.8);
+}
+
+.gacha-stage[data-dept="content"] .gacha-card.is-active-card .gacha-card-flipper {
+    box-shadow: 0 30px 65px -10px rgba(0, 0, 0, 0.95), 0 0 35px rgba(192, 132, 252, 0.7), 0 0 50px rgba(124, 58, 237, 0.5), inset 0 0 18px rgba(192, 132, 252, 0.3);
+}
+.gacha-stage[data-dept="content"] .gacha-card.is-active-card .gacha-card-back {
+    border-color: rgba(192, 132, 252, 0.8);
+}
+
+.gacha-stage[data-dept="media"] .gacha-card.is-active-card .gacha-card-flipper {
+    box-shadow: 0 30px 65px -10px rgba(0, 0, 0, 0.95), 0 0 35px rgba(251, 113, 133, 0.75), 0 0 50px rgba(225, 29, 72, 0.5), inset 0 0 18px rgba(251, 113, 133, 0.3);
+}
+.gacha-stage[data-dept="media"] .gacha-card.is-active-card .gacha-card-back {
+    border-color: rgba(251, 113, 133, 0.8);
+}
+
+.gacha-stage[data-dept="er"] .gacha-card.is-active-card .gacha-card-flipper {
+    box-shadow: 0 30px 65px -10px rgba(0, 0, 0, 0.95), 0 0 35px rgba(251, 191, 36, 0.75), 0 0 50px rgba(217, 119, 6, 0.5), inset 0 0 18px rgba(251, 191, 36, 0.3);
+}
+.gacha-stage[data-dept="er"] .gacha-card.is-active-card .gacha-card-back {
+    border-color: rgba(251, 191, 36, 0.8);
+}
+
+.gacha-stage[data-dept="hr"] .gacha-card.is-active-card .gacha-card-flipper {
+    box-shadow: 0 30px 65px -10px rgba(0, 0, 0, 0.95), 0 0 35px rgba(52, 211, 153, 0.75), 0 0 50px rgba(5, 150, 105, 0.5), inset 0 0 18px rgba(52, 211, 153, 0.3);
+}
+.gacha-stage[data-dept="hr"] .gacha-card.is-active-card .gacha-card-back {
+    border-color: rgba(52, 211, 153, 0.8);
+}
+
+.gacha-stage[data-dept="tech"] .gacha-card.is-active-card .gacha-card-flipper {
+    box-shadow: 0 30px 65px -10px rgba(0, 0, 0, 0.95), 0 0 35px rgba(0, 240, 255, 0.8), 0 0 50px rgba(2, 132, 199, 0.5), inset 0 0 18px rgba(0, 240, 255, 0.3);
+}
+.gacha-stage[data-dept="tech"] .gacha-card.is-active-card .gacha-card-back {
+    border-color: rgba(0, 240, 255, 0.8);
+}
+
+/* Distinct Department Orbit Pill Highlights */
+.orbit-pill[data-dept="council"].is-active {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.3) 0%, rgba(0, 240, 255, 0.3) 100%) !important;
+    border-color: #fbbf24 !important;
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.5), 0 0 35px rgba(0, 240, 255, 0.3) !important;
+    color: #fef08a !important;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.8) !important;
+}
+.orbit-pill[data-dept="program"].is-active {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.3) 0%, rgba(56, 189, 248, 0.3) 100%) !important;
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.45) !important;
+    color: #bae6fd !important;
+}
+.orbit-pill[data-dept="content"].is-active {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.3) 0%, rgba(192, 132, 252, 0.3) 100%) !important;
+    border-color: #c084fc !important;
+    box-shadow: 0 0 20px rgba(192, 132, 252, 0.45) !important;
+    color: #e9d5ff !important;
+}
+.orbit-pill[data-dept="media"].is-active {
+    background: linear-gradient(135deg, rgba(225, 29, 72, 0.3) 0%, rgba(251, 113, 133, 0.3) 100%) !important;
+    border-color: #fb7185 !important;
+    box-shadow: 0 0 20px rgba(251, 113, 133, 0.45) !important;
+    color: #fecdd3 !important;
+}
+.orbit-pill[data-dept="er"].is-active {
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.3) 0%, rgba(251, 191, 36, 0.3) 100%) !important;
+    border-color: #fbbf24 !important;
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.45) !important;
+    color: #fde68a !important;
+}
+.orbit-pill[data-dept="hr"].is-active {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.3) 0%, rgba(52, 211, 153, 0.3) 100%) !important;
+    border-color: #34d399 !important;
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.45) !important;
+    color: #a7f3d0 !important;
+}
+.orbit-pill[data-dept="tech"].is-active {
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.3) 0%, rgba(0, 240, 255, 0.3) 100%) !important;
+    border-color: #00f0ff !important;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.45) !important;
+    color: #cffafe !important;
 }
 
 /* Hide old redundant modal HUD since the crystal card itself is now the complete self-contained dossier */
@@ -4140,4 +4670,67 @@ nav {
         max-height: 320px;
     }
 }
+
+/* Celestial Dial Track & Roman Codex Scrubber */
+.gacha-dial-track {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 22px;
+    background: rgba(10, 15, 30, 0.75);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    border-radius: 999px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 240, 255, 0.15);
+    z-index: 600;
+    user-select: none;
+}
+
+.dial-arrow {
+    background: transparent;
+    border: none;
+    color: var(--blue-neon, #00f0ff);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 8px;
+    transition: all 0.2s ease;
+}
+
+.dial-arrow:hover {
+    transform: scale(1.25);
+    text-shadow: 0 0 10px #00f0ff;
+}
+
+.dial-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: #e2e8f0;
+}
+
+.dial-roman {
+    color: #00f0ff;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.dial-divider {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.dial-total {
+    color: #94a3b8;
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+}
+
 

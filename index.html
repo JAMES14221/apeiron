@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="three.min.js"></script>
 </head>
 <body>
     <!-- Full-Page Interactive Cosmic Constellation Canvas -->
@@ -557,119 +558,8 @@
         // ==========================================================================
         // 3D FULLY INTERACTIVE APERIO MONUMENT (DRAG-TO-ROTATE, INERTIA & PARALLAX)
         // ==========================================================================
-        const heroSection = document.getElementById('hero');
-        const monumentContainer = document.getElementById('monumentContainer');
-        const monumentImg = document.getElementById('monumentImg');
+        // 3D Monument is now powered by Three.js in monument3d.js
 
-        let rotX = 0;
-        let rotY = 0;
-        let targetParallaxX = 0;
-        let targetParallaxY = 0;
-        let currentParallaxX = 0;
-        let currentParallaxY = 0;
-
-        let isDraggingMonument = false;
-        let lastPointerX = 0;
-        let lastPointerY = 0;
-        let velX = 0;
-        let velY = 0;
-        let autoBreathTime = 0;
-
-        if (monumentContainer) {
-            // Pointer Down (Mouse & Touch)
-            const onPointerStart = (clientX, clientY) => {
-                isDraggingMonument = true;
-                lastPointerX = clientX;
-                lastPointerY = clientY;
-                velX = 0;
-                velY = 0;
-            };
-
-            monumentContainer.addEventListener('mousedown', (e) => {
-                onPointerStart(e.clientX, e.clientY);
-                e.preventDefault();
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (isDraggingMonument) {
-                    const dx = e.clientX - lastPointerX;
-                    const dy = e.clientY - lastPointerY;
-                    lastPointerX = e.clientX;
-                    lastPointerY = e.clientY;
-
-                    // Direct 3D rotation from drag
-                    rotY += dx * 0.45;
-                    rotX -= dy * 0.45;
-                    velX = dx * 0.45;
-                    velY = -dy * 0.45;
-                } else if (heroSection) {
-                    const rect = heroSection.getBoundingClientRect();
-                    if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
-                        const px = (e.clientX - rect.left) / rect.width - 0.5;
-                        const py = (e.clientY - rect.top) / rect.height - 0.5;
-                        targetParallaxX = -py * 24;
-                        targetParallaxY = px * 30;
-                    }
-                }
-            });
-
-            window.addEventListener('mouseup', () => {
-                if (isDraggingMonument) {
-                    isDraggingMonument = false;
-                }
-            });
-
-            // Touch events for mobile
-            monumentContainer.addEventListener('touchstart', (e) => {
-                if (e.touches.length > 0) {
-                    onPointerStart(e.touches[0].clientX, e.touches[0].clientY);
-                }
-            }, { passive: true });
-
-            window.addEventListener('touchmove', (e) => {
-                if (isDraggingMonument && e.touches.length > 0) {
-                    const touch = e.touches[0];
-                    const dx = touch.clientX - lastPointerX;
-                    const dy = touch.clientY - lastPointerY;
-                    lastPointerX = touch.clientX;
-                    lastPointerY = touch.clientY;
-
-                    rotY += dx * 0.5;
-                    rotX -= dy * 0.5;
-                    velX = dx * 0.5;
-                    velY = -dy * 0.5;
-                }
-            }, { passive: true });
-
-            window.addEventListener('touchend', () => {
-                isDraggingMonument = false;
-            });
-
-            // Click Shockwave Burst
-            monumentContainer.addEventListener('click', (e) => {
-                // If not dragged far, treat as interactive click
-                if (Math.hypot(velX, velY) < 1.5) {
-                    createShockwave(window.innerWidth * 0.65, window.innerHeight * 0.45);
-                    if (monumentImg) {
-                        monumentImg.style.transition = 'transform 0.15s cubic-bezier(0.1, 0.9, 0.2, 1), filter 0.15s ease';
-                        monumentImg.style.transform = 'scale(1.08)';
-                        monumentImg.style.filter = 'drop-shadow(0 0 60px rgba(0, 240, 255, 1)) drop-shadow(0 0 110px rgba(56, 189, 248, 0.9))';
-                        setTimeout(() => {
-                            monumentImg.style.transform = '';
-                            monumentImg.style.filter = '';
-                            setTimeout(() => {
-                                monumentImg.style.transition = '';
-                            }, 300);
-                        }, 220);
-                    }
-                }
-            });
-
-            heroSection.addEventListener('mouseleave', () => {
-                targetParallaxX = 0;
-                targetParallaxY = 0;
-            });
-        }
 
         // Floating Persistent Step Tracker Sync on Scroll (Dynamic Scroll Spy)
         const trackerSteps = document.querySelectorAll('.tracker-step');
@@ -865,33 +755,7 @@
             // Frame normalization: 1.0 at 60 FPS
             const dt = Math.min(deltaMs, 100) / (1000 / 60);
 
-            // Smooth 3D tilt, rotation inertia & parallax on hero centerpiece
-            if (monumentContainer) {
-                // Decay drag velocity
-                if (!isDraggingMonument) {
-                    velX *= Math.pow(0.92, dt);
-                    velY *= Math.pow(0.92, dt);
-                    rotY += velX * dt;
-                    rotX += velY * dt;
 
-                    // Spring return toward center over time if not continuously dragged
-                    rotX *= Math.pow(0.975, dt);
-                    rotY *= Math.pow(0.975, dt);
-                }
-
-                autoBreathTime += 0.015 * dt;
-                const breathWobble = Math.sin(autoBreathTime) * 3;
-
-                // Parallax smoothing
-                const lerpParallax = 1 - Math.pow(1 - 0.08, dt);
-                currentParallaxX += (targetParallaxX - currentParallaxX) * lerpParallax;
-                currentParallaxY += (targetParallaxY - currentParallaxY) * lerpParallax;
-
-                const finalRotX = rotX + currentParallaxX + breathWobble;
-                const finalRotY = rotY + currentParallaxY;
-
-                monumentContainer.style.transform = `rotateX(${finalRotX}deg) rotateY(${finalRotY}deg)`;
-            }
 
             bgCtx.clearRect(0, 0, canvasW, canvasH);
 
@@ -1086,6 +950,8 @@
         }
         requestAnimationFrame(animateCanvas);
     </script>
+    <script src="monument_geometry.js"></script>
+    <script src="monument3d.js"></script>
     <script src="spotlight.js"></script>
 </body>
 </html>
