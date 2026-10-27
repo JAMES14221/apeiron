@@ -122,7 +122,7 @@ export default function HomePage() {
 
           {/* Main Title with Celestial Glow */}
           <h1 style={{
-            fontFamily: 'var(--font-serif, serif)',
+            fontFamily: "'Cinzel', var(--font-serif, serif)",
             fontSize: 'clamp(3rem, 7.5vw, 5.8rem)',
             fontWeight: '700',
             letterSpacing: '4px',

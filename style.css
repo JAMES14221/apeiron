@@ -13,8 +13,8 @@
     --text-primary: #ffffff;
     --text-secondary: #94a3b8;
     --text-cyan: #38bdf8;
-    --font-serif: 'Cinzel', 'Playfair Display', Georgia, serif;
-    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 * {
@@ -3813,7 +3813,7 @@ nav {
 
 /* Rich Content Formatting inside Article */
 .article-editable-body h2 {
-    font-family: 'Cinzel', Georgia, serif;
+    font-family: var(--font-serif);
     font-size: 1.6rem;
     color: #ffffff;
     margin: 28px 0 14px;
@@ -4049,7 +4049,7 @@ nav {
 }
 
 .chamber-tag {
-    font-family: 'Cinzel', Georgia, serif;
+    font-family: var(--font-serif);
     font-size: 0.8rem;
     font-weight: 700;
     color: #fde68a;
@@ -4240,7 +4240,7 @@ nav {
 }
 
 .current-chamber-name {
-    font-family: 'Cinzel', Georgia, serif;
+    font-family: var(--font-serif);
     font-size: 0.95rem;
     font-weight: 700;
     letter-spacing: 2px;
