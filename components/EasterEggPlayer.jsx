@@ -53,7 +53,11 @@ const EasterEggPlayer = forwardRef(function EasterEggPlayer(props, ref) {
 
   return (
     <>
-      <audio ref={audioRef} src="/an-than.mp4" preload="auto" />
+      <audio ref={audioRef} preload="auto">
+        <source src="/an-than.mp4" type="video/mp4" />
+        <source src="public/an-than.mp4" type="video/mp4" />
+        <source src="/public/an-than.mp4" type="video/mp4" />
+      </audio>
       <div className={`easter-egg-player ${isVisible ? 'is-visible' : ''}`} style={{ display: isVisible ? 'flex' : 'none' }}>
         <div className={`player-vibes-bars ${isPlaying ? 'is-playing' : ''}`}>
           <span></span><span></span><span></span><span></span><span></span>
