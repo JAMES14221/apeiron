@@ -1,8 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
+  const pathname = usePathname();
+
+  const isHome = pathname === '/' || pathname === '/index.html' || pathname === '';
+  const isAbout = pathname?.startsWith('/about');
+  const isResearch = pathname?.startsWith('/research');
+  const isConnect = pathname?.startsWith('/connect');
+
   return (
     <nav className="site-nav">
       <div className="nav-brand-group">
@@ -13,10 +21,10 @@ export default function Navbar() {
       </div>
 
       <ul className="nav-links">
-        <li><Link href="/">HOME</Link></li>
-        <li><Link href="/about" className="active">ABOUT</Link></li>
-        <li><Link href="/research">RESEARCH</Link></li>
-        <li><Link href="/connect">CONNECT</Link></li>
+        <li><Link href="/" className={isHome ? 'active' : ''}>HOME</Link></li>
+        <li><Link href="/about" className={isAbout ? 'active' : ''}>ABOUT</Link></li>
+        <li><Link href="/research" className={isResearch ? 'active' : ''}>RESEARCH</Link></li>
+        <li><Link href="/connect" className={isConnect ? 'active' : ''}>CONNECT</Link></li>
       </ul>
 
       <div className="nav-right-actions">
