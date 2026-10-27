@@ -2,100 +2,46 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-
-const RESEARCH_PAPERS = [
-  {
-    id: 0,
-    category: 'materials',
-    catBadge: 'MATERIALS SCIENCE',
-    meta: 'PTNK · 2025 · Environmental Engineering',
-    title: 'Biodegradable Cement from Agricultural Waste',
-    author: 'Nhóm Nghiên cứu Sinh thái & Khoa học Vật liệu · PTNK',
-    abstract: 'Nghiên cứu tổng hợp xi măng sinh học tự phân hủy có nguồn gốc từ phế phẩm nông nghiệp (vỏ trấu và bã mía). Vật liệu mới giúp giảm đến 68% lượng khí thải carbon so với xi măng Portland truyền thống, mở ra hướng đi bền vững cho hạ tầng kiến trúc xanh tại các vùng nông nghiệp nhiệt đới.',
-    highlights: ['-68% Carbon Footprint', 'Bio-aggregate Matrix', 'Circular Economy'],
-    symbol: '🌾',
-    themeColor: '#34d399',
-    coverImage: '/images/ambassador_closed.png'
-  },
-  {
-    id: 1,
-    category: 'ai',
-    catBadge: 'NEUROSCIENCE & AI',
-    meta: 'VNU-HCM · 2024 · Computational Neuroscience',
-    title: 'AI-Assisted Early Detection of Neurological Disorders',
-    author: 'CLB Trí tuệ Nhân tạo & Y Sinh · ĐHQG-HCM',
-    abstract: 'Ứng dụng mô hình mạng nơ-ron đồ thị (Graph Neural Networks) kết hợp thị giác máy tính để phân tích biến đổi vi mô trên ảnh cộng hưởng từ MRI não bộ. Phương pháp đạt độ chính xác 94.2% trong việc chẩn đoán sớm các hội chứng suy giảm nhận thức trước khi bộc lộ triệu chứng lâm sàng.',
-    highlights: ['94.2% Accuracy', 'Graph Neural Networks', 'Early Biomarkers'],
-    symbol: '🧠',
-    themeColor: '#c084fc',
-    coverImage: '/images/research_closed.jpg'
-  },
-  {
-    id: 2,
-    category: 'chronobiology',
-    catBadge: 'CHRONOBIOLOGY',
-    meta: 'PTNK · 2024 · Cognitive Chronobiology',
-    title: 'The Impact of Sleep Quality on Academic Performance',
-    author: 'Nhóm Nghiên cứu Sức khỏe Học đường & Sinh học Thực nghiệm',
-    abstract: 'Nghiên cứu định lượng kéo dài 6 tháng trên 850 học sinh trung học phổ thông, theo dõi chu kỳ nhịp sinh học REM và kiến thức ghi nhớ sâu. Kết quả chỉ ra giấc ngủ sâu tối ưu trước 23h30 cải thiện đáng kể khả năng tư duy giải quyết vấn đề phức tạp và ổn định cảm xúc thi cử.',
-    highlights: ['N = 850 Cohort Study', 'REM Cycle Tracking', 'Cognitive Resilience'],
-    symbol: '🌙',
-    themeColor: '#38bdf8',
-    coverImage: '/images/certificate_reveal.png'
-  },
-  {
-    id: 3,
-    category: 'psychology',
-    catBadge: 'PSYCHOLOGY',
-    meta: 'Aperio Codex · 2024 · Behavioral Psychology',
-    title: 'Vì Sao Học Sinh Ngại Đến Phòng Tư Vấn Tâm Lý?',
-    author: 'Ban Nghiên Cứu Tâm Lý Học Đường Đợt 1',
-    abstract: 'Khảo sát thực nghiệm diện rộng về các rào cản tâm lý, xã hội và định kiến ngăn trở học sinh tiếp cận dịch vụ hỗ trợ tâm lý trường học. Phân tích 4 trục rào cản chính: Fear of being judged, Social Stigma, Privacy concerns và Trust issues.',
-    highlights: ['Invisible Barriers', 'School Stigma Matrix', 'Trust & Privacy Protocols'],
-    symbol: '🌱',
-    themeColor: '#f43f5e',
-    coverImage: '/images/research_initiative_psychology.png'
-  },
-  {
-    id: 4,
-    category: 'methodology',
-    catBadge: 'METHODOLOGY',
-    meta: 'Aperio Codex · 2024 · Research Methodology',
-    title: 'Từ Những Khoảng Trống Đến Đề Tài Nghiên Cứu',
-    author: 'Dự án Phương pháp luận Khoa học Trẻ Aperio',
-    abstract: 'Cẩm nang phương pháp luận phát hiện Research Gaps trong các tài liệu khoa học quốc tế, chuyển hóa câu hỏi tò mò ban đầu thành đề cương nghiên cứu khả thi và giàu giá trị thực tiễn.',
-    highlights: ['Research Gap Identification', 'Hypothesis Design', 'Literature Review Matrix'],
-    symbol: '🔍',
-    themeColor: '#fbbf24',
-    coverImage: '/images/ambassador_gen01.png'
-  },
-  {
-    id: 5,
-    category: 'methodology',
-    catBadge: 'METHODOLOGY',
-    meta: 'Aperio Codex · 2024 · Information Science',
-    title: 'Tìm, Đọc Và Chọn Lọc Tài Liệu Nghiên Cứu',
-    author: 'Tổ Cố vấn Kỹ năng Học thuật Aperio',
-    abstract: 'Kỹ năng tìm kiếm học thuật trên PubMed, Google Scholar, arXiv, cùng kỹ thuật đọc chéo (critical skimming) giúp sinh viên và học sinh xử lý khối lượng bài báo khoa học lớn trong thời gian ngắn.',
-    highlights: ['Boolean Queries', 'Critical Skimming', 'Zotero & Citation Ethics'],
-    symbol: '📚',
-    themeColor: '#00f0ff',
-    coverImage: '/images/research_closed.jpg'
-  }
-];
+import { APERIO_ARTICLES, APERIO_OFFICIAL_LINKS } from '../../data/articles';
 
 export default function ResearchPage() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedPaper, setSelectedPaper] = useState(null);
+  const [modalLang, setModalLang] = useState('vi');
 
-  const filteredPapers = activeCategory === 'all'
-    ? RESEARCH_PAPERS
-    : RESEARCH_PAPERS.filter((p) => p.category === activeCategory);
+  const categories = [
+    { id: 'all', label: 'Tất Cả Đề Tài & Bài Viết' },
+    { id: 'psychology', label: 'Tâm Lý Học' },
+    { id: 'methodology', label: 'Phương Pháp Luận' },
+    { id: 'campaigns', label: 'Chiến Dịch & Hoạt Động' }
+  ];
+
+  const filteredPapers = APERIO_ARTICLES.filter((paper) => {
+    const matchesCat = activeCategory === 'all' || paper.category === activeCategory;
+    if (!matchesCat) return false;
+
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.toLowerCase();
+    return (
+      paper.title.toLowerCase().includes(q) ||
+      (paper.titleEn && paper.titleEn.toLowerCase().includes(q)) ||
+      paper.summary.toLowerCase().includes(q) ||
+      paper.author.toLowerCase().includes(q) ||
+      paper.catBadge.toLowerCase().includes(q) ||
+      (paper.highlights && paper.highlights.some((h) => h.toLowerCase().includes(q)))
+    );
+  });
+
+  const openReader = (paper) => {
+    setSelectedPaper(paper);
+    setModalLang('vi');
+  };
 
   return (
     <div className="research-page-container" style={{ minHeight: '100vh', padding: '40px 24px 100px 24px' }}>
       {/* Research Hero Header */}
-      <header className="research-archive-hero" style={{ maxWidth: '1100px', margin: '0 auto 50px auto', textAlign: 'center' }}>
+      <header className="research-archive-hero" style={{ maxWidth: '1100px', margin: '0 auto 40px auto', textAlign: 'center' }}>
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',
@@ -111,7 +57,7 @@ export default function ResearchPage() {
           textTransform: 'uppercase',
           marginBottom: '20px'
         }}>
-          ✦ CURATED STUDENT PUBLICATIONS ✦
+          ✦ APERIO RESEARCH ARCHIVE &amp; PUBLICATIONS ✦
         </div>
 
         <h1 style={{
@@ -123,56 +69,108 @@ export default function ResearchPage() {
           margin: '0 0 16px 0',
           textShadow: '0 2px 20px rgba(0, 0, 0, 0.7)'
         }}>
-          Research Archive
+          Kho Lưu Trữ Công Trình &amp; Chuyên Đề
         </h1>
 
         <p style={{
           color: '#94a3b8',
           fontSize: '1.05rem',
           lineHeight: '1.8',
-          maxWidth: '700px',
-          margin: '0 auto 36px auto'
+          maxWidth: '740px',
+          margin: '0 auto 32px auto'
         }}>
-          Tập hợp các công trình nghiên cứu và cẩm nang phương pháp luận khoa học được biên soạn, phản biện và chọn lọc bởi mạng lưới học giả trẻ Aperio Research.
+          Tập hợp các bài viết học thuật, khảo sát thực nghiệm tâm lý học đường, cẩm nang phương pháp luận và các chiến dịch nghiên cứu cộng đồng do Aperio Research khởi xướng.
         </p>
+
+        {/* Live Search Bar */}
+        <div style={{ maxWidth: '540px', margin: '0 auto 28px auto', position: 'relative' }}>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Tìm theo tên bài báo, chủ đề, từ khóa (toxic, barnum, hạnh phúc...)"
+            style={{
+              width: '100%',
+              padding: '14px 20px 14px 44px',
+              borderRadius: '999px',
+              background: 'rgba(10, 18, 38, 0.95)',
+              border: '1px solid rgba(0, 240, 255, 0.3)',
+              color: '#ffffff',
+              fontSize: '0.92rem',
+              outline: 'none',
+              boxShadow: '0 8px 30px rgba(0, 0, 0, 0.4)'
+            }}
+          />
+          <span style={{ position: 'absolute', left: '18px', top: '50%', transform: 'translateY(-50%)', color: '#00f0ff', fontSize: '1rem' }}>
+            🔍
+          </span>
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              style={{
+                position: 'absolute',
+                right: '16px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'transparent',
+                border: 'none',
+                color: '#94a3b8',
+                cursor: 'pointer',
+                fontSize: '1rem'
+              }}
+            >
+              ✕
+            </button>
+          )}
+        </div>
 
         {/* Category Filters */}
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
-          {[
-            { id: 'all', label: 'Tất Cả (6)' },
-            { id: 'materials', label: 'Khoa Học Vật Liệu' },
-            { id: 'ai', label: 'Trí Tuệ Nhân Tạo & Y Sinh' },
-            { id: 'chronobiology', label: 'Nhịp Sinh Học' },
-            { id: 'psychology', label: 'Tâm Lý Học' },
-            { id: 'methodology', label: 'Phương Pháp Luận' }
-          ].map((cat) => {
+          {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
+            const count = cat.id === 'all'
+              ? APERIO_ARTICLES.length
+              : APERIO_ARTICLES.filter((p) => p.category === cat.id).length;
             return (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
                 style={{
-                  padding: '8px 18px',
+                  padding: '8px 20px',
                   borderRadius: '999px',
                   border: isActive ? '1px solid #00f0ff' : '1px solid rgba(255, 255, 255, 0.12)',
                   background: isActive ? 'rgba(0, 240, 255, 0.15)' : 'rgba(255, 255, 255, 0.04)',
                   color: isActive ? '#00f0ff' : '#94a3b8',
-                  fontSize: '0.85rem',
+                  fontSize: '0.86rem',
                   fontWeight: '600',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
                   boxShadow: isActive ? '0 0 15px rgba(0, 240, 255, 0.3)' : 'none'
                 }}
               >
-                {cat.label}
+                {cat.label} ({count})
               </button>
             );
           })}
         </div>
       </header>
 
+      {/* Results Count */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto 24px auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#64748b', fontSize: '0.85rem' }}>
+        <span>Hiển thị <strong>{filteredPapers.length}</strong> ấn phẩm &amp; chuyên đề</span>
+        <a
+          href={APERIO_OFFICIAL_LINKS.projectBooklet}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: '#38bdf8', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+        >
+          <span>Xem Booklet Lật Trang Toàn Dự Án</span>
+          <span>↗</span>
+        </a>
+      </div>
+
       {/* Papers Grid */}
-      <section style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '30px' }}>
+      <section style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '28px' }}>
         {filteredPapers.map((paper) => (
           <article
             key={paper.id}
@@ -184,24 +182,30 @@ export default function ResearchPage() {
               padding: '28px',
               borderRadius: '20px',
               background: 'rgba(10, 18, 38, 0.92)',
-              border: '1px solid rgba(56, 189, 248, 0.18)',
+              border: `1px solid ${paper.themeColor}33`,
               transition: 'border-color 0.3s ease, transform 0.3s ease',
-              alignItems: 'center'
+              alignItems: 'center',
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.5)'
             }}
           >
-            {/* Visual Cover Header */}
-            <div style={{
-              height: '210px',
-              borderRadius: '14px',
-              background: `radial-gradient(circle at 50% 50%, rgba(13, 59, 143, 0.35) 0%, rgba(2, 6, 18, 0.85) 75%)`,
-              border: `1px solid ${paper.themeColor}33`,
-              position: 'relative',
-              overflow: 'hidden'
-            }}>
-              {paper.coverImage ? (
+            {/* Visual Cover Header: Image OR Cyber Monogram Placeholder */}
+            <div
+              onClick={() => openReader(paper)}
+              style={{
+                height: '210px',
+                borderRadius: '14px',
+                background: `radial-gradient(ellipse at 70% 30%, ${paper.themeColor}22 0%, rgba(2, 6, 18, 0.9) 75%)`,
+                border: `1px solid ${paper.themeColor}44`,
+                position: 'relative',
+                overflow: 'hidden',
+                cursor: 'pointer'
+              }}
+              title="Nhấp để đọc bài viết"
+            >
+              {paper.image ? (
                 <>
                   <img
-                    src={paper.coverImage}
+                    src={paper.image}
                     alt={paper.title}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
@@ -229,7 +233,16 @@ export default function ResearchPage() {
                   </div>
                 </>
               ) : (
-                <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+                <div style={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '12px',
+                  padding: '20px',
+                  textAlign: 'center'
+                }}>
                   <div style={{ fontSize: '3rem', filter: `drop-shadow(0 0 16px ${paper.themeColor})` }}>
                     {paper.symbol}
                   </div>
@@ -238,7 +251,11 @@ export default function ResearchPage() {
                     fontWeight: '700',
                     letterSpacing: '2px',
                     color: paper.themeColor,
-                    textTransform: 'uppercase'
+                    textTransform: 'uppercase',
+                    background: `${paper.themeColor}1a`,
+                    padding: '4px 12px',
+                    borderRadius: '999px',
+                    border: `1px solid ${paper.themeColor}33`
                   }}>
                     {paper.catBadge}
                   </span>
@@ -259,16 +276,22 @@ export default function ResearchPage() {
                   {paper.catBadge}
                 </span>
                 <span style={{ color: '#475569' }}>•</span>
-                <span style={{ color: '#94a3b8', fontSize: '0.8rem' }}>{paper.meta}</span>
+                <span style={{ color: '#94a3b8', fontSize: '0.8rem' }}>{paper.date}</span>
+                <span style={{ color: '#475569' }}>•</span>
+                <span style={{ color: '#38bdf8', fontSize: '0.8rem' }}>{paper.readTime}</span>
               </div>
 
-              <h2 style={{
-                fontFamily: 'var(--font-serif, serif)',
-                fontSize: '1.45rem',
-                color: '#ffffff',
-                lineHeight: '1.3',
-                margin: '0 0 12px 0'
-              }}>
+              <h2
+                onClick={() => openReader(paper)}
+                style={{
+                  fontFamily: 'var(--font-serif, serif)',
+                  fontSize: '1.35rem',
+                  color: '#ffffff',
+                  lineHeight: '1.35',
+                  margin: '0 0 12px 0',
+                  cursor: 'pointer'
+                }}
+              >
                 {paper.title}
               </h2>
 
@@ -278,27 +301,29 @@ export default function ResearchPage() {
                 lineHeight: '1.7',
                 margin: '0 0 18px 0'
               }}>
-                {paper.abstract}
+                {paper.summary}
               </p>
 
               {/* Highlights Chips */}
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '20px' }}>
-                {paper.highlights.map((h, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      fontSize: '0.74rem',
-                      padding: '4px 10px',
-                      borderRadius: '6px',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#94a3b8'
-                    }}
-                  >
-                    ✦ {h}
-                  </span>
-                ))}
-              </div>
+              {paper.highlights && paper.highlights.length > 0 && (
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '20px' }}>
+                  {paper.highlights.map((h, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        fontSize: '0.74rem',
+                        padding: '4px 10px',
+                        borderRadius: '6px',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        color: '#94a3b8'
+                      }}
+                    >
+                      ✦ {h}
+                    </span>
+                  ))}
+                </div>
+              )}
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
                 <span style={{ color: '#64748b', fontSize: '0.82rem' }}>
@@ -306,23 +331,23 @@ export default function ResearchPage() {
                 </span>
 
                 <button
-                  onClick={() => setSelectedPaper(paper)}
+                  onClick={() => openReader(paper)}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '6px',
                     padding: '8px 18px',
                     borderRadius: '999px',
-                    background: 'rgba(0, 240, 255, 0.1)',
-                    border: '1px solid rgba(0, 240, 255, 0.4)',
-                    color: '#00f0ff',
+                    background: `${paper.themeColor}22`,
+                    border: `1px solid ${paper.themeColor}66`,
+                    color: paper.themeColor,
                     fontSize: '0.82rem',
                     fontWeight: '700',
                     cursor: 'pointer',
                     transition: 'all 0.2s'
                   }}
                 >
-                  <span>Read Full Overview</span>
+                  <span>Đọc Toàn Văn &amp; Trích Dẫn</span>
                   <span>→</span>
                 </button>
               </div>
@@ -350,7 +375,7 @@ export default function ResearchPage() {
             onClick={(e) => e.stopPropagation()}
             style={{
               width: '100%',
-              maxWidth: '740px',
+              maxWidth: '840px',
               maxHeight: '90vh',
               overflowY: 'auto',
               background: 'rgba(10, 18, 38, 0.98)',
@@ -363,7 +388,7 @@ export default function ResearchPage() {
           >
             <button
               onClick={() => setSelectedPaper(null)}
-              aria-label="Close reader modal"
+              aria-label="Đóng"
               style={{
                 position: 'absolute',
                 top: '20px',
@@ -386,7 +411,7 @@ export default function ResearchPage() {
             </button>
 
             {/* Poster cover if present */}
-            {selectedPaper.coverImage && (
+            {selectedPaper.image && (
               <div style={{
                 borderRadius: '14px',
                 overflow: 'hidden',
@@ -395,79 +420,187 @@ export default function ResearchPage() {
                 maxHeight: '260px'
               }}>
                 <img
-                  src={selectedPaper.coverImage}
+                  src={selectedPaper.image}
                   alt={selectedPaper.title}
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
               </div>
             )}
 
+            {/* Language & Meta Row */}
             <div style={{
-              display: 'inline-block',
-              fontSize: '0.75rem',
-              fontWeight: '700',
-              padding: '4px 12px',
-              borderRadius: '999px',
-              background: `${selectedPaper.themeColor}22`,
-              color: selectedPaper.themeColor,
-              border: `1px solid ${selectedPaper.themeColor}55`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '12px',
               marginBottom: '16px'
             }}>
-              {selectedPaper.catBadge}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                <span style={{
+                  fontSize: '0.75rem',
+                  fontWeight: '700',
+                  padding: '4px 12px',
+                  borderRadius: '999px',
+                  background: `${selectedPaper.themeColor}22`,
+                  color: selectedPaper.themeColor,
+                  border: `1px solid ${selectedPaper.themeColor}55`
+                }}>
+                  {selectedPaper.catBadge}
+                </span>
+                <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedPaper.date}</span>
+                <span style={{ color: '#64748b' }}>•</span>
+                <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedPaper.author}</span>
+              </div>
+
+              {/* Language Switch */}
+              <div style={{
+                display: 'inline-flex',
+                borderRadius: '999px',
+                background: 'rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                padding: '2px'
+              }}>
+                <button
+                  onClick={() => setModalLang('vi')}
+                  style={{
+                    padding: '4px 12px',
+                    borderRadius: '999px',
+                    border: 'none',
+                    background: modalLang === 'vi' ? selectedPaper.themeColor : 'transparent',
+                    color: modalLang === 'vi' ? '#020612' : '#ffffff',
+                    fontWeight: '700',
+                    fontSize: '0.78rem',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Tiếng Việt
+                </button>
+                <button
+                  onClick={() => setModalLang('en')}
+                  style={{
+                    padding: '4px 12px',
+                    borderRadius: '999px',
+                    border: 'none',
+                    background: modalLang === 'en' ? selectedPaper.themeColor : 'transparent',
+                    color: modalLang === 'en' ? '#020612' : '#ffffff',
+                    fontWeight: '700',
+                    fontSize: '0.78rem',
+                    cursor: 'pointer'
+                  }}
+                >
+                  English
+                </button>
+              </div>
             </div>
 
             <h3 style={{
               fontFamily: 'var(--font-serif, serif)',
-              fontSize: '1.8rem',
+              fontSize: '1.6rem',
               color: '#ffffff',
-              margin: '0 0 12px 0'
+              margin: '0 0 16px 0',
+              lineHeight: '1.3'
             }}>
-              {selectedPaper.title}
+              {modalLang === 'vi' ? selectedPaper.title : (paperTitleEn(selectedPaper))}
             </h3>
 
-            <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '20px' }}>
-              Tác giả: <strong style={{ color: '#ffffff' }}>{selectedPaper.author}</strong> | {selectedPaper.meta}
+            {/* Article Content */}
+            <div style={{
+              color: '#cbd5e1',
+              fontSize: '0.98rem',
+              lineHeight: '1.85',
+              margin: '0 0 24px 0',
+              whiteSpace: 'pre-line',
+              padding: '16px 0',
+              borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+            }}>
+              {modalLang === 'vi' ? selectedPaper.contentVi : (selectedPaper.contentEn || selectedPaper.contentVi)}
             </div>
 
-            <h4 style={{ color: '#00f0ff', fontSize: '0.9rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '8px' }}>
-              Tóm Tắt Công Trình
-            </h4>
-            <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.8', marginBottom: '24px' }}>
-              {selectedPaper.abstract}
-            </p>
+            {/* Academic References Section */}
+            {selectedPaper.references && selectedPaper.references.length > 0 && (
+              <div style={{ marginBottom: '24px' }}>
+                <h4 style={{
+                  fontSize: '0.85rem',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase',
+                  color: '#38bdf8',
+                  marginBottom: '10px'
+                }}>
+                  Tài Liệu Tham Khảo Học Thuật (References &amp; DOIs)
+                </h4>
+                <ul style={{ margin: 0, paddingLeft: '20px', color: '#94a3b8', fontSize: '0.85rem', lineHeight: '1.7' }}>
+                  {selectedPaper.references.map((ref, idx) => (
+                    <li key={idx} style={{ marginBottom: '8px' }}>
+                      {ref.text}{' '}
+                      {ref.doi && (
+                        <a
+                          href={ref.doi}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: '#00f0ff', textDecoration: 'underline', marginLeft: '4px' }}
+                        >
+                          [DOI]
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-            <h4 style={{ color: '#38bdf8', fontSize: '0.9rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '10px' }}>
-              Điểm Nổi Bật &amp; Đóng Góp
-            </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {selectedPaper.highlights.map((h, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0', fontSize: '0.92rem' }}>
-                  <span style={{ color: selectedPaper.themeColor }}>◈</span>
-                  <span>{h}</span>
-                </li>
-              ))}
-            </ul>
+            {/* Highlights list */}
+            {selectedPaper.highlights && selectedPaper.highlights.length > 0 && (
+              <div style={{ marginBottom: '28px' }}>
+                <h4 style={{
+                  fontSize: '0.85rem',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase',
+                  color: '#a78bfa',
+                  marginBottom: '10px'
+                }}>
+                  Điểm Nổi Bật
+                </h4>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                  {selectedPaper.highlights.map((h, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        fontSize: '0.8rem',
+                        padding: '4px 12px',
+                        borderRadius: '6px',
+                        background: 'rgba(255, 255, 255, 0.06)',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        color: '#e2e8f0'
+                      }}
+                    >
+                      ✦ {h}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
               <a
-                href="https://forms.gle/F9evDGJCJm1P4XRz5"
+                href={APERIO_OFFICIAL_LINKS.projectBooklet}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  padding: '12px 28px',
+                  padding: '12px 24px',
                   borderRadius: '999px',
-                  background: '#00f0ff',
+                  background: selectedPaper.themeColor,
                   color: '#020612',
                   textDecoration: 'none',
                   fontWeight: '700',
-                  fontSize: '0.9rem',
-                  boxShadow: '0 0 20px rgba(0, 240, 255, 0.4)'
+                  fontSize: '0.9rem'
                 }}
               >
-                <span>Submit Follow-up Research</span>
+                <span>📖 Xem Booklet Dự Án</span>
                 <span>↗</span>
               </a>
 
@@ -483,7 +616,7 @@ export default function ResearchPage() {
                   fontSize: '0.9rem'
                 }}
               >
-                Close Reader
+                Đóng
               </button>
             </div>
           </div>
@@ -491,4 +624,8 @@ export default function ResearchPage() {
       )}
     </div>
   );
+}
+
+function paperTitleEn(paper) {
+  return paper.titleEn || paper.title;
 }

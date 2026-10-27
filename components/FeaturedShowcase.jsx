@@ -2,82 +2,32 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { APERIO_ARTICLES, APERIO_OFFICIAL_LINKS } from '../data/articles';
 
 export default function FeaturedShowcase() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [selectedPoster, setSelectedPoster] = useState(null);
+  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [modalLang, setModalLang] = useState('vi'); // 'vi' or 'en'
 
-  const posters = [
-    {
-      id: 1,
-      image: '/images/research_initiative_psychology.png',
-      badge: 'RESEARCH INITIATIVE / VOL. 01',
-      title: 'Vì Sao Học Sinh Ngại Đến Phòng Tư Vấn Tâm Lý?',
-      author: 'Ban Nghiên Cứu Đợt 1',
-      date: 'Tháng 10, 2026',
-      tag: 'TÂM LÝ HỌC HÀNH VI',
-      color: '#a78bfa',
-      summary: 'Khảo sát những rào cản vô hình đằng sau quyết định không tìm đến phòng tư vấn tâm lý học đường: nỗi sợ bị phán xét (fear of being judged), định kiến xã hội (stigma), lo ngại quyền riêng tư và khủng hoảng niềm tin.'
-    },
-    {
-      id: 2,
-      image: '/images/ambassador_gen01.png',
-      badge: 'AMBASSADOR GUILD / GEN 0.1',
-      title: 'Tuyển Đại Sứ Truyền Thông — Gen 0.1 Đợt 2',
-      author: 'Aperio Outreach Division',
-      date: 'Nhiệm kỳ 6 tuần',
-      tag: 'LAN TỎA TRI THỨC',
-      color: '#00f0ff',
-      summary: 'Chiến dịch tuyển đại sứ đồng hành lan tỏa văn hóa nghiên cứu khoa học mở đến học sinh toàn quốc. Cơ hội tham gia trực tiếp vào việc sản xuất nội dung học thuật, kết nối diễn giả và xây dựng cộng đồng nghiên cứu.'
-    },
-    {
-      id: 3,
-      image: '/images/certificate_reveal.png',
-      badge: 'MEMBER RECOGNITION',
-      title: 'Certificate of Appreciation Reveal',
-      author: 'Founder of Aperio Research',
-      date: 'Vinh Danh Cống Hiến',
-      tag: 'CHỨNG NHẬN ĐẠI SỨ',
-      color: '#38bdf8',
-      summary: 'Thiết kế chứng nhận vinh danh độc quyền với biểu tượng bướm pha lê lam ngọc (sapphire crystal butterfly). Ghi nhận những đóng góp ý nghĩa của các thành viên và đại sứ truyền thông trên hành trình khai mở tri thức trẻ.'
-    },
-    {
-      id: 4,
-      image: '/images/research_closed.jpg',
-      badge: 'RESEARCH COHORT / UPDATE',
-      title: 'Chính Thức Đóng Đơn — Tuyển Thành Viên Ban Nghiên Cứu',
-      author: 'Ban Học Thuật Aperio',
-      date: 'Đợt 1 Hoàn Tất',
-      tag: 'CHECK YOUR INBOX',
-      color: '#c084fc',
-      summary: 'Kỳ tuyển sinh Ban Nghiên cứu Đợt 1 đã chính thức khép lại với hàng trăm hồ sơ chất lượng. Thư thông báo kết quả và hướng dẫn giai đoạn phỏng vấn đang trên đường gửi đến hộp thư ứng viên.'
-    },
-    {
-      id: 5,
-      image: '/images/ambassador_closed.png',
-      badge: 'OUTREACH COHORT / UPDATE',
-      title: 'Đại Sứ Truyền Thông — Chính Thức Đóng Đơn',
-      author: 'Aperio Community Guild',
-      date: 'Check Your Mail',
-      tag: 'GEN 0.1 COMPLETED',
-      color: '#2dd4bf',
-      summary: 'Khép lại cổng đơn ứng tuyển Đại sứ Truyền thông. Cảm ơn sự đồng hành và hưởng ứng nồng nhiệt từ các bạn học sinh khắp các tỉnh thành. Vui lòng kiểm tra kỹ cả mục Spam/Promotion để không bỏ lỡ thư kết quả.'
-    }
-  ];
-
-  const total = posters.length;
+  const articles = APERIO_ARTICLES;
+  const total = articles.length;
 
   const nextSlide = () => setCurrentIdx((prev) => (prev + 1) % total);
   const prevSlide = () => setCurrentIdx((prev) => (prev - 1 + total) % total);
 
   useEffect(() => {
-    if (isHovered || selectedPoster) return;
-    const timer = setInterval(nextSlide, 5000);
+    if (isHovered || selectedArticle) return;
+    const timer = setInterval(nextSlide, 6500);
     return () => clearInterval(timer);
-  }, [isHovered, selectedPoster, total]);
+  }, [isHovered, selectedArticle, total]);
 
-  const current = posters[currentIdx];
+  const current = articles[currentIdx];
+
+  const openModal = (article) => {
+    setSelectedArticle(article);
+    setModalLang('vi');
+  };
 
   return (
     <section
@@ -121,30 +71,55 @@ export default function FeaturedShowcase() {
             margin: 0,
             letterSpacing: '1px'
           }}>
-            Các Dự Án & Chiến Dịch Nổi Bật
+            Các Dự Án &amp; Chiến Dịch Nổi Bật
           </h2>
         </div>
 
-        <Link
-          href="/research"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            color: '#38bdf8',
-            textDecoration: 'none',
-            fontSize: '0.9rem',
-            fontWeight: '600',
-            padding: '8px 20px',
-            borderRadius: '999px',
-            background: 'rgba(56, 189, 248, 0.08)',
-            border: '1px solid rgba(56, 189, 248, 0.3)',
-            transition: 'all 0.2s ease'
-          }}
-        >
-          <span>Khám Phá Toàn Bộ Đề Tài</span>
-          <span>→</span>
-        </Link>
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          <a
+            href={APERIO_OFFICIAL_LINKS.projectBooklet}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              color: '#a78bfa',
+              textDecoration: 'none',
+              fontSize: '0.88rem',
+              fontWeight: '600',
+              padding: '8px 18px',
+              borderRadius: '999px',
+              background: 'rgba(167, 139, 250, 0.08)',
+              border: '1px solid rgba(167, 139, 250, 0.3)',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            <span>📖 Booklet Dự Án</span>
+            <span>↗</span>
+          </a>
+
+          <Link
+            href="/research"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              color: '#38bdf8',
+              textDecoration: 'none',
+              fontSize: '0.88rem',
+              fontWeight: '600',
+              padding: '8px 20px',
+              borderRadius: '999px',
+              background: 'rgba(56, 189, 248, 0.08)',
+              border: '1px solid rgba(56, 189, 248, 0.3)',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            <span>Kho Lưu Trữ Đề Tài</span>
+            <span>→</span>
+          </Link>
+        </div>
       </div>
 
       {/* Main Showcase Stage */}
@@ -152,8 +127,8 @@ export default function FeaturedShowcase() {
         position: 'relative',
         borderRadius: '24px',
         background: 'rgba(6, 14, 32, 0.95)',
-        border: `1px solid ${current.color}55`,
-        boxShadow: `0 25px 80px rgba(0, 0, 0, 0.75), 0 0 40px ${current.color}22`,
+        border: `1px solid ${current.themeColor}55`,
+        boxShadow: `0 25px 80px rgba(0, 0, 0, 0.75), 0 0 40px ${current.themeColor}22`,
         padding: '36px',
         overflow: 'hidden',
         transition: 'border-color 0.4s ease, box-shadow 0.4s ease'
@@ -165,7 +140,7 @@ export default function FeaturedShowcase() {
           right: '-10%',
           width: '500px',
           height: '500px',
-          background: `radial-gradient(circle, ${current.color}1a 0%, transparent 70%)`,
+          background: `radial-gradient(circle, ${current.themeColor}1a 0%, transparent 70%)`,
           pointerEvents: 'none',
           zIndex: 0
         }} />
@@ -178,9 +153,9 @@ export default function FeaturedShowcase() {
           gap: '36px',
           alignItems: 'center'
         }}>
-          {/* Banner Graphic Frame with Interactive Zoom Trigger */}
+          {/* Visual Display: Image Banner OR Sleek Cyber Card Placeholder */}
           <div
-            onClick={() => setSelectedPoster(current)}
+            onClick={() => openModal(current)}
             style={{
               borderRadius: '16px',
               overflow: 'hidden',
@@ -192,19 +167,100 @@ export default function FeaturedShowcase() {
               boxShadow: '0 12px 35px rgba(0, 0, 0, 0.6)',
               transition: 'transform 0.3s ease, border-color 0.3s ease'
             }}
-            title="Nhấp để xem ảnh phóng to chi tiết"
+            title="Nhấp để xem toàn văn chi tiết"
           >
-            <img
-              src={current.image}
-              alt={current.title}
-              style={{
+            {current.image ? (
+              <img
+                src={current.image}
+                alt={current.title}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block',
+                  transition: 'transform 0.4s ease'
+                }}
+              />
+            ) : (
+              /* Sleek Cyber Monogram Card for articles without uploaded images yet */
+              <div style={{
                 width: '100%',
                 height: '100%',
-                objectFit: 'cover',
-                display: 'block',
-                transition: 'transform 0.4s ease'
-              }}
-            />
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                padding: '24px',
+                background: `radial-gradient(ellipse at 80% 20%, ${current.themeColor}22 0%, rgba(3, 8, 22, 0.98) 75%)`,
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                {/* Decorative circuit corner */}
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  width: '120px',
+                  height: '120px',
+                  borderTop: `2px solid ${current.themeColor}44`,
+                  borderRight: `2px solid ${current.themeColor}44`,
+                  opacity: 0.4,
+                  pointerEvents: 'none'
+                }} />
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{
+                    fontSize: '0.72rem',
+                    fontWeight: '700',
+                    padding: '4px 10px',
+                    borderRadius: '6px',
+                    background: `${current.themeColor}22`,
+                    color: current.themeColor,
+                    border: `1px solid ${current.themeColor}44`,
+                    letterSpacing: '1px'
+                  }}>
+                    {current.catBadge}
+                  </span>
+                  <span style={{ fontSize: '1.8rem', filter: `drop-shadow(0 0 12px ${current.themeColor})` }}>
+                    {current.symbol}
+                  </span>
+                </div>
+
+                <div>
+                  <div style={{
+                    fontSize: '0.75rem',
+                    color: '#94a3b8',
+                    letterSpacing: '1.5px',
+                    textTransform: 'uppercase',
+                    marginBottom: '6px'
+                  }}>
+                    APERIO RESEARCH MANUSCRIPT
+                  </div>
+                  <h4 style={{
+                    fontFamily: 'var(--font-serif, serif)',
+                    fontSize: '1.2rem',
+                    color: '#ffffff',
+                    margin: 0,
+                    lineHeight: '1.4'
+                  }}>
+                    {current.title}
+                  </h4>
+                </div>
+
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  fontSize: '0.75rem',
+                  color: '#64748b',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                  paddingTop: '10px'
+                }}>
+                  <span>{current.date}</span>
+                  <span style={{ color: current.themeColor, fontWeight: '600' }}>{current.readTime}</span>
+                </div>
+              </div>
+            )}
+
             {/* Hover overlay hint */}
             <div style={{
               position: 'absolute',
@@ -220,12 +276,12 @@ export default function FeaturedShowcase() {
                 fontWeight: '700',
                 padding: '4px 10px',
                 borderRadius: '6px',
-                background: 'rgba(0, 0, 0, 0.7)',
-                color: current.color,
-                border: `1px solid ${current.color}44`,
+                background: 'rgba(0, 0, 0, 0.75)',
+                color: current.themeColor,
+                border: `1px solid ${current.themeColor}44`,
                 letterSpacing: '1px'
               }}>
-                {current.tag}
+                {current.catBadge}
               </span>
               <span style={{
                 fontSize: '0.78rem',
@@ -238,7 +294,7 @@ export default function FeaturedShowcase() {
                 alignItems: 'center',
                 gap: '5px'
               }}>
-                <span>Phóng To</span>
+                <span>Đọc Bài Viết</span>
                 <span>⤢</span>
               </span>
             </div>
@@ -252,22 +308,24 @@ export default function FeaturedShowcase() {
                 fontWeight: '700',
                 padding: '4px 12px',
                 borderRadius: '999px',
-                background: `${current.color}1f`,
-                color: current.color,
-                border: `1px solid ${current.color}44`,
+                background: `${current.themeColor}1f`,
+                color: current.themeColor,
+                border: `1px solid ${current.themeColor}44`,
                 letterSpacing: '1.2px'
               }}>
-                {current.badge}
+                {current.catBadge}
               </span>
               <span style={{ color: '#64748b' }}>•</span>
               <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{current.date}</span>
+              <span style={{ color: '#64748b' }}>•</span>
+              <span style={{ color: '#38bdf8', fontSize: '0.85rem' }}>{current.readTime}</span>
             </div>
 
             <h3 style={{
               fontFamily: 'var(--font-serif, serif)',
-              fontSize: 'clamp(1.5rem, 2.4vw, 2.2rem)',
+              fontSize: 'clamp(1.4rem, 2.3vw, 2.1rem)',
               color: '#ffffff',
-              lineHeight: '1.25',
+              lineHeight: '1.3',
               margin: '0 0 16px 0'
             }}>
               {current.title}
@@ -277,10 +335,31 @@ export default function FeaturedShowcase() {
               color: '#cbd5e1',
               fontSize: '0.96rem',
               lineHeight: '1.8',
-              margin: '0 0 24px 0'
+              margin: '0 0 20px 0'
             }}>
               {current.summary}
             </p>
+
+            {/* Highlights tags */}
+            {current.highlights && current.highlights.length > 0 && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '22px' }}>
+                {current.highlights.map((h, idx) => (
+                  <span
+                    key={idx}
+                    style={{
+                      fontSize: '0.75rem',
+                      color: '#94a3b8',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      padding: '3px 10px',
+                      borderRadius: '6px'
+                    }}
+                  >
+                    #{h}
+                  </span>
+                ))}
+              </div>
+            )}
 
             <div style={{
               display: 'flex',
@@ -292,52 +371,54 @@ export default function FeaturedShowcase() {
               borderTop: '1px solid rgba(255, 255, 255, 0.08)'
             }}>
               <div style={{ color: '#94a3b8', fontSize: '0.86rem' }}>
-                Đơn vị: <strong style={{ color: '#ffffff' }}>{current.author}</strong>
+                Tác giả: <strong style={{ color: '#ffffff' }}>{current.author}</strong>
               </div>
 
-              <div style={{ display: 'flex', gap: '12px' }}>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <button
-                  onClick={() => setSelectedPoster(current)}
+                  onClick={() => openModal(current)}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '8px',
                     padding: '10px 22px',
                     borderRadius: '999px',
-                    background: current.color,
+                    background: current.themeColor,
                     color: '#020612',
                     border: 'none',
                     fontSize: '0.88rem',
                     fontWeight: '700',
                     cursor: 'pointer',
-                    boxShadow: `0 0 20px ${current.color}55`,
+                    boxShadow: `0 0 20px ${current.themeColor}55`,
                     transition: 'transform 0.2s ease'
                   }}
                 >
-                  <span>Xem Chi Tiết</span>
+                  <span>Đọc Toàn Văn</span>
                   <span>↗</span>
                 </button>
 
-                <a
-                  href="https://forms.gle/F9evDGJCJm1P4XRz5"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    padding: '10px 20px',
-                    borderRadius: '999px',
-                    background: 'rgba(255, 255, 255, 0.06)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    color: '#ffffff',
-                    fontSize: '0.88rem',
-                    fontWeight: '600',
-                    textDecoration: 'none'
-                  }}
-                >
-                  <span>Nộp Đơn</span>
-                </a>
+                {current.category === 'campaigns' && (
+                  <a
+                    href={APERIO_OFFICIAL_LINKS.ambassadorApplyForm}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      padding: '10px 20px',
+                      borderRadius: '999px',
+                      background: 'rgba(255, 255, 255, 0.06)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      color: '#ffffff',
+                      fontSize: '0.88rem',
+                      fontWeight: '600',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    <span>Nộp Đơn</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -347,12 +428,12 @@ export default function FeaturedShowcase() {
         <div style={{
           display: 'grid',
           gridTemplateColumns: `repeat(${total}, 1fr)`,
-          gap: '12px',
+          gap: '8px',
           marginTop: '32px',
           paddingTop: '20px',
           borderTop: '1px solid rgba(255, 255, 255, 0.08)'
         }}>
-          {posters.map((p, idx) => {
+          {articles.map((p, idx) => {
             const isActive = idx === currentIdx;
             return (
               <div
@@ -360,23 +441,38 @@ export default function FeaturedShowcase() {
                 onClick={() => setCurrentIdx(idx)}
                 style={{
                   cursor: 'pointer',
-                  borderRadius: '10px',
+                  borderRadius: '8px',
                   overflow: 'hidden',
                   position: 'relative',
                   aspectRatio: '16 / 9',
-                  border: isActive ? `2px solid ${p.color}` : '1px solid rgba(255, 255, 255, 0.12)',
-                  boxShadow: isActive ? `0 0 15px ${p.color}55` : 'none',
+                  border: isActive ? `2px solid ${p.themeColor}` : '1px solid rgba(255, 255, 255, 0.12)',
+                  boxShadow: isActive ? `0 0 15px ${p.themeColor}55` : 'none',
                   opacity: isActive ? 1 : 0.45,
                   transform: isActive ? 'scale(1.03)' : 'scale(1)',
-                  transition: 'all 0.25s ease'
+                  transition: 'all 0.25s ease',
+                  background: '#040b1e'
                 }}
                 title={p.title}
               >
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                ) : (
+                  <div style={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: `linear-gradient(135deg, ${p.themeColor}33, #020612)`,
+                    fontSize: '1.2rem'
+                  }}>
+                    {p.symbol}
+                  </div>
+                )}
               </div>
             );
           })}
@@ -390,13 +486,13 @@ export default function FeaturedShowcase() {
           marginTop: '16px'
         }}>
           <div style={{ color: '#94a3b8', fontSize: '0.82rem' }}>
-            <span>{currentIdx + 1}</span> / <span>{total}</span> • <span style={{ color: current.color }}>{current.tag}</span>
+            <span>{currentIdx + 1}</span> / <span>{total}</span> • <span style={{ color: current.themeColor }}>{current.catBadge}</span>
           </div>
 
           <div style={{ display: 'flex', gap: '8px' }}>
             <button
               onClick={prevSlide}
-              aria-label="Previous"
+              aria-label="Previous slide"
               style={{
                 width: '36px',
                 height: '36px',
@@ -414,7 +510,7 @@ export default function FeaturedShowcase() {
             </button>
             <button
               onClick={nextSlide}
-              aria-label="Next"
+              aria-label="Next slide"
               style={{
                 width: '36px',
                 height: '36px',
@@ -434,10 +530,10 @@ export default function FeaturedShowcase() {
         </div>
       </div>
 
-      {/* Full-Screen Poster Zoom / Reader Modal */}
-      {selectedPoster && (
+      {/* Full Article Reader Modal */}
+      {selectedArticle && (
         <div
-          onClick={() => setSelectedPoster(null)}
+          onClick={() => setSelectedArticle(null)}
           style={{
             position: 'fixed',
             inset: 0,
@@ -446,27 +542,28 @@ export default function FeaturedShowcase() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '24px'
+            padding: '20px'
           }}
         >
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
               width: '100%',
-              maxWidth: '920px',
+              maxWidth: '880px',
               maxHeight: '90vh',
               overflowY: 'auto',
               background: 'rgba(10, 18, 38, 0.98)',
-              border: `1px solid ${selectedPoster.color}66`,
+              border: `1px solid ${selectedArticle.themeColor}66`,
               borderRadius: '24px',
               padding: '32px',
-              boxShadow: `0 30px 90px rgba(0, 0, 0, 0.85), 0 0 50px ${selectedPoster.color}22`,
+              boxShadow: `0 30px 90px rgba(0, 0, 0, 0.85), 0 0 50px ${selectedArticle.themeColor}22`,
               position: 'relative'
             }}
           >
             {/* Close Button */}
             <button
-              onClick={() => setSelectedPoster(null)}
+              onClick={() => setSelectedArticle(null)}
+              aria-label="Đóng"
               style={{
                 position: 'absolute',
                 top: '20px',
@@ -488,74 +585,172 @@ export default function FeaturedShowcase() {
               ✕
             </button>
 
-            {/* Poster Full Display */}
-            <div style={{
-              borderRadius: '16px',
-              overflow: 'hidden',
-              marginBottom: '24px',
-              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.7)',
-              border: '1px solid rgba(255, 255, 255, 0.15)'
-            }}>
-              <img
-                src={selectedPoster.image}
-                alt={selectedPoster.title}
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
-              <span style={{
-                fontSize: '0.75rem',
-                fontWeight: '700',
-                padding: '4px 12px',
-                borderRadius: '999px',
-                background: `${selectedPoster.color}22`,
-                color: selectedPoster.color,
-                border: `1px solid ${selectedPoster.color}55`
+            {/* Poster or Header Banner */}
+            {selectedArticle.image && (
+              <div style={{
+                borderRadius: '16px',
+                overflow: 'hidden',
+                marginBottom: '24px',
+                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.7)',
+                border: '1px solid rgba(255, 255, 255, 0.15)'
               }}>
-                {selectedPoster.badge}
-              </span>
-              <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedPoster.date}</span>
+                <img
+                  src={selectedArticle.image}
+                  alt={selectedArticle.title}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+              </div>
+            )}
+
+            {/* Meta Row with Language Switch */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '12px',
+              marginBottom: '16px'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{
+                  fontSize: '0.75rem',
+                  fontWeight: '700',
+                  padding: '4px 12px',
+                  borderRadius: '999px',
+                  background: `${selectedArticle.themeColor}22`,
+                  color: selectedArticle.themeColor,
+                  border: `1px solid ${selectedArticle.themeColor}55`
+                }}>
+                  {selectedArticle.catBadge}
+                </span>
+                <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedArticle.date}</span>
+                <span style={{ color: '#64748b' }}>•</span>
+                <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>{selectedArticle.author}</span>
+              </div>
+
+              {/* Language Switch */}
+              <div style={{
+                display: 'inline-flex',
+                borderRadius: '999px',
+                background: 'rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                padding: '2px'
+              }}>
+                <button
+                  onClick={() => setModalLang('vi')}
+                  style={{
+                    padding: '4px 12px',
+                    borderRadius: '999px',
+                    border: 'none',
+                    background: modalLang === 'vi' ? selectedArticle.themeColor : 'transparent',
+                    color: modalLang === 'vi' ? '#020612' : '#ffffff',
+                    fontWeight: '700',
+                    fontSize: '0.78rem',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Tiếng Việt
+                </button>
+                <button
+                  onClick={() => setModalLang('en')}
+                  style={{
+                    padding: '4px 12px',
+                    borderRadius: '999px',
+                    border: 'none',
+                    background: modalLang === 'en' ? selectedArticle.themeColor : 'transparent',
+                    color: modalLang === 'en' ? '#020612' : '#ffffff',
+                    fontWeight: '700',
+                    fontSize: '0.78rem',
+                    cursor: 'pointer'
+                  }}
+                >
+                  English
+                </button>
+              </div>
             </div>
 
             <h3 style={{
               fontFamily: 'var(--font-serif, serif)',
-              fontSize: '1.8rem',
+              fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)',
               color: '#ffffff',
-              margin: '0 0 14px 0'
+              margin: '0 0 16px 0',
+              lineHeight: '1.3'
             }}>
-              {selectedPoster.title}
+              {modalLang === 'vi' ? selectedArticle.title : (selectedArticle.titleEn || selectedArticle.title)}
             </h3>
 
-            <p style={{ color: '#cbd5e1', fontSize: '1rem', lineHeight: '1.8', margin: '0 0 28px 0' }}>
-              {selectedPoster.summary}
-            </p>
+            {/* Article Content */}
+            <div style={{
+              color: '#cbd5e1',
+              fontSize: '0.98rem',
+              lineHeight: '1.85',
+              margin: '0 0 28px 0',
+              whiteSpace: 'pre-line',
+              padding: '16px 0',
+              borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+            }}>
+              {modalLang === 'vi' ? selectedArticle.contentVi : (selectedArticle.contentEn || selectedArticle.contentVi)}
+            </div>
 
+            {/* Academic References Section */}
+            {selectedArticle.references && selectedArticle.references.length > 0 && (
+              <div style={{ marginBottom: '28px' }}>
+                <h4 style={{
+                  fontSize: '0.85rem',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase',
+                  color: '#38bdf8',
+                  marginBottom: '12px'
+                }}>
+                  Tài Liệu Tham Khảo Học Thuật (References &amp; DOIs)
+                </h4>
+                <ul style={{ margin: 0, paddingLeft: '20px', color: '#94a3b8', fontSize: '0.85rem', lineHeight: '1.7' }}>
+                  {selectedArticle.references.map((ref, idx) => (
+                    <li key={idx} style={{ marginBottom: '8px' }}>
+                      {ref.text}{' '}
+                      {ref.doi && (
+                        <a
+                          href={ref.doi}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: '#00f0ff', textDecoration: 'underline', marginLeft: '4px' }}
+                        >
+                          [DOI]
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Bottom Actions */}
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
               <a
-                href="https://forms.gle/F9evDGJCJm1P4XRz5"
+                href={APERIO_OFFICIAL_LINKS.projectBooklet}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  padding: '12px 28px',
+                  padding: '12px 24px',
                   borderRadius: '999px',
-                  background: selectedPoster.color,
+                  background: selectedArticle.themeColor,
                   color: '#020612',
                   textDecoration: 'none',
                   fontWeight: '700',
                   fontSize: '0.92rem'
                 }}
               >
-                <span>Nộp Hồ Sơ / Đăng Ký Nghiên Cứu</span>
+                <span>📖 Đọc Booklet Dự Án</span>
                 <span>↗</span>
               </a>
 
               <Link
                 href="/research"
-                onClick={() => setSelectedPoster(null)}
+                onClick={() => setSelectedArticle(null)}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -570,7 +765,7 @@ export default function FeaturedShowcase() {
                   fontWeight: '600'
                 }}
               >
-                <span>Xem Kho Lưu Trữ Đề Tài</span>
+                <span>Toàn Bộ Kho Lưu Trữ</span>
               </Link>
             </div>
           </div>

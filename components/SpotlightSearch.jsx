@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { APERIO_ARTICLES, APERIO_OFFICIAL_LINKS } from '../data/articles';
 
 export default function SpotlightSearch({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
@@ -9,94 +10,101 @@ export default function SpotlightSearch({ isOpen, onClose }) {
   const router = useRouter();
   const inputRef = useRef(null);
 
-  const searchData = [
+  const navigationItems = [
     {
       title: 'Home',
-      category: 'Navigation',
-      desc: 'Return to the Aperio Research home portal & scientific frontiers',
+      category: 'Điều Hướng',
+      desc: 'Trang chủ Aperio Research & các dự án khoa học',
       url: '/',
       symbol: '🏛️'
     },
     {
       title: 'About Aperio',
-      category: 'Navigation',
-      desc: 'Our student-initiated mission, philosophy, and foundational pillars',
+      category: 'Điều Hướng',
+      desc: 'Sứ mệnh bình dân hóa nghiên cứu khoa học, triết lý và trụ cột',
       url: '/about',
       symbol: '✦'
     },
     {
       title: 'Research Archive',
-      category: 'Navigation',
-      desc: 'Browse student manuscripts across Materials, AI, and Behavioral Science',
+      category: 'Điều Hướng',
+      desc: 'Kho lưu trữ toàn bộ các đề tài tâm lý học, phương pháp luận và chuyên đề',
       url: '/research',
       symbol: '📜'
     },
     {
       title: 'Connect & Opportunities',
-      category: 'Navigation',
-      desc: 'Research tracks, student guild, mentoring, and institutional inquiry',
+      category: 'Điều Hướng',
+      desc: 'Tuyển dụng đại sứ truyền thông, ban nghiên cứu và liên hệ hợp tác',
       url: '/connect',
       symbol: '🤝'
-    },
+    }
+  ];
+
+  const officialLinks = [
     {
-      title: 'Apply Research (Google Form)',
-      category: 'Actions',
-      desc: 'Submit your student research proposal or completed manuscript for review',
-      url: 'https://forms.gle/F9evDGJCJm1P4XRz5',
-      symbol: '📝',
+      title: 'Booklet Dự Án Aperio (Heyzine Flipbook)',
+      category: 'Tài Liệu Chính Thức',
+      desc: 'Xem trực tuyến tài liệu giới thiệu toàn diện tầm nhìn và cấu trúc Aperio',
+      url: APERIO_OFFICIAL_LINKS.projectBooklet,
+      symbol: '📖',
       external: true
     },
     {
-      title: 'Biodegradable Cement from Agricultural Waste',
-      category: 'Publications',
-      desc: 'Rice husk ash and bagasse fibers as sustainable supplementary cementitious materials.',
-      url: '/research',
-      symbol: '🔬'
+      title: 'Đơn Đăng Ký Đại Sứ Truyền Thông Gen 0.1',
+      category: 'Đăng Ký / Ứng Tuyển',
+      desc: 'Một vòng đơn, không phỏng vấn - Lan tỏa tri thức nghiên cứu',
+      url: APERIO_OFFICIAL_LINKS.ambassadorApplyForm,
+      symbol: '📢',
+      external: true
     },
     {
-      title: 'AI-Assisted Early Detection of Neurological Disorders',
-      category: 'Publications',
-      desc: 'Deep convolutional networks for micro-tremor and speech acoustic biomarkers.',
-      url: '/research',
-      symbol: '🧠'
+      title: 'JD Chi Tiết: Đại Sứ Truyền Thông',
+      category: 'Tài Liệu Tuyển Dụng',
+      desc: 'Mô tả quyền lợi, trách nhiệm và tiêu chuẩn xét duyệt Đại sứ',
+      url: APERIO_OFFICIAL_LINKS.ambassadorJD,
+      symbol: '📄',
+      external: true
     },
     {
-      title: 'The Impact of Sleep Quality on Academic Performance',
-      category: 'Publications',
-      desc: 'Chronobiology investigation into circadian rhythms and executive function in students.',
-      url: '/research',
-      symbol: '⏳'
+      title: 'Đơn Dự Bị Ban Nghiên Cứu',
+      category: 'Đăng Ký / Ứng Tuyển',
+      desc: 'Đăng ký danh sách chờ xét tuyển Ban Nghiên cứu các đợt tiếp theo',
+      url: APERIO_OFFICIAL_LINKS.researchApplyForm,
+      symbol: '🔬',
+      external: true
     },
     {
-      title: 'Tâm Lý Học: Hiểu Để Kết Nối Với Chính Mình',
-      category: 'Methodology Guides',
-      desc: 'Khám phá cấu trúc tâm lý học hành vi, nhận thức nội tâm và kết nối bản thân.',
-      url: '/research',
-      symbol: '💡'
-    },
-    {
-      title: 'Từ Những Khoảng Trống Đến Đề Tài Nghiên Cứu',
-      category: 'Methodology Guides',
-      desc: 'Cách xác định Research Gap trong tài liệu và chuyển hóa thành câu hỏi khoa học.',
-      url: '/research',
-      symbol: '🔍'
-    },
-    {
-      title: 'Tìm, Đọc Và Chọn Lọc Tài Liệu Nghiên Cứu',
-      category: 'Methodology Guides',
-      desc: 'Kỹ năng tìm kiếm học thuật trên Google Scholar, PubMed, Sci-Hub và lập ma trận tài liệu.',
-      url: '/research',
-      symbol: '📚'
+      title: 'Fanpage Facebook Aperio Research',
+      category: 'Kênh Thông Tin',
+      desc: 'Kênh thông tin cập nhật các bài viết chuyên đề và kết quả tuyển chọn',
+      url: APERIO_OFFICIAL_LINKS.fanpage,
+      symbol: '🌐',
+      external: true
     }
   ];
+
+  const articleItems = APERIO_ARTICLES.map((art) => ({
+    title: art.title,
+    titleEn: art.titleEn || '',
+    category: art.catBadge,
+    desc: art.summary,
+    url: '/research',
+    symbol: art.symbol || '📜',
+    highlights: (art.highlights || []).join(' ')
+  }));
+
+  const searchData = [...navigationItems, ...officialLinks, ...articleItems];
 
   const filtered = searchData.filter((item) => {
     if (!query.trim()) return true;
     const q = query.toLowerCase();
     return (
       item.title.toLowerCase().includes(q) ||
+      (item.titleEn && item.titleEn.toLowerCase().includes(q)) ||
       item.desc.toLowerCase().includes(q) ||
-      item.category.toLowerCase().includes(q)
+      item.category.toLowerCase().includes(q) ||
+      (item.highlights && item.highlights.toLowerCase().includes(q))
     );
   });
 
@@ -114,13 +122,12 @@ export default function SpotlightSearch({ isOpen, onClose }) {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Space opens if not in input
       if (
         e.key === ' ' &&
         !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)
       ) {
         e.preventDefault();
-        onClose(false); // toggle
+        onClose();
       } else if (e.key === 'Escape' && isOpen) {
         e.preventDefault();
         onClose();
@@ -166,8 +173,6 @@ export default function SpotlightSearch({ isOpen, onClose }) {
         position: 'fixed',
         inset: 0,
         background: 'rgba(2, 6, 18, 0.85)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
         zIndex: 10000,
         display: 'flex',
         alignItems: 'flex-start',
@@ -179,14 +184,15 @@ export default function SpotlightSearch({ isOpen, onClose }) {
         onClick={(e) => e.stopPropagation()}
         style={{
           width: '100%',
-          maxWidth: '640px',
+          maxWidth: '680px',
           background: 'rgba(10, 18, 38, 0.98)',
-          border: '1px solid rgba(0, 240, 255, 0.4)',
+          border: '1px solid rgba(0, 240, 255, 0.3)',
           borderRadius: '20px',
-          boxShadow: '0 25px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 240, 255, 0.2)',
+          boxShadow: '0 25px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 240, 255, 0.15)',
           overflow: 'hidden',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          maxHeight: '75vh'
         }}
       >
         {/* Search Input Bar */}
@@ -194,48 +200,43 @@ export default function SpotlightSearch({ isOpen, onClose }) {
           display: 'flex',
           alignItems: 'center',
           gap: '12px',
-          padding: '16px 20px',
-          borderBottom: '1px solid rgba(56, 189, 248, 0.15)',
-          background: 'rgba(6, 12, 28, 0.6)'
+          padding: '18px 24px',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" strokeWidth="2.2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
+          <span style={{ color: '#00f0ff', fontSize: '1.2rem' }}>🔍</span>
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleInputKeyDown}
-            placeholder="Search papers, topics, methodology, pages... (ESC to exit)"
+            placeholder="Tìm đề tài, bài viết, chiến dịch tuyển dụng, liên kết..."
             style={{
               flex: 1,
               background: 'transparent',
               border: 'none',
               outline: 'none',
               color: '#ffffff',
-              fontSize: '1rem',
-              fontFamily: 'inherit'
+              fontSize: '1rem'
             }}
           />
-          <span style={{
-            fontSize: '0.72rem',
-            padding: '4px 8px',
-            borderRadius: '6px',
+          <kbd style={{
             background: 'rgba(255, 255, 255, 0.08)',
-            border: '1px solid rgba(255, 255, 255, 0.15)',
-            color: '#94a3b8'
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '6px',
+            padding: '2px 8px',
+            color: '#94a3b8',
+            fontSize: '0.75rem'
           }}>
             ESC
-          </span>
+          </kbd>
         </div>
 
         {/* Results List */}
-        <div style={{ maxHeight: '360px', overflowY: 'auto', padding: '8px' }}>
+        <div style={{ overflowY: 'auto', padding: '8px' }}>
           {filtered.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '36px 16px', color: '#64748b', fontSize: '0.92rem' }}>
-              No matching research or topics found.
+            <div style={{ padding: '36px 20px', textAlign: 'center', color: '#64748b' }}>
+              Không tìm thấy kết quả nào phù hợp với "{query}"
             </div>
           ) : (
             filtered.map((item, idx) => {
@@ -249,40 +250,50 @@ export default function SpotlightSearch({ isOpen, onClose }) {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '14px',
-                    padding: '12px 14px',
+                    padding: '12px 16px',
                     borderRadius: '12px',
-                    cursor: 'pointer',
                     background: isSelected ? 'rgba(0, 240, 255, 0.12)' : 'transparent',
-                    border: isSelected ? '1px solid rgba(0, 240, 255, 0.35)' : '1px solid transparent',
+                    border: isSelected ? '1px solid rgba(0, 240, 255, 0.3)' : '1px solid transparent',
+                    cursor: 'pointer',
                     transition: 'all 0.15s ease'
                   }}
                 >
                   <span style={{ fontSize: '1.4rem' }}>{item.symbol}</span>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '3px' }}>
-                      <span style={{ color: '#ffffff', fontSize: '0.95rem', fontWeight: '600' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
+                      <span style={{
+                        color: '#ffffff',
+                        fontWeight: '600',
+                        fontSize: '0.92rem',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap'
+                      }}>
                         {item.title}
                       </span>
                       <span style={{
                         fontSize: '0.68rem',
-                        padding: '2px 7px',
+                        padding: '2px 8px',
                         borderRadius: '999px',
-                        background: 'rgba(56, 189, 248, 0.12)',
+                        background: 'rgba(255, 255, 255, 0.08)',
                         color: '#38bdf8',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.5px'
+                        whiteSpace: 'nowrap'
                       }}>
                         {item.category}
                       </span>
                     </div>
-                    <div style={{ color: '#94a3b8', fontSize: '0.8rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    <div style={{
+                      color: '#94a3b8',
+                      fontSize: '0.8rem',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>
                       {item.desc}
                     </div>
                   </div>
-                  {isSelected && (
-                    <span style={{ color: '#00f0ff', fontSize: '0.8rem', fontWeight: 'bold' }}>
-                      ↵
-                    </span>
+                  {item.external && (
+                    <span style={{ color: '#00f0ff', fontSize: '0.8rem' }}>↗</span>
                   )}
                 </div>
               );
@@ -295,15 +306,18 @@ export default function SpotlightSearch({ isOpen, onClose }) {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '10px 18px',
-          borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-          background: 'rgba(4, 9, 20, 0.7)',
+          padding: '10px 20px',
+          background: 'rgba(5, 10, 24, 0.8)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
           fontSize: '0.75rem',
           color: '#64748b'
         }}>
-          <span>Navigate with <kbd style={{ color: '#94a3b8' }}>↑</kbd> <kbd style={{ color: '#94a3b8' }}>↓</kbd></span>
-          <span>Open with <kbd style={{ color: '#94a3b8' }}>Enter</kbd></span>
-          <span>Close with <kbd style={{ color: '#94a3b8' }}>Esc</kbd></span>
+          <div style={{ display: 'flex', gap: '16px' }}>
+            <span>↑↓ để di chuyển</span>
+            <span>↵ để chọn</span>
+            <span>ESC để đóng</span>
+          </div>
+          <span>Aperio Quick Navigation</span>
         </div>
       </div>
     </div>
