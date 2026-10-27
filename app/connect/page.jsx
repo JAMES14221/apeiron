@@ -88,6 +88,7 @@ export default function ConnectPage() {
         {channels.map((ch, idx) => (
           <div
             key={idx}
+            className="cyber-card"
             style={{
               background: 'rgba(10, 18, 38, 0.92)',
               border: ch.primary ? '1px solid rgba(0, 240, 255, 0.45)' : '1px solid rgba(255, 255, 255, 0.1)',

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import HeroCanvas from '../components/HeroCanvas';
+import FeaturedShowcase from '../components/FeaturedShowcase';
 
 export default function HomePage() {
   const metrics = [
@@ -61,6 +62,11 @@ export default function HomePage() {
     }
   ];
 
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="home-container">
       {/* Authentic Lightweight Hero with scoped canvas */}
@@ -70,12 +76,13 @@ export default function HomePage() {
         style={{
           position: 'relative',
           overflow: 'hidden',
-          minHeight: '84vh',
+          minHeight: '88vh',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
-          padding: '60px 24px 80px 24px',
-          background: 'radial-gradient(ellipse at 50% 30%, #0a1b38 0%, #030712 75%)'
+          justifyContent: 'space-between',
+          padding: '60px 24px 30px 24px',
+          background: 'radial-gradient(ellipse at 50% 25%, #0a1b38 0%, #020612 80%)'
         }}
       >
         <HeroCanvas />
@@ -84,14 +91,14 @@ export default function HomePage() {
           position: 'relative',
           zIndex: 10,
           maxWidth: '980px',
-          margin: '0 auto',
+          margin: 'auto',
           textAlign: 'center',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center'
         }}>
           
-          {/* Badge */}
+          {/* Pulsating Beacon Badge */}
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -99,27 +106,30 @@ export default function HomePage() {
             padding: '8px 22px',
             borderRadius: '999px',
             background: 'rgba(0, 240, 255, 0.08)',
-            border: '1px solid rgba(0, 240, 255, 0.3)',
+            border: '1px solid rgba(0, 240, 255, 0.35)',
             color: '#00f0ff',
             fontSize: '0.82rem',
             letterSpacing: '2px',
             fontWeight: '600',
             textTransform: 'uppercase',
-            marginBottom: '28px'
+            marginBottom: '28px',
+            boxShadow: '0 0 20px rgba(0, 240, 255, 0.15)'
           }}>
-            <span>✦</span> SCIENCE BUILDS A BRIGHTER TOMORROW <span>✦</span>
+            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: '#00f0ff', boxShadow: '0 0 10px #00f0ff' }}></span>
+            <span>SCIENCE BUILDS A BRIGHTER TOMORROW</span>
+            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: '#00f0ff', boxShadow: '0 0 10px #00f0ff' }}></span>
           </div>
 
-          {/* Main Title */}
+          {/* Main Title with Celestial Glow */}
           <h1 style={{
             fontFamily: 'var(--font-serif, serif)',
-            fontSize: 'clamp(2.8rem, 7vw, 5.5rem)',
+            fontSize: 'clamp(3rem, 7.5vw, 5.8rem)',
             fontWeight: '700',
             letterSpacing: '4px',
             lineHeight: '1.08',
             color: '#ffffff',
             margin: '0 0 24px 0',
-            textShadow: '0 4px 30px rgba(0, 0, 0, 0.7), 0 0 45px rgba(56, 189, 248, 0.35)'
+            textShadow: '0 4px 30px rgba(0, 0, 0, 0.7), 0 0 50px rgba(56, 189, 248, 0.4)'
           }}>
             APERIO RESEARCH
           </h1>
@@ -137,7 +147,7 @@ export default function HomePage() {
           </p>
 
           {/* Actions */}
-          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '60px' }}>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '50px' }}>
             <Link
               href="/about"
               className="hero-explore-btn"
@@ -145,16 +155,17 @@ export default function HomePage() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '10px',
-                padding: '14px 32px',
+                padding: '14px 34px',
                 borderRadius: '999px',
-                background: 'rgba(6, 16, 38, 0.88)',
-                border: '1px solid rgba(0, 240, 255, 0.5)',
-                boxShadow: '0 0 25px rgba(0, 240, 255, 0.35)',
+                background: 'rgba(6, 16, 38, 0.92)',
+                border: '1px solid rgba(0, 240, 255, 0.55)',
+                boxShadow: '0 0 30px rgba(0, 240, 255, 0.35)',
                 color: '#ffffff',
                 textDecoration: 'none',
                 fontSize: '0.92rem',
                 letterSpacing: '1.5px',
-                fontWeight: '600'
+                fontWeight: '600',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
               }}
             >
               <span>ABOUT APERIO</span>
@@ -172,10 +183,10 @@ export default function HomePage() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                padding: '14px 32px',
+                padding: '14px 34px',
                 borderRadius: '999px',
                 background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
+                border: '1px solid rgba(255, 255, 255, 0.25)',
                 color: '#ffffff',
                 textDecoration: 'none',
                 fontSize: '0.92rem',
@@ -198,7 +209,7 @@ export default function HomePage() {
             borderRadius: '20px',
             background: 'rgba(10, 18, 38, 0.92)',
             border: '1px solid rgba(56, 189, 248, 0.2)',
-            boxShadow: '0 12px 36px rgba(0, 0, 0, 0.45)'
+            boxShadow: '0 12px 36px rgba(0, 0, 0, 0.5)'
           }}>
             {metrics.map((m, idx) => (
               <div key={idx} style={{ textAlign: 'center' }}>
@@ -220,10 +231,41 @@ export default function HomePage() {
           </div>
 
         </div>
+
+        {/* Scroll Indicator bouncing to featured section */}
+        <div
+          onClick={() => scrollToSection('featured')}
+          style={{
+            position: 'relative',
+            zIndex: 10,
+            cursor: 'pointer',
+            padding: '10px',
+            color: '#38bdf8',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '4px',
+            opacity: 0.85
+          }}
+          title="Explore Featured Publications"
+        >
+          <span style={{ fontSize: '0.72rem', letterSpacing: '2px', textTransform: 'uppercase' }}>EXPLORE</span>
+          <span className="scroll-indicator-arrow" style={{ fontSize: '1.4rem', lineHeight: '1' }}>⌄</span>
+        </div>
       </header>
 
+      {/* Featured Explorations Showcase (Interactive Carousel & Reader) */}
+      <div id="featured" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(10, 30, 68, 0.3) 0%, transparent 70%)' }}>
+        <FeaturedShowcase />
+      </div>
+
       {/* Research Domains Section */}
-      <section style={{ maxWidth: '1240px', margin: '0 auto', padding: '80px 24px' }}>
+      <section style={{
+        maxWidth: '1240px',
+        margin: '0 auto',
+        padding: '60px 24px 80px 24px',
+        position: 'relative'
+      }}>
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <div style={{ display: 'inline-block', color: '#00f0ff', fontSize: '0.82rem', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '10px' }}>
             — RESEARCH FRONTIERS —
@@ -237,12 +279,12 @@ export default function HomePage() {
           {domains.map((d, i) => (
             <div
               key={i}
+              className="cyber-card"
               style={{
                 background: 'rgba(10, 18, 38, 0.90)',
                 border: '1px solid rgba(56, 189, 248, 0.16)',
                 borderRadius: '16px',
                 padding: '32px 24px',
-                transition: 'transform 0.25s ease, border-color 0.25s ease',
                 cursor: 'default'
               }}
             >
@@ -259,7 +301,12 @@ export default function HomePage() {
       </section>
 
       {/* Research Journey Process */}
-      <section style={{ maxWidth: '1240px', margin: '0 auto', padding: '20px 24px 100px 24px' }}>
+      <section style={{
+        maxWidth: '1240px',
+        margin: '0 auto',
+        padding: '20px 24px 100px 24px',
+        background: 'radial-gradient(ellipse at 80% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 60%)'
+      }}>
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <div style={{ display: 'inline-block', color: '#38bdf8', fontSize: '0.82rem', letterSpacing: '2.5px', textTransform: 'uppercase', marginBottom: '10px' }}>
             — THE METHODOLOGY —
@@ -273,6 +320,7 @@ export default function HomePage() {
           {steps.map((s, idx) => (
             <div
               key={idx}
+              className="cyber-card"
               style={{
                 background: 'rgba(10, 18, 38, 0.88)',
                 border: '1px solid rgba(0, 240, 255, 0.14)',

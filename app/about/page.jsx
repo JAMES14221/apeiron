@@ -97,7 +97,7 @@ export default function AboutPage() {
 
       {/* Core Mission & Story Dossier */}
       <section style={{ maxWidth: '1100px', margin: '0 auto 80px auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px' }}>
-        <div style={{
+        <div className="cyber-card" style={{
           background: 'rgba(10, 18, 38, 0.90)',
           border: '1px solid rgba(0, 240, 255, 0.25)',
           borderRadius: '24px',
@@ -118,7 +118,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div style={{
+        <div className="cyber-card" style={{
           background: 'rgba(10, 18, 38, 0.90)',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           borderRadius: '24px',
@@ -162,6 +162,7 @@ export default function AboutPage() {
           {pillars.map((p, idx) => (
             <div
               key={idx}
+              className="cyber-card"
               style={{
                 background: 'rgba(10, 18, 38, 0.90)',
                 border: '1px solid rgba(56, 189, 248, 0.16)',

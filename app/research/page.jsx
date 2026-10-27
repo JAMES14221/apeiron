@@ -168,6 +168,7 @@ export default function ResearchPage() {
         {filteredPapers.map((paper) => (
           <article
             key={paper.id}
+            className="cyber-card"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',

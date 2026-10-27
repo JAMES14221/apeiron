@@ -7,11 +7,10 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: #030712;
+  background-color: #020612;
   color: #f8fafc;
   font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
   overflow-x: hidden;
-  /* Natural hardware scrolling without lag */
   -webkit-overflow-scrolling: touch;
 }
 
@@ -31,4 +30,39 @@ body {
   position: relative;
   z-index: 10;
   width: 100%;
+}
+
+/* Audio wave visualizer animation */
+@keyframes waveVibe {
+  0%, 100% {
+    transform: scaleY(0.4);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* Hero scroll indicator bounce */
+@keyframes bounceSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.scroll-indicator-arrow {
+  animation: bounceSlow 2s ease-in-out infinite;
+}
+
+/* Interactive Card Hover Glow (0 GPU lag, CSS accelerated) */
+.cyber-card {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cyber-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 240, 255, 0.5) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 240, 255, 0.2) !important;
 }
