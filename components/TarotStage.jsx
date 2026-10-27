@@ -109,7 +109,8 @@ const DEPT_THEMES = {
 export default function TarotStage({ currentDept, onTriggerFounderEasterEgg }) {
   const canvasRef = useRef(null);
   const cardRefs = useRef([]);
-  const [focalIndex, setFocalIndex] = useState(0);
+  const dialRomanRef = useRef(null);
+  const focalIndexRef = useRef(0);
   const [revealedIndex, setRevealedIndex] = useState(null);
 
   const filteredScholars = useMemo(() => {
@@ -134,11 +135,11 @@ export default function TarotStage({ currentDept, onTriggerFounderEasterEgg }) {
 
   // Reset indices on department change
   useEffect(() => {
-    animState.currentFocal = 0;
-    animState.targetFocal = 0;
-    animState.focusP = {};
-    animState.flipP = {};
-    setFocalIndex(0);
+    animState.current.currentFocal = 0;
+    animState.current.targetFocal = 0;
+    animState.current.focusP = {};
+    animState.current.flipP = {};
+    focalIndexRef.current = 0;
     setRevealedIndex(null);
   }, [currentDept]);
 
@@ -374,8 +375,19 @@ export default function TarotStage({ currentDept, onTriggerFounderEasterEgg }) {
       state.currentFocal = (state.currentFocal + diff * 0.12 * delta + N) % N;
 
       const curActive = Math.round(state.currentFocal) % N;
-      if (curActive !== focalIndex) {
-        setFocalIndex(curActive);
+      if (curActive !== focalIndexRef.current) {
+        focalIndexRef.current = curActive;
+        const curScholar = filteredScholars[curActive];
+        if (dialRomanRef.current && curScholar) {
+          dialRomanRef.current.innerText = `CODEX ${curScholar.roman || 'I'}`;
+        }
+        for (let j = 0; j < N; j++) {
+          const el = cardRefs.current[j];
+          if (el) {
+            if (j === curActive) el.classList.add('is-active-card');
+            else el.classList.remove('is-active-card');
+          }
+        }
       }
 
       const mouseShiftX = state.curParallaxX * 18;
@@ -478,9 +490,7 @@ export default function TarotStage({ currentDept, onTriggerFounderEasterEgg }) {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [filteredScholars, activeTheme, revealedIndex, focalIndex]);
-
-  const activeScholar = filteredScholars[focalIndex] || filteredScholars[0];
+  }, [filteredScholars, activeTheme, revealedIndex]);
 
   return (
     <div className="gacha-stage" id="gachaStage" data-dept={currentDept}>
@@ -498,7 +508,7 @@ export default function TarotStage({ currentDept, onTriggerFounderEasterEgg }) {
               key={scholar.roman || idx}
               scholar={scholar}
               index={idx}
-              isActive={focalIndex === idx}
+              isActive={idx === 0}
               isRevealed={revealedIndex === idx}
               theme={activeTheme}
               onClick={() => handleCardClick(idx)}
@@ -514,7 +524,7 @@ export default function TarotStage({ currentDept, onTriggerFounderEasterEgg }) {
             ‹
           </button>
           <div className="dial-display">
-            <span className="dial-roman">CODEX {activeScholar?.roman || 'I'}</span>
+            <span ref={dialRomanRef} className="dial-roman">CODEX {filteredScholars[0]?.roman || 'I'}</span>
             <span className="dial-divider">·</span>
             <span className="dial-total">{activeTheme.name.toUpperCase()}</span>
           </div>
