@@ -3947,8 +3947,7 @@ nav {
     top: -5%;
     left: -5%;
     width: 110%;
-    height: 110%;
-    background-image: url('acanthus_sanctuary.jpg');
+    background: radial-gradient(circle at 50% 30%, rgba(13, 59, 143, 0.4) 0%, rgba(2, 6, 18, 0.95) 70%);
     background-size: cover;
     background-position: center 30%;
     filter: brightness(0.92) contrast(1.08) saturate(1.1);
